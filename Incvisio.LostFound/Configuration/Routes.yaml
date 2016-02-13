@@ -1,0 +1,78 @@
+#                                                                        #
+# Default routes configuration for the Measute tool package              #
+#
+
+-
+  name: 'Authentication'
+  uriPattern: '<AuthenticationSubRoutes>'
+  defaults:
+    '@package': 'Incvisio.LostFound'
+    '@controller': 'Login'
+    '@action': 'index'
+    '@format': 'html'
+  subRoutes:
+    'AuthenticationSubRoutes':
+      package: 'Incvisio.LostFound'
+      suffix: 'Authentication'
+-
+   name: 'post'
+   uriPattern: 'post/<PostSubRoutes>'
+   defaults:
+     '@package': 'Incvisio.LostFound'
+     '@controller': 'Post'
+     '@action':     'index'
+     '@format':     'html'
+   subRoutes:
+       'PostSubRoutes':
+         package: 'Incvisio.LostFound'
+         suffix: 'Post'
+
+-
+   name: 'Main'
+   uriPattern: ''
+   defaults:
+     '@package':    'Incvisio.LostFound'
+     '@controller': 'Standard'
+     '@action':     'index'
+     '@format':     'html'
+-
+   name: 'Main'
+   uriPattern: 'rule'
+   defaults:
+     '@package':    'Incvisio.LostFound'
+     '@controller': 'Standard'
+     '@action':     'rule'
+     '@format':     'html'
+-
+   name: 'Main'
+   uriPattern: 'about'
+   defaults:
+     '@package':    'Incvisio.LostFound'
+     '@controller': 'Standard'
+     '@action':     'about'
+     '@format':     'html'
+-
+   name: 'Main'
+   uriPattern: 'contacts'
+   defaults:
+     '@package':    'Incvisio.LostFound'
+     '@controller': 'Standard'
+     '@action':     'contacts'
+     '@format':     'html'
+-
+   name: 'Main'
+   uriPattern: 'donate'
+   defaults:
+     '@package':    'Incvisio.LostFound'
+     '@controller': 'Standard'
+     '@action':     'donate'
+     '@format':     'html'
+-
+  name: 'Redirect to action that need to be displayed'
+  uriPattern: ''
+  defaults:
+    '@package':    'Incvisio.LostFound'
+    '@controller': 'Standard'
+    '@action':     'redirect'
+    '@format':     'html'
+

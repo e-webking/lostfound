@@ -1,0 +1,39 @@
+<f:layout name="Default" />
+
+<f:section name="Title">LostFound</f:section>
+
+<f:section name="Content">
+
+<div class="container">
+	<div class="row mob-marginLR1">
+    	<div class="col s12 m5 leftCol">            
+          <div class="lostFoundCol">
+            <f:form id="search" action="index" controller="Post" method="post" additionalParams="{type:'lost',lost_input:search_field}">
+		  		<f:form.hidden name="type" value="lost"/>             
+                <div class="col s11 search-wrapper">
+                    <f:form.textfield id="lost-input" name="lost_input" class="validate" placeholder="Я загубив" additionalAttributes="{style:'font-size:3rem;', autocomplete:'off'}" value="{search_field}"/>
+                </div>
+              <label for="lost-input" id="allLost" class="lost-input-label">
+              	<a href="/post?type=lost"><!--see all lost--> переглянути усе загублене</a>
+              </label>              
+            </f:form>
+          </div>
+        </div>
+
+    	<div class="col s12 m5 offset-m2 mobBG rightCol">
+          <div class="lostFoundCol">
+           <f:form id="searchFound" action="index" controller="Post" method="post" additionalParams="{type:'found',found_input:search_field}">
+				<f:form.hidden name="type" value="found"/>             
+                <div class="col s11 search-wrapper">
+                	<f:form.textfield id="found-input" name="found_input" class="validate" placeholder="Я знайшов" additionalAttributes="{style:'font-size:3rem;', autocomplete:'off'}" value="{search_field}"/>
+                </div>
+                <label for="found-input" id="allFound" class="found-input-label">
+                	<a href="/post?type=found" style="color: #fff; padding-right:5px;"><!--see all found-->переглянути усе знайдене</a>
+                </label>             
+            </f:form>
+          </div>
+        </div>
+  	</div>
+</div> 
+
+</f:section>

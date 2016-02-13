@@ -1,0 +1,52 @@
+#                                                                        #
+# Example Settings                                                       #
+#                                                                        #
+# This file contains settings for various parts of the application.      #
+# Copy this file to Settings.yaml, and adjust as necessary.              #
+#                                                                        #
+# Please refer to the default settings file(s) or the manuals for        #
+# possible configuration options.                                        #
+#                                                                        #
+
+TYPO3:
+  Flow:
+    security:
+      enable: TRUE
+      authentication:
+        authenticationStrategy: oneToken
+        providers:
+          DefaultProvider:
+            provider: PersistedUsernamePasswordProvider
+    resource:
+      storages:
+        defaultPersistentResourcesStorage:
+          storage: 'TYPO3\Flow\Resource\Storage\WritableFileSystemStorage'
+          storageOptions:
+            path: '%FLOW_PATH_DATA%Persistent/Resources/'
+    session:
+      inactivityTimeout: 86400
+    i18n:
+      defaultLocale: ua
+      fallbackRule:
+        strict: FALSE
+        order: [ua,en]
+Incvisio:
+  LostFound:
+    strategies:
+      Facebook:
+        app_id: '1457346061238065'
+        app_secret: '490c5b6345b6bf279d20aa757fe4328e'
+        scope: 'public_profile,email' # optional
+        redirect_uri: 'http://lostfound.armtechnologies.com/incvisio.lostfound/login/social'
+      Vk:
+        app_id: '5058766'
+        app_secret: 'SkXF9JLxIRtJBtAuKCvf'
+        redirect_uri: 'http://lostfound.armtechnologies.com/incvisio.lostfound/login/social?social=vk'
+      Twitter:
+        app_id: 'PlocFzWzcLRCg0K7NrgjMsxmY'
+        app_secret: 'TFPFWjtexMoOBc9bKDUHnimt82DkeCPYIVAvl1ApRnAgwaWrd5'
+        redirect_uri: 'http://lostfound.armtechnologies.com/incvisio.lostfound/login/social?social=twitter'
+      Google:
+        app_id: '116056046136-0pd95oakoosb5ffqke7ebitd5vukc2va.apps.googleusercontent.com'
+        app_secret: 'ji7_xSPUVvjxQyqNihA5aeej'
+        redirect_uri: 'http://lostfound.armtechnologies.com/incvisio.lostfound/login/social?social=googleplus'

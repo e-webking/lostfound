@@ -1,0 +1,188 @@
+<f:section name="FooterHome">    
+    <footer>        
+     <div class="container">
+      <div class="row">
+        <div class="col s12 m5 leftCol">
+        	<div class="row">
+       		<div class="s12 m6">
+	                <a href="/" class="footerLogo" title="Home">
+	                    <img src="{f:uri.resource(path: 'Images/logo_horizontal.png')}" class="responsive-img" alt=""> 
+	                </a>
+	             </div>
+	             <div class="s12 m6 offset-m6">
+	                <ul class="footerLink">
+	                    <li><a id="modal-about" href="#about"><!--On the Draft-->про проект</a></li>
+	                    <li><a  href="{f:uri.action(action:'rule')}"><!--Terms of Use-->правила користування</a></li>
+	                    <li><a  href="{f:uri.action(action:'contacts')}"><!--Contact-->контакти</a></li>
+	                </ul>
+	             </div>
+        	</div>
+        </div>
+        <div class="col s12 m7 donateCol">
+          <a class="waves-effect waves-light btn-large amber lighten-1" style="margin-left: 12px; margin-top: 15px;" href="{f:uri.action(action:'donate')}" target="_blank">підтримати проект</a>
+        </div>
+      </div>
+    </div>
+    </footer>
+	<div id="modal1" class="modal modal-sm">
+		<span class="modal-close"><div class="closeIcon"></div></span>
+		<f:security.ifHasRole role="User">
+	    	<f:then>
+	    		<div id="Login" class="loginBox social_login">
+			        <h5>Вітаємо</h5>                    
+			        <div class="row">
+			        	<div class="col s12">
+			               <f:link.action action="logout" id="modal_trigger" controller="Login">Вийти ({currentUser.name})</f:link.action>
+			            </div>
+			            <div class="col s12"><a href="/post/new/?type=lost">Додати загублене</a></div>
+			            <div class="col s12"><a href="/post/new/?type=found">Додати знайдене</a></div>
+			        </div>
+			    </div>
+	        </f:then>
+	        <f:else>
+	        	<div id="Login" class="loginBox social_login">
+			        <h5>Вхід через соцмережі</h5>
+			        <div class="loginSocial"> 
+			            <a class="socialBox" id="facebook"> <span class="icon fb"><i class="fa fa-facebook"></i></span> </a> 
+			            <a href="{vk_url}" class="socialBox"> <span class="icon vk"><i class="fa fa-vk"></i></span> </a> 
+			            <f:link.action action="auth" controller="Standard" class="socialBox"><span class="icon tw"><i class="fa fa-twitter"></i></span></f:link.action>
+	                    <a href="{google_url}" class="socialBox"><span class="icon google"><i class="fa fa-google-plus"></i></span></a>
+			        </div>                    
+			        <div class="row">
+			       		<f:form action="authenticate" controller="Login" method="post" name="loginform" additionalAttributes="{class:'col s12'}">
+	                    	<f:form.hidden name="return_url" value="{currentpage}" /> 
+		                     <div class="row">
+		                     	<div class="input-field col s12">
+				                    <i class="material-icons prefix">mail</i>
+				                    <f:form.textfield id="lemail" name="__authentication[TYPO3][Flow][Security][Authentication][Token][UsernamePassword][username]"  additionalAttributes="{type:'email', class: 'validate email', required: 'required',autocomplete:'off'}" placeholder="e-mail" />
+				                </div>
+				                <div class="input-field col s12">
+				                    <i class="material-icons prefix">https</i>
+				                    <f:form.password id="lpassLogin" name="__authentication[TYPO3][Flow][Security][Authentication][Token][UsernamePassword][password]"  additionalAttributes="{type:'password', class:'validate password', required: 'required',autocomplete:'off'}" placeholder="пароль" />
+				                </div>
+				              </div>
+				                <div class="row marginB0">
+					                <div class="input-field col s6 leftBtn"><a href="javascript:void(0)" id="forgotPassword" class="linkText">забули пароль?</a></div>
+					                <div class="input-field col s6 rightBtn"><a href="javascript:void(0)" id="register_form" class="linkText">зареєструватись</a></div>
+					                <div class="input-field col s12 loginBtn">
+					                    <f:form.submit class="sendBtn" value="ВХІД" />                            	
+					                </div>
+		                     </div>               	
+		        		</f:form>
+			     	</div>                 
+			    </div>
+			    <!-- Forgot Password Popup -->
+			    <div id="forgot-password" class="loginBox user_forgot" style="display:none;">
+			        <h5>Забули пароль</h5>                    
+			        <div class="row">
+			            <f:form method="login" action="requestPassword" controller="Login" additionalAttributes="{class:'col s12', role: 'form'}">
+	                    	 <div class="row">
+			                	<div class="input-field col s12">
+			                    <i class="material-icons prefix">mail</i>
+			                    	<f:form.textfield class="validate email" name="username" id="lemail" placeholder="e-mail" additionalAttributes="{autofocus: 'autofocus',autocomplete:'off',required:'',type:'email'}" />
+			                	</div>
+			              	</div> 
+			              	<div class="row marginB0">
+				                <div class="input-field col s6 leftBtn"><a href="javascript:void(0)" class="linkText backp">НАЗАД</a></div>
+				                <div class="input-field col s6 sendBtnCol">
+				                    <f:form.submit class="sendBtn" value="ВІДПРАВИТИ" />                           	
+				                </div>
+				             </div>                   
+	                   </f:form>
+			    	</div>
+			    </div>
+		    	<!-- User Login Popup -->
+		    	<div id="register_form" class="loginBox user_register" style="display:none;">
+			        <h5>Реєстрація</h5>                    
+			        <div class="row">
+			            <f:form action="create" controller="Login" method="post" name="loginform" id="registerForm" additionalAttributes="{class:'col s12', role: 'form'}">                      
+			              <div class="row">
+			                <div class="input-field col s12">
+			                    <i class="material-icons prefix">account_circle</i>
+			                    <f:form.textfield name="firstName"  id="firstName" class="validate" placeholder="ім`я"  additionalAttributes="{required: 'required',autocomplete:'off',autofocus: 'autofocus'}"/>
+			                </div>
+			                <div class="input-field col s12">
+			                    <i class="material-icons prefix">mail</i>
+			                    <f:form.textfield  name="lemail"  id="lemail" class="validate email" placeholder="e-mail"  additionalAttributes="{type:'email', required: 'required',autocomplete:'off',autofocus: 'autofocus'}"/>
+			                </div>                
+			                <div class="input-field col s12">
+			                    <i class="material-icons prefix">https</i>
+			                    <f:form.password name="lpass"  id="lpass"  class="validate password" placeholder="пароль"  additionalAttributes="{type:'password', required: 'required',autocomplete:'off',autofocus: 'autofocus'}"/>
+			                </div>
+			                <div class="input-field col s12">
+			                    <i class="material-icons prefix">https</i>
+			                    <f:form.password name="lpass2"  id="lpass2" class="validate password" placeholder="підтвердити пароль"  additionalAttributes="{type:'password', required: 'required',autocomplete:'off',autofocus: 'autofocus'}"/>
+			                </div>
+			              </div>                          
+			              <div class="row marginB0">
+			                <div class="input-field col s4 leftBtn"><a href="javascript:void(0)" class="linkText backp">НАЗАД</a></div>
+			                <div class="input-field col s8 sendBtnCol">
+			                	<f:form.submit  class="sendBtn" value="ЗАРЕЄСТРУВАТИСЬ" />                     	
+			                </div>
+			              </div>
+			            </f:form>
+			        </div>
+		    	</div>   
+	        </f:else>
+	    </f:security.ifHasRole>
+	</div>
+	<!-- About Popup -->
+	<div id="about" class="modal modal-lg">
+		<span class="modal-close"><div class="closeIcon"></div></span>    
+	    <div class="tpBox">
+	        <h5>About</h5>
+	        <h6>About</h6>    
+	        <p>Lorem Ipsum - це текст-"риба", що використовується в друкарстві та дизайні.
+	        Lorem Ipsum є, фактично, стандартною "рибою" аж з XVI сторіччя, коли невідомий друкар
+	        взяв шрифтову гранку та склав на ній підбірку зразків шрифтів. "Риба" не тільки успішно
+	        пережила п'ять століть, але й прижилася в електронному верстуванні, залишаючись по суті незмінною.
+	        Вона популяризувалась в 60-их роках минулого сторіччя завдяки виданню зразків шрифтів Letraset,
+	        які містили уривки з Lorem Ipsum, і вдруге - нещодавно завдяки програмам комп'ютерного верстування на кшталт
+	        Aldus Pagemaker, які використовували різні версії Lorem Ipsum. 
+	        Lorem Ipsum - це текст-"риба", що використовується в друкарстві
+	        та дизайні. Lorem Ipsum є, фактично, стандартною "рибою" аж з XVI сторіччя,
+	        коли невідомий друкар взяв шрифтову гранку та склав на ній підбірку зразків шрифтів.
+	        "Риба" не тільки успішно пережила п'ять століть, але й прижилася в електронному верстуванні,
+	        залишаючись по суті незмінною. Вона популяризувалась в 60-их роках минулого сторіччя завдяки виданню
+	        зразків шрифтів Letraset, які містили уривки з Lorem Ipsum, і вдруге - нещодавно завдяки програмам
+	        комп'ютерного верстування на кшталт Aldus Pagemaker, які використовували різні версії Lorem Ipsum.</p>
+	   </div>
+	</div>
+</f:section>
+
+<f:section name="FooterMain">
+<div id="donate" class="modal modal-lg">  
+    <div class="tpBox">
+      <h5>Support the project</h5>        
+        <div class="row">         
+          <div class="col s12 detailText">              
+              <p>For the quality of our service, please findings support our project.<br>Please select one of the offered payment systems.</p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col s12 m12 l6 center-align cards">
+              <p><img src="{f:uri.resource(path: 'Images/visa_master-card_liqpay.jpg')}" class="responsive-img" alt=""></p>
+                <p><a href="https://www.liqpay.com/" class="waves-effect waves-light btn-large amber lighten-1 supportButton">support throught liqpay</a></p>
+            </div>
+            <div class="col s12 m12 l6 center-align">
+              <div class="input-field col s12">
+                  <form action="https://www.paypal.com/cgi-bin/webscr" method="post">
+                      <input type="hidden" name="cmd" value="_xclick">
+                      <input type="hidden" name="business" value="max@pixelant.se">
+                      <input type="hidden" name="item_name" value="Donate for project LostFound">
+                      <strong>Enter the amount you wish to donate as:</strong><br />
+                      <input type="text" name="amount" placeholder="5$" value="">
+                      <input type="hidden" name="no_shipping" value="0">
+                      <input type="hidden" name="no_note" value="1">
+                      <input type="hidden" name="currency_code" value="USD">
+                      <input type="hidden" name="lc" value="AU">
+                      <input type="hidden" name="bn" value="PP-BuyNowBF">
+                      <img src="{f:uri.resource(path: 'Images/paypal-logo.gif')}" width="100" height="100" class="responsive-img" alt=""><br />
+                      <button class="waves-effect waves-light btn-large amber lighten-1 supportButton" type="submit" name="" value="">support throught paypal</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+   </div>
+</div>
+</f:section>  

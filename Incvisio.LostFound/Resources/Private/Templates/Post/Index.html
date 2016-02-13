@@ -1,0 +1,206 @@
+<f:layout name="Main"/>
+
+<f:section name="Title">LostFound Post</f:section>
+
+<f:section name="Content">
+	<f:if condition="{advertType}=='lost'">
+		<f:then>
+
+		<div class="row" style="margin-top: 0%;">
+			<div class="input-field col s6">
+				<div class="col s11">
+					<div class="col s11 search-wrapper">
+					<f:form id="search" action="index" controller="Post" method="post" additionalParams="{type:advertType,lost_input:search_field}">
+						<f:form.textfield id="lost_input" name="lost_input" class="validate" placeholder="Пошук..." style="font-weight: 400;font-size: 32px;border-bottom: 2px solid #9e9e9e;" additionalAttributes="{autocomplete:'off'}" value="{search_field}"/>
+
+						<f:form.hidden name="type" value="{advertType}"/>
+						<label for="found_input" class="left-align" style="color:#93bdc9;"><span style="font-weight: bolder;font-size: 19px;color: #FFAB1A;">Я загубив</span></label>
+
+						</f:form>
+					</div>
+					<f:if condition="{search_field}">
+					<span  class="left-align" style="color: #D4E7ED;color: #737373;margin-left: 35px;">Загублених речей по запиту " <b>{search_field}</b> " : {count.number} результатів</span>
+						<f:if condition="{count.number}==0">
+						<span class="left-align" style="color: #D4E7ED;color: #737373;margin-left: 35px;"><a href="/post?type=lost">переглянути усе загублене</a></span>
+						</f:if>
+					</f:if>
+					<div class="row" id="item_lost"  style="margin: 0;">
+
+
+
+					</div>
+				</div>
+
+			</div>
+
+			<div class="col s6" style="position: relative;">
+				<div class="col s11 offset-s1">
+				<a class="waves-effect waves-light btn-large amber lighten-1 add" href="/post/new/?type={advertType}">
+					<i class="fa fa-plus"></i>
+					<span class="button_span_add">Додати загублене</span></a>
+				</div>
+				<form class="col s11 offset-s1" id="form_lost_filter" style="margin-top: 30px;">
+					<div class="row" style="margin: 0;">
+						<div class="input-field col s12">
+							<label for="city" style="color: #CEE3E8; font-size: 18px;">Фільтр:</label>
+							<input placeholder="Місто" id="city_filtr" value="" type="text" class="validate" style="font-size: 22px;border-bottom: 1px solid #CEE3E8;">
+							<div id="suggesstion-box"></div>
+						</div>
+						<div class="input-field col s12" id="category_lost_select">
+							<f:form.select id="category_lost" property="category"  options="{categories}" optionLabelField="name" prependOptionLabel="Виберіть категорію" style="font-size: 22px;border-bottom: #CEE3E8;" />
+
+						</div>
+					</div>
+					<a class="waves-effect waves-light btn-large amber lighten-1" id="filter_button" onclick="Advert.render()">фільтрувати</a>
+				</form>
+
+			</div>
+
+		</div>
+		<script>
+			$( document ).ready(function() {
+				$('.datepicker').pickadate({
+					selectMonths: true, // Creates a dropdown to control month
+					selectYears: 15 // Creates a dropdown of 15 years to control year
+
+				});
+				$('select').material_select();
+				$('#city_filtr').autocomplete({
+					serviceUrl: '/post/getCity',
+					paramName:'city',
+					transformResult: function(response) {
+						return {
+							suggestions: $.map(jQuery.parseJSON(response), function(dataItem) {
+								console.log(dataItem);
+								return { value: dataItem.name, data: dataItem.region };
+							})
+						};
+					}
+				});
+				/*$("#city_filtr").keypress(function(){
+					$.ajax({
+						type: "POST",
+						url: "/post/getCity",
+						data:'city='+$(this).val(),
+						beforeSend: function(){
+
+						},
+						success: function(data){
+						var results = jQuery.parseJSON(data);
+							var options = '';
+
+							for (var i = 0; i < results.length; i++) {
+								options += '<li onClick="selectCountry(\''+results[i].name+', '+results[i].region+'\')" style="color: #26a69a; cursor: pointer;">' + results[i].name + ', '+results[i].region +  '</li>';
+							}
+							if(options.length>1) {
+								$("#suggesstion-box").show();
+								$("#suggesstion-box").html(options);
+							}
+						}
+					});
+				});*/
+			});
+			//To select country name
+			function selectCountry(val) {
+				$("#city_filtr").val(val);
+				$("#suggesstion-box").hide();
+			}
+
+		</script>
+		</f:then>
+		<f:else>
+			<div class="row">
+				<div class="col s6">
+					<div class="col s11">
+					<a class="waves-effect waves-light btn-large amber lighten-1 seabot" href="/post/new/?type={advertType}">
+						<i class="fa fa-plus"></i>
+						<span class="addfounds">Додати знайдене</span>
+					</a>
+					</div>
+					<f:form action="index" id="form_found_filter" class="col s11 colins">
+						<div class="row" style="margin: 0;">
+							<div class="input-field col s12">
+								<label for="city" style="color: #CEE3E8; font-size: 18px;">Фільтр:</label>
+								<input placeholder="Місто" id="city_filtr" type="text" class="validate nnline">
+								<div id="suggesstion-box"></div>
+							</div>
+							<div class="input-field col s12" id="category_found_select">
+								<f:form.select id="category_found" property="category"  options="{categories}" optionLabelField="name" prependOptionLabel="Виберіть категорію" style="width: 100%;font-size: 22px;border-bottom: #CEE3E8;"/>
+							</div>
+						</div>
+						<a class="waves-effect waves-light btn-large amber lighten-1" id="filter_button" onclick="Advert.render()">фільтрувати</a>
+
+					</f:form>
+				</div>
+				<div class="input-field col s6">
+
+						<div class="input-field col s11 offset-s1">
+							<div class="col s11 search-wrapper">
+						<f:form id="searchFound" action="index" controller="Post" method="post" additionalParams="{type:advertType,found_input:search_field}">
+
+							<f:form.textfield id="found_input" name="found_input" class="validate" placeholder="Пошук..." style="font-weight: 400;font-size: 32px;border-bottom: 2px solid #9e9e9e;"  additionalAttributes="{autocomplete:'off'}" value="{search_field}"/>
+
+							<f:form.hidden name="type" value="{advertType}"/>
+							<label for="found_input" class="left-align" style="color:#93bdc9;"><span style="font-weight: bolder;font-size: 19px;">Я знайшов</span></label>
+
+						</f:form>
+								</div>
+						<f:if condition="{search_field}">
+
+						<span class="left-align resul1">Загублених речей по запиту " <b>{search_field}</b> " : {count.number} результатів</span>
+							<f:if condition="{count.number}==0">
+								<span class="left-align" style="float: right;"><a href="/post?type=found" style="color: #fff">переглянути усе знайдене</a></span>
+							</f:if>
+						</f:if>
+							</div>
+					<div class="col s11 offset-s1">
+						<div class="row" id="item_lost"  style="margin: 0;">
+
+
+						</div>
+					</div>
+				</div>
+
+			</div>
+			<script>
+				$( document ).ready(function() {
+					$('.datepicker').pickadate({
+						selectMonths: true, // Creates a dropdown to control month
+						selectYears: 15 // Creates a dropdown of 15 years to control year
+
+					});
+					$('select').material_select();
+
+					$("#city_filtr").keypress(function(){
+						$.ajax({
+							type: "POST",
+							url: "/post/getCity",
+							data:'city='+$(this).val(),
+							beforeSend: function(){
+
+							},
+							success: function(data){
+								var results = jQuery.parseJSON(data);
+								var options = '';
+
+								for (var i = 0; i < results.length; i++) {
+									options += '<li onClick="selectCountry(\''+results[i].name+', '+results[i].region+'\')" style="color: #26a69a; cursor: pointer;">' + results[i].name + ', '+results[i].region +  '</li>';
+								}
+								if(options.length>1) {
+									$("#suggesstion-box").show();
+									$("#suggesstion-box").html(options);
+								}
+							}
+						});
+					});
+				});
+				//To select country name
+				function selectCountry(val) {
+					$("#city_filtr").val(val);
+					$("#suggesstion-box").hide();
+				}
+
+			</script>
+		</f:else>
+	</f:if>
+</f:section>

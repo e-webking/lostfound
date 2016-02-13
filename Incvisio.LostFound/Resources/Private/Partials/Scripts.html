@@ -1,0 +1,146 @@
+<f:section name="Home">
+    <script src="{f:uri.resource(path: 'Js/materialize.min.js')}"></script>
+    <script src="{f:uri.resource(path: 'Js/jquery.leanModal.min.js')}"></script>
+    <script src="{f:uri.resource(path: 'Js/toastr.min.js')}"></script>
+    <link  href="http://cdnjs.cloudflare.com/ajax/libs/fotorama/4.6.4/fotorama.css" rel="stylesheet"> <!-- 3 KB -->
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/fotorama/4.6.4/fotorama.js"></script> <!-- 16 KB -->
+
+    <script src="{f:uri.resource(path: 'Js/main.js')}"></script>
+    <script src="{f:uri.resource(path: 'Js/jquery.mask.js')}"></script>
+    <script src="{f:uri.resource(path: 'Js/jquery.form.js')}"></script>
+    <script src="{f:uri.resource(path: 'Js/jquery.validate.min.js')}"></script>
+    <script src="{f:uri.resource(path: 'Js/jquery.plugin.js')}"></script>
+    <script src="{f:uri.resource(path: 'Js/jquery.timeentry.min.js')}"></script>
+    <script src="{f:uri.resource(path: 'Js/jquery.autocomplete.js')}"></script>
+    
+	<script type="text/javascript">
+	
+	 var facebook_appid = '{facebook_appid}';
+     var facebook_redirecturi = '{facebook_redirecturi}';
+     window.fbAsyncInit = function() {
+         FB.init({
+             appId      : facebook_appid,
+             cookie     : true,  // enable cookies to allow the server to access
+                                 // the session
+             xfbml      : true,  // parse social plugins on this page
+             version    : 'v2.2' // use version 2.1
+         });
+     };
+
+     // Load the SDK asynchronously
+     (function(d, s, id) {
+         var js, fjs = d.getElementsByTagName(s)[0];
+         if (d.getElementById(id)) return;
+         js = d.createElement(s); js.id = id;
+         js.src = "//connect.facebook.net/en_US/sdk.js";
+         fjs.parentNode.insertBefore(js, fjs);
+     }(document, 'script', 'facebook-jssdk'));
+     
+     function facebookLogin(){
+         FB.login(function(response) {
+             if (response.status === 'connected') {
+                 location.replace(facebook_redirecturi+'/?social=facebook&connectorjson='+JSON.stringify(response.authResponse));
+             } else if (response.status === 'not_authorized') {
+
+             } else {
+
+             }
+         },{scope: 'public_profile,email'});
+     }
+     
+	$(function(){
+		// Calling Login Form
+		$("#login_form").click(function(){
+			$(".social_login").hide();
+			$(".user_login").show();
+			return false;
+		});
+
+		// Calling Register Form
+		$("#register_form").click(function(){
+			$(".social_login").hide();
+			$(".user_register").show();
+			return false;
+		});
+		// Forgot Pasword Form
+		$("#forgotPassword").click(function(){
+			$(".social_login").hide();
+			$(".user_register").hide();
+			$(".user_forgot").show();
+			return false;
+		});
+		// Going back to Social Forms
+		$(".backp").click(function(){
+			$(".user_login").hide();
+			$(".user_register").hide();
+			$(".user_forgot").hide();
+			$(".social_login").show();
+			return false;
+		});
+		$("#lost-input").bind({
+	        click: function () {
+	            $("#lost-input").attr('placeholder', 'Введіть текст для пошуку');
+	            $("#lost-input").css("font-size", "25px");
+	        },
+	        mouseleave: function(){
+	            $("#lost-input").attr('placeholder', 'Я загубив');
+	            $("#lost-input").css("font-size", "3rem");
+	        }
+	    });
+		 $("#found-input").bind({
+	        click: function () {
+	            $("#found-input").attr('placeholder', 'Введіть текст для пошуку');
+	            $("#found-input").css("font-size", "25px");
+	        },
+	        mouseleave: function(){
+	            $("#found-input").attr('placeholder', 'Я знайшов');
+	            $("#found-input").css("font-size", "3rem");
+	        }
+	    });
+	});
+	</script>
+	<script type="text/javascript">
+     $( document ).ready(function() {
+         $('#facebook').click(function(e){
+             e.preventDefault();
+             facebookLogin();
+         });
+         
+ 
+         // Notification system for frontend;
+         toastr.options = {
+             "closeButton": false,
+             'positionClass': 'toast-top-center',
+             'hideDuration': 3000000
+         };
+         var messageBox = $('.js-notify.js-plugin-toaster');
+
+         var messageRecords = {};
+         $.each(messageBox.children(), function(index, el){
+
+             if(typeof el.innerText === 'undefined'){
+                var text = el.textContent;
+             }else{
+                 var text = el.innerText
+             }
+             messageRecords[(el.className).replace('js-notify-','')] = text;
+         });
+         for (var key in messageRecords) {
+             toastr[key](messageRecords[key]);
+         }
+     });
+     $('.modal-trigger').leanModal({top:100, closeButton: ".modal-close" });
+     $("#modal-about").leanModal({top:100, closeButton: ".modal-close" });
+ </script>
+</f:section>
+
+<f:section name="Main">
+    <script src="{f:uri.resource(path: 'Js/materialize.min.js')}"></script>
+    <script src="{f:uri.resource(path: 'Js/jquery.leanModal.min.js')}"></script>
+    <script src="{f:uri.resource(path: 'Js/toastr.min.js')}"></script>
+	<script type="text/javascript">
+	$(document).ready(function(){
+		  $('#donate').openModal({top:100, dismissible: false});
+	});
+ </script>
+</f:section>

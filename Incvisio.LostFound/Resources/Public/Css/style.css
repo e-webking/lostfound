@@ -1,0 +1,319 @@
+/* Custom Stylesheet */
+/**
+ * Use this file to override Materialize files so you can update
+ * the core Materialize files in the future
+ *
+ * Made By MaterializeCSS.com
+ */
+
+body{
+	background:url(../Images/bg.jpg) center top repeat-y;
+	font-family:Arial, Verdana, Helvetica, sans-serif; 
+	font-size:16px; color:#000; font-weight:300; line-height:18px; 
+	padding:0px; margin:0px; text-decoration:none; height:100%;  
+  }
+
+/* Bootstrap Override Css */
+p {margin: 0 0 20px; line-height:24px;}
+hr{border-color:#ddd; border-style: solid; margin:25px 0;}
+a {color:#0092b7; text-decoration:none;}
+a:hover{color:#ff9800;}
+
+a:focus{text-decoration:none; outline:none; border:0px;}
+
+a {
+-webkit-transition: ease-out 0.3s; -moz-transition: ease-out 0.3s;
+-o-transition: ease-out 0.3s; transition: ease-out 0.3s;
+}
+a:hover {
+-webkit-transition: ease-out 0s; -moz-transition: ease-out 0s;
+-o-transition: ease-out 0s; transition: ease-out 0s;
+}
+
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
+    transition: background-color 600s ease-in-out 0s;
+}
+input:-webkit-autofill, textarea:-webkit-autofill, select:-webkit-autofill {
+    color: rgb(255, 255, 255)!important;
+}
+*::-moz-placeholder {color: #444;}
+
+input:not([type]):focus:not([readonly]),
+input[type=text]:focus:not([readonly]),
+input[type=password]:focus:not([readonly]),
+input[type=email]:focus:not([readonly]),
+input[type=url]:focus:not([readonly]),
+input[type=time]:focus:not([readonly]),
+input[type=date]:focus:not([readonly]),
+input[type=datetime-local]:focus:not([readonly]),
+input[type=tel]:focus:not([readonly]),
+input[type=number]:focus:not([readonly]),
+input[type=search]:focus:not([readonly]),
+textarea.materialize-textarea:focus:not([readonly]) {
+  border-bottom: 1px solid #ff9800;
+  box-shadow:none;
+}
+
+.container{position:relative;}
+
+h4{color:#FDA400;font-size: 22px; margin:0 0 20px !important; line-height:normal;}
+h5{color:#979797; font-size:16px; margin:0 0 10px !important; line-height:normal;}
+h6{color:#A9D3DF; margin:0 0 10px !important; line-height:normal;}
+
+.color1{background:#9CF;}
+.color2{background:#C9F;}
+.color3{background:#9FC;}
+.color4{background:#F9C;}
+
+.icon-block {padding: 0 15px;}
+.icon-block .material-icons {font-size: inherit;}
+
+/*--- Top Header Css ---*/
+header{padding:20px 0; overflow:hidden;}
+header .logo{padding-top:26px !important; text-align:center;}
+
+header .signIn{display:inline-block; float:right; text-decoration:none; padding:10px 0; color:#FFF;}
+header .signIn:hover{color:#ff9800;}
+
+header .socialList ul li a{padding:0px; margin:0px; float:left;}
+header .socialList ul li a{padding:0px 20px 10px 10px; display:inline-block;}
+header .socialList ul li .fa{font-size:18px;}
+
+/*--- All Css ---*/
+.marginB0{margin-bottom:0px !important;}
+.marginT20{margin-top:20px;}
+
+.wrapper{padding:20px 0; overflow:;}
+
+.wrapper .leftCol{margin:0px; color:#2c8fac;}
+.wrapper .leftCol #search .input-field label{font-weight:bolder; font-size: 19px; color: #FFAB1A;}
+.wrapper .leftCol #search .input-field .validate{font-size:32px; font-weight:normal;}
+.wrapper .leftCol #search .input-field label{top:-15px;}
+.wrapper .leftCol #search .input-field label.active{transform:inherit;}
+
+.wrapper .leftCol #form_lost_filter{margin-top:30px;}
+.wrapper .leftCol #form_lost_filter .input-field label{color: #CEE3E8; font-size: 18px; top:-15px;}
+.wrapper .leftCol #form_lost_filter .input-field label.active{transform:inherit;}
+.wrapper .leftCol #form_lost_filter .input-field .validate{font-size: 22px; border-bottom:1px solid #cee3e8;}
+
+.wrapper .leftCol #form_lost_filter .input-field .validate::-webkit-input-placeholder {opacity: 1; color:#d1d1d1 !important; /* Chrome/Opera/Safari */}
+.wrapper .leftCol #form_lost_filter .input-field .validate::-moz-placeholder {opacity: 1; color:#d1d1d1 !important; /* Firefox 19+ */}
+.wrapper .leftCol #form_lost_filter .input-field .validate:-ms-input-placeholder {opacity: 1; color:#d1d1d1 !important; /* IE 10+ */}
+.wrapper .leftCol #form_lost_filter .input-field .validate:-moz-placeholder {opacity: 1; color:#d1d1d1 !important; /* Firefox 18- */}
+
+.wrapper .leftCol .select-wrapper input.select-dropdown{
+	border-bottom: 1px solid #cee3e8 !important;
+    color:#0192af; font-size: 22px;
+}
+.wrapper .leftCol .select-wrapper span.caret {color: #0192af;}
+
+.wrapper .leftCol .addBtnCol{margin-top:22px;}
+.wrapper .leftCol .addBtnCol .waves-effect{width:100%;}
+
+
+
+
+
+#items_box {background-color: #fff; margin-top: 10px; min-height: 165px; padding: 15px;}
+#item_lost .item_image {float: left; width: 25%;}
+#item_lost .item_info {float: right; line-height: 18px; width: 73%;}
+#item_lost .item_info span{display:block;}
+#item_lost span.title {color: #0092b7; display: block; font-size: 20px; overflow: hidden; margin-bottom:20px;}
+#item_lost span.time {color: #b6b6b6; font-size: 13px; margin-bottom:10px;}
+#item_lost span.date {color: #b6b6b6; font-size: 13px; margin-bottom:5px;}
+#item_lost span.place {color: #b6b6b6; display: block; font-size: 13px; margin-bottom:20px; overflow-wrap: break-word; word-wrap: break-word; -ms-word-break: break-all; word-break: break-all; word-break: break-word; -ms-hyphens: auto;-moz-hyphens: auto;-webkit-hyphens: auto; hyphens: auto;}
+#item_lost span.desc {color: #56564a; display: block; font-size: 15px; font-style: italic; font-weight: 700; overflow: hidden;}
+
+.wrapper .rightCol{margin:0px; color:#fff;}
+.wrapper .rightCol h4{color: #fff; font-size: 22px; margin:0 0 20px;}
+
+.wrapper .rightCol .addBtnCol{margin-top:22px;}
+.wrapper .rightCol .addBtnCol .waves-effect{width:100%;}
+.wrapper .rightCol #form_lost_filter{margin-top:30px;}
+.wrapper .rightCol #form_lost_filter .input-field label{color: #CEE3E8; font-size: 18px; top:-15px;}
+.wrapper .rightCol #form_lost_filter .input-field label.active{transform:inherit;}
+.wrapper .rightCol #form_lost_filter .input-field .validate{font-size: 22px; border-bottom:1px solid #fff;}
+
+.wrapper .rightCol #form_lost_filter .input-field .validate::-webkit-input-placeholder {opacity: 1; color:#fff!important; /* Chrome/Opera/Safari */}
+.wrapper .rightCol #form_lost_filter .input-field .validate::-moz-placeholder {opacity: 1; color:#fff!important; /* Firefox 19+ */}
+.wrapper .rightCol #form_lost_filter .input-field .validate:-ms-input-placeholder {opacity: 1; color:#fff!important; /* IE 10+ */}
+.wrapper .rightCol #form_lost_filter .input-field .validate:-moz-placeholder {opacity: 1; color:#fff!important; /* Firefox 18- */}
+
+.wrapper .rightCol .select-wrapper input.select-dropdown{
+	border-bottom: 1px solid #fff !important;
+    color: #ffffff; font-size: 22px;
+}
+.wrapper .rightCol .select-wrapper span.caret {color: #ffffff;}
+
+.wrapper .rightCol #searchFound .input-field label{font-weight:bolder; font-size: 19px; color:#93bdc9;}
+.wrapper .rightCol #searchFound .input-field .validate{font-size:32px !important; font-weight:normal;}
+.wrapper .rightCol #searchFound .input-field label{top:-20px;}
+.wrapper .rightCol #searchFound .input-field label.active{transform:inherit;}
+.wrapper .rightCol #searchFound .row{margin-bottom:0px;}
+
+
+.linkText{display:inline-block; font-size:16px;}
+
+.modal{background:#FFF;}
+.modal-close {
+    color: #aaa; cursor: pointer; font-size: 16px; z-index:9;
+    padding:15px; position: absolute; right: 0; top: 0;
+}
+.closeIcon {
+    background-image: url("../Images/close1.png");
+    background-position: center center; height: 25px; width: 25px;
+}
+
+.found {
+    background-image: url("../Images/founded@1x.png");
+    background-position: 150px 100px;
+    background-repeat: no-repeat;
+}
+
+.loginBox{padding:20px 20px 0; position:relative;}
+.loginBox h5{text-align: center; margin:0;}
+
+.loginBox .input-field{margin-top:0px; font-size: 20px;}
+.loginBox .input-field .email{font-size: 20px;}
+.loginBox .input-field .password{font-size: 20px;}
+.loginBox .input-field .prefix{top:10px;}
+.loginBox .input-field .prefix.active{color:#ff9800; border-color:#F00;}
+.loginBox .input-field .material-icons{color:#999;}
+
+.loginSocial{text-align:center; padding:10px 0;}
+.loginSocial > .socialBox {display:inline-block; padding:6px; text-align: center; color:#FFF;}
+.loginSocial > .socialBox:hover{background:#CCC;  color:#FFF;}
+.loginSocial > .socialBox .icon{display:block; padding:10px; font-size:20px; padding:10px; height:40px; width:42px;}
+.loginSocial > .socialBox .icon.fb {background: #3b5998;}
+.loginSocial > .socialBox .icon.vk {background: #45668f;}
+.loginSocial > .socialBox .icon.tw{background: #00acee;}
+.loginSocial > .socialBox .icon.google{background: #dd4b39;}
+
+.container .tpBox {background: #fff}
+.tpBox{padding:15px 20px; position:relative; color:#2c8fac;}
+.tpBox h5{text-align:center;}
+.tpBox .detailText{padding:20px 0 10px; text-align:center;}
+.tpBox .btn-large{font-weight:bold; text-transform: lowercase; font-size:16px;}
+.tpBox .btn-large:hover{color:#fff;}
+.tpBox .cards{padding-top:70px;}
+
+.js-notify.js-plugin-toaster {
+    display: none;
+}
+
+.leftBtn{text-align:left;}
+.rightBtn{text-align:right;}
+.loginBtn{padding-top:20px !important; text-align:center;}
+
+.sendBtn{background:transparent; border:0px; outline:none; color:#0092b7; font-size:18px; padding:0px;}
+.sendBtn:hover{color:#ff9800;}
+
+.lostFoundCol{margin:100px 0 0;}
+
+.search-wrapper {position: relative;}
+
+#lost-input {
+    background:url(../Images/search-icon-grey.png) no-repeat scroll 100% center;
+    border-bottom: 2px solid #2e90ad; color: #2e90ad; font-weight: bolder;
+    height: 4rem; padding-right: 46px; font-weight:bold;
+}
+#lost-input::-webkit-input-placeholder {opacity: 1; color:#ffa500!important; /* Chrome/Opera/Safari */}
+#lost-input::-moz-placeholder {opacity: 1; color:#ffa500!important; /* Firefox 19+ */}
+#lost-input:-ms-input-placeholder {opacity: 1; color:#ffa500!important; /* IE 10+ */}
+#lost-input:-moz-placeholder {opacity: 1; color:#ffa500!important; /* Firefox 18- */}
+
+#found-input {
+	background:url(../Images/search-icon.png) no-repeat scroll 100% center;
+    border-bottom: 2px solid #ffffff; color: #fff; font-weight: bolder;
+    height: 4rem; padding-right: 45px; font-weight:bold;
+	}
+#found-input::-webkit-input-placeholder {opacity: 1; color:#fff!important; /* Chrome/Opera/Safari */}
+#found-input::-moz-placeholder {opacity: 1; color:#fff!important; /* Firefox 19+ */}
+#found-input:-ms-input-placeholder {opacity: 1; color:#fff!important; /* IE 10+ */}
+#found-input:-moz-placeholder {opacity: 1; color:#fff!important; /* Firefox 18- */}
+
+.lost-input-label {float: right; position: relative; right: -8px;}
+.lost-input-label a {font-size: 18px; color: #2E90AD; padding-right:5px;}
+
+.amber.lighten-1 {background-color:#fcab1c !important;}
+.waves-effect:hover{color:#FFF;}
+
+.button_span_add{
+    position: relative; top: -1px; font-size: 20px;
+    font-weight: bolder; text-transform: none;
+}
+
+.newpad {
+    background-color: #ebebeb; border-radius: 10px;
+    height: 57px; margin-top: 20px; padding: 14px;
+}
+.newpad > .rightText{float:right;}
+.newpad > .leftText{float:left;}
+.pagination li.active {background-color:#0093ad ;} 
+ 
+
+.found-input-label{float:right; position:relative; right:-8px;}
+.found-input-label a {color:#fff; font-size:18px; padding-right:5px;}
+
+#forgot-password .linkText{font-size:18px;}
+.sendBtnCol{text-align:right;}
+
+footer{padding:0px; margin:20px 0 0; overflow:hidden;}
+footer .footerLink{float:right; margin:0px;}
+footer .footerLink li{padding:3px 0; text-align:right;}
+
+footer .footerLogo{display:block; position:absolute; bottom:0px; left:0; z-index:9; margin-bottom: 20px}
+
+footer .donateCol{text-align:right;}
+footer .donateCol .btn-large{font-weight:bold; text-transform: lowercase; font-size:16px;}
+footer .donateCol .btn-large:hover{color:#fff;}
+
+/*--- Tablet View Css here ---*/
+@media (min-width:768px) {
+footer{margin:40px 0 0;}
+.modal-sm {width:400px; background:#fff; top:67px !important;}
+.modal-md {width:760px}
+.modal-lg {width:80%}
+.wrapper{padding:30px 0; min-height:320px;}
+}
+
+@media (max-width:992px) {
+footer .footerLink{float:right; margin:0px;}
+footer .footerLogo{position:relative; float:left; width:55%;}	
+footer .donateCol{text-align:center;}
+}
+
+/*--- Mobile View Css here ---*/
+@media (max-width:768px) {
+.modal-sm {top:21px !important;}
+#lost-input {background-position:95% center;}
+#found-input {background-position:95% center;}	
+}
+
+@media (max-width:600px) {
+body{background:none;}
+
+header{background:url(../Images/bg.jpg) center top repeat-y; padding-bottom:0px;}
+header .row{margin-bottom:0px;}
+header .logo{padding-top:0px !important; padding-bottom:0px !important;}	
+header .socialList ul li a{padding:0px 10px 10px 10px;}
+
+.wrapper .mob-marginLR1{margin-left:-5%; margin-right:-5%;}
+.wrapper .leftCol{margin:0px; overflow:hidden; color:#2c8fac; padding-top:30px !important; padding-bottom:30px !important;}
+.wrapper .rightCol{margin:0px; overflow:hidden; color:#fff; padding-top:30px !important; padding-bottom:30px !important;}
+
+.mobBG{background: url(../Images/mob-bg.jpg) center top repeat-y;}
+.lostFoundCol{margin:20px 0 0;}
+
+#lost-input {background-position:99% center; padding-right: 30px;}
+#found-input {background-position:99% center;}
+
+.tpBox .cards{padding-top:0px; padding-bottom:20px;}
+
+.found {background-position: 150px 50px;}
+
+
+}

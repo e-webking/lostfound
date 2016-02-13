@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
+    <file original="" product-name="Incvisio.LostFound" source-language="en" datatype="plaintext">
+        <body>
+			<trans-unit id="login.registration.success.header" xml:space="preserve">
+            	<source>Successfully register in.</source>
+            </trans-unit>
+			<trans-unit id="login.registration.success.description" xml:space="preserve">
+            	<source>We have emailed you the confirmation link for your account.</source>
+            </trans-unit>
+            <trans-unit id="login.login.success" xml:space="preserve">
+               	<source>Successfully logged in.</source>
+            </trans-unit>
+            <trans-unit id="login.login.wrongPassword" xml:space="preserve">
+               	<source>Wrong username or password.</source>
+            </trans-unit>
+
+			<trans-unit id="login.messages.login.failed" xml:space="preserve">
+            	<source>Login failed</source>
+            </trans-unit>
+            <trans-unit id="login.login.usernameExist" xml:space="preserve">
+               	<source>User name exist or you already registrated by different network.</source>
+            </trans-unit>
+			<trans-unit id="login.request.password" xml:space="preserve">
+            	<source>If you have account you will get Email.</source>
+            </trans-unit>
+			<trans-unit id="login.request.passwordError" xml:space="preserve">
+            	<source>Please enter valid Email.</source>
+            </trans-unit>
+			<trans-unit id="login.messages.logout.success" xml:space="preserve">
+            	<source>Logged out successfully</source>
+            </trans-unit>
+			<trans-unit id="login.messages.forgot.email" xml:space="preserve">
+            	<source>If you have an account you will receive an email</source>
+            </trans-unit>
+			<trans-unit id="login.messages.forgot.changed" xml:space="preserve">
+            	<source>Your password was changed</source>
+            </trans-unit>
+			<trans-unit id="login.messages.forgot.not_same" xml:space="preserve">
+            	<source>Passwords are not the same</source>
+            </trans-unit>
+			<trans-unit id="login.messages.registration.thanks" xml:space="preserve">
+            	<source>Thanks for registration </source>
+            </trans-unit>
+			<trans-unit id="login.messages.registration.activated" xml:space="preserve">
+            	<source>Your account activated</source>
+            </trans-unit>
+			<trans-unit id="login.messages.registration.not_valid" xml:space="preserve">
+            	<source>Link is not valid</source>
+            </trans-unit>
+			<trans-unit id="advert.add" xml:space="preserve">
+            	<source>Created a new ads.</source>
+            </trans-unit>
+			<trans-unit id="advert.found" xml:space="preserve">
+            	<source>Found</source>
+            </trans-unit>
+			<trans-unit id="main.messages.pleaseLogin" xml:space="preserve">
+            	<source>Please log in</source>
+            </trans-unit>
+            <trans-unit id="main.messages.liked" xml:space="preserve">
+               <source>You already liked</source>
+            </trans-unit>
+  			<trans-unit id="main.messages.yourAdd" xml:space="preserve">
+            	<source>It is your's add</source>
+            </trans-unit>
+            <trans-unit id="main.messages.commentsAdd" xml:space="preserve">
+            	<source>Comments add successfully</source>
+            </trans-unit>
+            <trans-unit id="main.messages.yourComment" xml:space="preserve">
+            	<source>It is your's comment</source>
+            </trans-unit>
+        </body>
+    </file>
+</xliff>

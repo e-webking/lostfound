@@ -1,0 +1,56 @@
+
+-
+  name: 'Login form'
+  uriPattern: 'login'
+  httpMethods: ['GET']
+  appendExceedingArguments: TRUE
+
+-
+  name: 'Authenticate'
+  uriPattern: 'authenticate'
+  defaults:
+    '@action': 'authenticate'
+  httpMethods: ['POST']
+
+-
+  name: 'Logout link'
+  uriPattern: 'logout'
+  defaults:
+      '@action': 'logout'
+  httpMethods: ['GET']
+
+-
+ name: 'Reqest Password'
+ uriPattern: 'requestpassword'
+ defaults:
+   '@action': 'requestpassword'
+ httpMethods: ['GET']
+
+-
+ name: 'Registration'
+ uriPattern: 'register'
+ defaults:
+   '@action': 'register'
+ httpMethods: ['GET']
+
+-
+ name: 'Check'
+ uriPattern: 'requestpassword'
+ defaults:
+   '@action': 'requestpassword'
+   '@format': 'html'
+ httpMethods: ['POST']
+
+-
+ name: 'Change Password'
+ uriPattern: 'changepassword'
+ defaults:
+   '@action': 'changePassword'
+ appendExceedingArguments: TRUE
+
+-
+ name: 'Activate User'
+ uriPattern: 'activateaccount'
+ defaults:
+   '@action': 'activateAccount'
+ httpMethods: ['GET']

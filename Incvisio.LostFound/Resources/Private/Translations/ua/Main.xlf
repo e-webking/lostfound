@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
+    <file original="" product-name="Incvisio.LostFound" source-language="en" target-language="ua" datatype="plaintext">
+        <body>
+			<trans-unit id="login.messages.logout.success" xml:space="preserve">
+              	<source>Logged out successfully</source>
+              	<target>Ви успішно вийшли</target>
+            </trans-unit>
+			<trans-unit id="login.registration.success.header" xml:space="preserve">
+            	<source>Successfully register in.</source>
+              	<target>Успішна реєстрація</target>
+            </trans-unit>
+            <trans-unit id="login.login.success" xml:space="preserve">
+               	<source>Successfully logged in.</source>
+               	<target>Вітаємо!</target>
+            </trans-unit>
+            <trans-unit id="login.login.usernameExist" xml:space="preserve">
+               	<source>User name exist or you already registrated by different network.</source>
+               	<target>Користувач вже існує!</target>
+            </trans-unit>
+            <trans-unit id="login.login.update" xml:space="preserve">
+               	<source>Update</source>
+               	<target>Пароль змінено!</target>
+            </trans-unit>
+			<trans-unit id="main.messages.pleaseLogin" xml:space="preserve">
+            	<source>Please log in</source>
+               	<target>Будь ласка залогуйтесь!</target>
+            </trans-unit>
+			<trans-unit id="login.request.password" xml:space="preserve">
+            	<source>If you have account you will get Email.</source>
+            	<target>Вам надіслано Email!</target>
+            </trans-unit>
+			<trans-unit id="login.request.passwordError" xml:space="preserve">
+            	<source>Please enter valid Email.</source>
+				<target>Введіть правильний Email!</target>
+            </trans-unit>
+            <trans-unit id="login.login.wrongPassword" xml:space="preserve">
+               	<source>Wrong username or password.</source>
+               	<target>Неправильний логін або пароль</target>
+            </trans-unit>
+            <trans-unit id="login.messages.forgot.email" xml:space="preserve">
+            	<source>If you have an account you will receive an email</source>
+            		<target>Якщо Ви були користувачем, Ви отримаєте email</target>
+            </trans-unit>
+            <trans-unit id="login.messages.registration.not_valid" xml:space="preserve">
+               	<source>Link is not valid</source>
+                <target>Лінк не активний</target>
+            </trans-unit>
+			<trans-unit id="advert.add" xml:space="preserve">
+            	<source>Created a new ads.</source>
+            	 <target>Оголошення додано</target>
+            </trans-unit>
+			<trans-unit id="advert.removed" xml:space="preserve">
+            	<source>Ads Removed.</source>
+            	 <target>Оголошення видалено</target>
+            </trans-unit>
+			<trans-unit id="advert.avatar" xml:space="preserve">
+            	<source>Your avatar changed</source>
+            	 <target>Аватар змінено</target>
+            </trans-unit>
+			<trans-unit id="advert.found" xml:space="preserve">
+            	<source>Found</source>
+            	 <target>Знайдено</target>
+            </trans-unit>
+            <trans-unit id="main.messages.liked" xml:space="preserve">
+            	<source>You already liked</source>
+            	<target>Ви вже лайкнули</target>
+            </trans-unit>
+            <trans-unit id="main.messages.yourAdd" xml:space="preserve">
+            	<source>It is your's add</source>
+            	<target>Ви не можете лайкати своє оголошення</target>
+            </trans-unit>
+            <trans-unit id="main.messages.yourComment" xml:space="preserve">
+            	<source>It is your's comment</source>
+            	<target>Ви не можете лайкати свій коментар</target>
+            </trans-unit>
+            <trans-unit id="main.messages.commentsAdd" xml:space="preserve">
+            	<source>Comments add successfully</source>
+            	<target>Коментар успішно доданий</target>
+            </trans-unit>
+            <trans-unit id="main.messages.accountcreated" xml:space="preserve">
+            	<source>Account created. Please visit your email to activate account.</source>
+            	<target>Акаунт створений. Ми відправили email з інструкцією для активації</target>
+            </trans-unit>
+        </body>
+    </file>
+</xliff>

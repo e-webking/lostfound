@@ -1,0 +1,51 @@
+<f:layout name="Blank" />
+
+
+<f:section name="Content">
+
+	<f:for each="{posts}" as="post">
+
+		<f:link.action action="show" controller="Post" additionalParams="{post:post.id}">
+			<f:if condition="{post.active}==1">
+				<f:then>
+					<div class="col s12" id="items_box" >
+				</f:then>
+				<f:else>
+					<div class="col s12 found" id="items_box" >
+				</f:else>
+			</f:if>
+						<div class="item_image">
+							<f:if condition="{post.image}=='NULL'">
+								<f:then>
+									<img src="{f:uri.resource(path: 'Images/noimage.gif')}" style="width: 100%;">
+									</f:then>
+								<f:else>
+									<img src="{f:uri.resource(path: 'Images/uploads/{post.image}')}" style="width: 100%;">
+								</f:else>
+								</f:if>
+						</div>
+						<div class="item_info" >
+							<span class="title">{post.title}</span><br/>
+							<span class="time">{post.timelostorfound}</span>
+							<span  class="date">{post.datelostorfound}</span><br/>
+							<span  class="place">{post.city} {post.place}</span><br/>
+							<span  class="desc">
+									{post.description}
+							</span>
+						</div>
+					</div>
+		</f:link.action>
+		</f:for>
+	<div class="col s12">
+		{pagin -> f:format.raw()}
+	</div>
+
+	<f:if condition="{count.number}==0">
+		<div class="col s12">
+			<p>Нічого не знайдено</p>
+		</div>
+	</f:if>
+
+
+
+</f:section>

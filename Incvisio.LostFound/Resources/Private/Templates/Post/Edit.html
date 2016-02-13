@@ -1,0 +1,280 @@
+<f:layout name="Main" />
+
+<f:section name="Title">LostFound Post</f:section>
+
+<f:section name="Content">
+	<f:security.ifHasRole role="User">
+		<f:then>
+			<f:form method="post" action="update" controller="Post" object="{post}" name="post" enctype="multipart/form-data">
+				<div class="row">
+					<div class="col s6">
+						<div class="col s11">
+						<div class="newAdsTitle">
+							<h4>Редагувати {post.title}</h4>
+						</div>
+
+
+						<div class="file-field input-field">
+							<div class="btn" style="
+								background-image: url(/_Resources/Static/Packages/Incvisio.LostFound/Images/upload_image.png);
+								width: 421px;
+								height: 284px;">
+								<input type="file" name="file[]" multiple  id="i_file" style="width: 100%;height: 284px;">
+							</div>
+							<div style="clear: both"></div>
+							<div class="file-path-wrapper" style="display: none;width: 100%;padding-left: 0px;">
+								<p>Вибрані Вами фотографії будуть додані до оголошення</p>
+								<div id="disp_tmp_path">
+
+
+								</div>
+							</div>
+						</div>
+
+					<div class="file-path-wrappe-oldr" style="display: block;width: 100%;padding-left: 0px;padding-bottom: 10px;">
+						<p>Ваші фотографії</p>
+						<div id="disp_tmp_path_old">
+							<f:if condition="{noImage}=='True'">
+								<f:then>
+
+								</f:then>
+								<f:else>
+									<f:for each="{images}" as="image">
+										<div class="img-wrap">
+											<f:link.action action="deleteImage" arguments="{image:image.PersistenceObjectIdentifier,post:post}" controller="Post" >
+												<span class="close">&times;</span>
+											</f:link.action>
+
+											<img src="{f:uri.resource(path: 'Images/uploads/{image.imgTitle}')}" width="200" style="display: inline-block;margin-right: 10px;"/>
+										</div>
+										</f:for>
+								</f:else>
+							</f:if>
+							</div>
+						</div>
+					</div>
+						</div>
+
+					<div class="col s6">
+						<div class="profile">
+							<f:if condition="{post.user.socialPhoto}!=''">
+								<f:then>
+									<div class="userAvatar">
+										<img src="{post.user.socialPhoto}" id="userAvatarka" alt="Аватар" style="float: left;width: 75px;height: 75px"/>
+									</div>
+								</f:then>
+								<f:else>
+									<div class="userAvatar">
+										<img src="{f:uri.resource(path: 'Images/noavatar.png')}" alt="Аватар" style="float: left;;width: 75px;height: 75px"/>
+									</div>
+								</f:else>
+							</f:if>
+							<f:form.hidden property="lost" value="{post.lost}"/>
+							<f:form.hidden property="found" value="{post.found}" />
+							<f:form.textfield name="username" id="found_input" class="validate ppname newAds" style="float:right" placeholder="Ім'я" value="{firstName}"   additionalAttributes="{required: 'required',disabled:'disabled'}"/>
+							<f:form.textfield name="surname" id="found_input" class="validate ppname newAds" style="float:right" placeholder="Прізвище" value="{lastName}"  additionalAttributes="{required: 'required',disabled:'disabled'}"/>
+
+
+							<f:form.textfield name="contacts" property="userContacts" id="found_input" style="float:right" class="validate ppname phone newAds" placeholder="Контакти +38(0xx)xxxxxxx" value="{post.userContacts}" additionalAttributes="{autocomplete:'off'}"/>
+							<br>
+							<br>
+							<div class="changeav" id="changeAvatar" href="#change_avatar" style="cursor: pointer">Змінити аватар</div>
+							<div style="clear: both"></div>
+							<label for="found_input" class="left-align artscol" >
+								<span class="nowbow">Назва *</span>
+							</label>
+							<f:form.textfield name="title" property="title" id="found_input" class="validate nartn newAds" value="{post.title}" placeholder="" additionalAttributes="{required: 'required',autocomplete:'off'}"/>
+
+							<label for="found_input" class="left-align artscol">
+								<span class="nowbow">Місто *</span>
+							</label>
+							<f:form.textfield name="city" property="city" id="found_input" class="validate nartn newAds cities" placeholder="" value="{post.city}" additionalAttributes="{required: 'required',autocomplete:'off'}"/>
+							<div id="suggesstion-box" class="newBox"></div>
+							<label for="found_input" class="left-align artscol">
+								<span class="nowbow">Категорія *</span>
+							</label>
+							<div class="input-field col s12" id="category_add_select">
+								<f:form.select id="categories" property="category" class="" options="{categories}" optionLabelField="name" additionalAttributes="{required:'required'}" prependOptionLabel="Виберіть категорію" />
+							</div>
+							<br>
+							<label for="found_input" class="left-align artscol">
+								<span class="nowbow">Опис</span>
+							</label>
+							<f:form.textfield name="description" property="description" id="found_input" class="validate nartn newAds" placeholder="" value="{post.description}" additionalAttributes="{autocomplete:'off'}"/>
+
+							<label for="found_input" class="left-align artscol" style="">
+								<span class="nowbow">Місце</span>
+							</label>
+							<f:form.textfield name="place" property="place" id="found_input" class="validate nartn newAds" value="{post.place}" placeholder="" additionalAttributes="{autocomplete:'off'}"/>
+
+
+							<f:form.button type="submit"  class="waves-effect waves-light btn-large amber lighten-1">
+								Редагувати оголошення
+							</f:form.button>
+							<label for="found_input" class="left-align artscol">
+								<span class="nowbow">* -обов'язкове поле</span>
+							</label>
+
+						</div>
+					</div>
+				</div>
+			</f:form>
+			<div id="change_avatar" class="popupContainerAvatar" style="display:none;">
+				<header class="popupHeader">
+					<span class="header_title">Змінити аватар</span>
+					<span class="modal_close"><div class="closeIcon"></div> </span>
+				</header>
+				<section class="popupBody">
+					<div class="row ">
+
+						<f:form method="post" action="changeAvatar" id="MyUploadForm" controller="Post" name="newAvatar" enctype="multipart/form-data">
+							<div class="file-field input-field">
+								<div class="btn">
+									<span>Файл</span>
+									<input type="file" name="image_file" id="imageInput">
+								</div>
+								<div class="file-path-wrapper">
+									<input class="file-path validate" type="text">
+								</div>
+							</div>
+							<f:form.button type="submit"  id="submit-btn" class="waves-effect waves-light btn-large amber lighten-1">
+								Завантажити
+							</f:form.button>
+						</f:form>
+						<div id="output"></div>
+					</div>
+				</section>
+			</div>
+			<script>
+				$( document ).ready(function() {
+					$("#changeAvatar").leanModal({top:100, closeButton: ".modal_close" });
+					$('.datepicker').pickadate({
+						selectMonths: true, // Creates a dropdown to control month
+						selectYears: 15 // Creates a dropdown of 15 years to control year
+					});
+
+					$('select').material_select();
+					$('#support_button').hide();
+					$('.time').mask('00:00');
+					$('.phone').mask('+38(000)0000000');
+
+					var options = {
+						target:   '#output',   // target element(s) to be updated with server response
+						beforeSubmit:  beforeSubmit,// pre-submit callback
+						success: getAvatar,
+						resetForm: true        // reset the form after successful submit
+					};
+
+					$('#MyUploadForm').submit(function() {
+						$(this).ajaxSubmit(options);  //Ajax Submit form
+						return false;
+
+					});
+					$(".cities").keyup(function(){
+						$.ajax({
+							type: "POST",
+							url: "/post/getCity",
+							data:'city='+$(this).val(),
+							beforeSend: function(){
+
+							},
+							success: function(data){
+								var results = jQuery.parseJSON(data);
+								var options = '';
+
+								for (var i = 0; i < results.length; i++) {
+									options += '<li onClick="selectCountry(\''+results[i].name+', '+results[i].region+'\')" style="color: #26a69a;cursor: pointer;">' + results[i].name + ', '+results[i].region +  '</li>';
+								}
+
+								if(options.length>1) {
+									$("#suggesstion-box").show();
+									$("#suggesstion-box").html(options);
+								}
+							}
+						});
+					});
+
+
+				});
+				function selectCountry(val) {
+					$(".cities").val(val);
+					$("#suggesstion-box").hide();
+				}
+				//function to check file size before uploading.
+				function beforeSubmit(){
+					//check whether browser fully supports all File API
+					if (window.File && window.FileReader && window.FileList && window.Blob)
+					{
+
+						if( !$('#imageInput').val()) //check empty input filed
+						{
+							$("#output").html("Are you kidding me?");
+							return false
+						}
+
+						var fsize = $('#imageInput')[0].files[0].size; //get file size
+						var ftype = $('#imageInput')[0].files[0].type; // get file type
+
+
+						//allow only valid image file types
+						switch(ftype)
+						{
+							case 'image/png': case 'image/gif': case 'image/jpeg': case 'image/pjpeg':
+							break;
+							default:
+								$("#output").html("<b>"+ftype+"</b> Unsupported file type!");
+								return false
+						}
+
+						//Allowed file size is less than 1 MB (1048576)
+						if(fsize>1048576)
+						{
+							$("#output").html("<b>"+fsize +"</b> Too big Image file! <br />Please reduce the size of your photo using an image editor.");
+							return false
+						}
+
+						//hide submit button
+						$("#output").html("");
+
+
+					}
+					else
+					{
+						//Output error to older browsers that do not support HTML5 File API
+						$("#output").html("Please upgrade your browser, because your current browser lacks some new features we need!");
+						return false;
+					}
+
+				}
+				function getAvatar(){
+					$.getJSON( "/incvisio.lostfound/post/getAvatar", function( data ) {
+
+						$(".userAvatar").empty();
+						$(".userAvatar").fadeIn("fast").append('<img src="'+data.avatar+'" id="userAvatarka" alt="Аватар" style="float: left;width: 75px;height: 75px"/>')
+					});
+				}
+				$('#i_file').change( function(event) {
+					$('.file-path-wrapper').show();
+					for (var i= 0; i<event.target.files.length; i++){
+						var tmppath = URL.createObjectURL(event.target.files[i]);
+						$( "#disp_tmp_path").fadeIn("fast").append( "<img src="+tmppath+" width='200' id='ImagePrevie' style='display: inline-block;margin-right: 10px;' />" );
+
+						//$("#ImagePrevie").fadeIn("fast").attr('src',URL.createObjectURL(event.target.files[i]));
+					}
+
+				});
+
+			</script>
+
+		</f:then>
+		<f:else>
+
+			<div class="row rulroww">
+
+		<span style="color: red;font-size: 16px;margin-bottom: 20px;">
+		Ви повинні увійти щоб добавити оголошення. Або зареєструватись якщо у Вас ще немає акаунту!
+		</span><br>
+			</div>
+		</f:else>
+	</f:security.ifHasRole>
+</f:section>

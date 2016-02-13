@@ -1,0 +1,33 @@
+<f:layout name="Default.html" />
+<f:section name="Title">Login</f:section>
+<f:section name="Content">
+	<div class="row rulroww">
+		<span style="color: #A9D3DF;"></span><br><br>
+		<span style="color: #2C8FAC;font-size: 16px;margin-bottom: 20px;">
+			<f:security.ifHasRole role="User">
+				<f:then>
+					<f:link.action action="logout" controller="Login">Logout</f:link.action>
+				</f:then>
+				<f:else>
+					<f:form action="authenticate" method="post" name="loginform">
+						<f:form.hidden name="return_url" value="{currentpage}" />
+						<label for="found_input" class="left-align artscol" >
+							<span class="nowbow">Email</span>
+						</label>
+						<f:form.textfield  class="validate nartn"  placeholder="e-mail" name="__authentication[TYPO3][Flow][Security][Authentication][Token][UsernamePassword][username]" additionalAttributes="{required: 'required'}"/>
+						<label for="found_input" class="left-align artscol" >
+							<span class="nowbow">Пароль</span>
+						</label>
+						<f:form.password class="validate nartn" placeholder="пароль" name="__authentication[TYPO3][Flow][Security][Authentication][Token][UsernamePassword][password]" additionalAttributes="{required: 'required'}"/>
+						<f:form.button type="submit"  class="waves-effect waves-light btn-large amber lighten-1">
+							Логін
+						</f:form.button>
+					</f:form>
+					<br />
+				</f:else>
+
+			</f:security.ifHasRole>
+		</span>
+	</div>
+
+</f:section>

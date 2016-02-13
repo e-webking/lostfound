@@ -1,0 +1,21 @@
+-
+  name: 'Post view action'
+  uriPattern:    '{@action}/{post}'
+  defaults:
+    '@package':    'Incvisio.LostFound'
+    '@controller': 'Post'
+    '@action':  'show'
+-
+  name: 'Post view action'
+  uriPattern:    '{@action}'
+  defaults:
+    '@package':    'Incvisio.LostFound'
+    '@controller': 'Post'
+  httpMethods: ['POST','GET']
+-
+   name: 'Post view action'
+   uriPattern:    ''
+   defaults:
+     '@package':    'Incvisio.LostFound'
+     '@controller': 'Post'
+     '@action': 'index'
