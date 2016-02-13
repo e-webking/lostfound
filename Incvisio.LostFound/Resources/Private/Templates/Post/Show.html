@@ -41,14 +41,16 @@
 									</f:link.action>
 								</div>
 							</div>
-							<div class="col s12">
+							<div class="col s12 imfb">
 								<f:link.action action="markFound" arguments="{post:post.PersistenceObjectIdentifier}" controller="Post" class="waves-effect waves-light btn-large amber lighten-1 imfound" onclick="return confirm('Ви впевнені, що повернули (знайшли). Змінити даний статус вже буде неможливо.');">
 									Я знайшов
 								</f:link.action>
 							</div>
 						</div>
 	           		</f:if>
-	           		<div class="commt">Коментувати</div>
+	           		<div class="commentBox">
+	           			<div class="commt">Коментувати</div>
+	           		</div>
 	           		<f:for each="{post.comments}" as="comment">
 	           			<div class="commentBox">
 	                    	<div class="itemImg">
@@ -80,7 +82,7 @@
 	           		<f:form method="post" action="createComment" controller="Post" name="newComment" enctype="multipart/form-data">
 						<f:form.hidden property="post" value="{post}"/>
 					
-						<div class="input-field col s12">
+						<div class="input-field col s12" style="padding: 0px;">
 							<textarea required="required" class="materialize-textarea" name="commentsMessage" id="textarea2"></textarea>
 							<label for="textarea2">Текст коментаря</label>
 						</div>

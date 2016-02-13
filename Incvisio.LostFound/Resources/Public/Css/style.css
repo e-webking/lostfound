@@ -142,16 +142,16 @@ header .socialList ul li .fa{font-size:18px;}
 .wrapper .rightCol .addBtnCol{margin-top:22px;}
 .wrapper .rightCol .addBtnCol .waves-effect{width:100%;}
 .wrapper .rightCol #form_lost_filter{margin-top:30px;}
-.wrapper .rightCol #form_lost_filter .input-field label{color: #CEE3E8; font-size: 18px; top:-15px;}
-.wrapper .rightCol #form_lost_filter .input-field label.active{transform:inherit;}
+.wrapper .rightCol #form_lost_filter .input-field label {color: #CEE3E8; font-size: 18px; top:-15px; !important}
+.wrapper .rightCol #form_lost_filter .input-field label.active {transform:inherit;}
 .wrapper .rightCol #form_lost_filter .input-field .validate{font-size: 22px; border-bottom:1px solid #fff;}
 .wrapper .rightCol #form_lost_filter .input-field .validate::-webkit-input-placeholder {opacity: 1; color:#fff!important; /* Chrome/Opera/Safari */}
 .wrapper .rightCol #form_lost_filter .input-field .validate::-moz-placeholder {opacity: 1; color:#fff!important; /* Firefox 19+ */}
 .wrapper .rightCol #form_lost_filter .input-field .validate:-ms-input-placeholder {opacity: 1; color:#fff!important; /* IE 10+ */}
 .wrapper .rightCol #form_lost_filter .input-field .validate:-moz-placeholder {opacity: 1; color:#fff!important; /* Firefox 18- */}
 
-.wrapper .rightCol #form_found_filter{margin-top:30px;}
-.wrapper .rightCol #form_found_filter .input-field label{color: #CEE3E8; font-size: 18px; top:-15px;}
+.wrapper .rightCol #form_found_filter {margin-top:30px;}
+.wrapper .rightCol #form_found_filter .input-field label {color: #CEE3E8; font-size: 18px; top:-15px;}
 .wrapper .rightCol #form_found_filter .input-field label.active{transform:inherit;}
 .wrapper .rightCol #form_found_filter .input-field .validate{font-size: 22px; border-bottom:1px solid #fff;}
 .wrapper .rightCol #form_found_filter .input-field .validate::-webkit-input-placeholder {opacity: 1; color:#fff!important; /* Chrome/Opera/Safari */}
@@ -190,6 +190,20 @@ header .socialList ul li .fa{font-size:18px;}
     background-position: 150px center;
     background-repeat: no-repeat;
 }
+
+.btn{
+	margin: 0 !important;
+	padding: 0 !important;
+	background-image: url("../Images/upload_image.png");
+    background-repeat: no-repeat;
+    width: 421px !important;
+	height: 284px !important;
+}
+
+.btn input[type=file]{ width: 421px !important; height: 284px !important;}
+
+.imfb { margin-left: 0px !important; padding: 0px !important; margin-top: 10px !important;}
+.imfound {width: 100%;}
 
 .loginBox{padding:20px 20px 0; position:relative;}
 .loginBox h5{text-align: center; margin:0;}
@@ -326,11 +340,11 @@ textarea#textarea1 {
     border-bottom: 1px solid #2d88a3; color:#c5cad0; width:100%;
     font-size:17px; font-weight:normal; line-height:50px; position:relative;
 }
-.commentBox {background-color:#fff; margin-top:15px; min-height: 100px; padding-top:15px;}
+.commentBox {background-color:#fff;}
 .commentBox .itemImg{float:left; width:20%;}
 .commentBox .itemImg img{max-width:100%;}
 
-.commentBox .itemInfo{float:right; line-height:25px; width:80%;}
+.commentBox .itemInfo {float:right; line-height:25px; width:80%;}
 .commentBox .itemInfo .title{color:#494a4e; font-size:15px; margin-left:10px; display:block;}
 .commentBox .itemInfo .time{color:#9b9b9b; font-size:13px; margin-left:10px; display:block;}
 .commentBox .itemInfo .desc{color:#2f90b3; display:block; font-size:17px; margin-left:10px; overflow:hidden; display:block;}
@@ -348,6 +362,12 @@ textarea#textarea1 {
 .profileGrid .userPro{padding:0px; margin:0px; position:relative; overflow:hidden;}
 .userPro .itemImg{float:left; width:20%; text-align:center;}
 .userPro .itemImg img{max-width:100%;}
+.userPro .itemInfo .ppname {border-bottom: 1px solid #CCE4E8; font-size: 20px; font-weight: normal; height: 35px; color: #FFF;}
+.userPro .itemInfo .ppname::-webkit-input-placeholder {opacity: 1; color:#fff !important; /* Chrome/Opera/Safari */}
+.userPro .itemInfo .ppname::-moz-placeholder {opacity: 1; color:#fff !important; /* Firefox 19+ */}
+.userPro .itemInfo .ppname::-ms-input-placeholder {opacity: 1; color:#fff !important; /* IE 10+ */}
+.userPro .itemInfo .ppname:-moz-placeholder {opacity: 1; color:#fff !important; /* Firefox 18- */}
+
 .profileGrid .userPro a{display:block; text-align:center; font-size:13px; color:#fff;}
 
 .userPro .itemInfo{float:right; line-height:25px; width:80%; padding-left:20px;}
@@ -357,6 +377,14 @@ textarea#textarea1 {
 .one_half a{display:block; padding:5px 0;}
 .newwind {background-color:#fff; color: #2e90ad; float:left;font-size: 23px; margin-left: 11px; min-height: 50px;padding: 20px; width: 96.9222%;}
 .addnewp {top: 3px; position: relative; padding-right: 15px; color: #FEA500 !important;}
+
+#suggesstion-box {
+    display: none;
+    list-style: outside none none;
+    padding: 20px;
+    background: #EEE none repeat scroll 0% 0%;
+    line-height: 1.5;
+}
 
 footer{padding:0px; margin:20px 0 0; overflow:hidden;}
 footer .footerLink{float:right; margin:0px;}
