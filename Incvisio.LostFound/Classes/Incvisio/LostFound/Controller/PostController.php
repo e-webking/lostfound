@@ -442,9 +442,9 @@ class PostController extends MainController {
      */
     public function getAdvSearchAction($lost_input=NULL,$found_input=NULL){
 
-        if(isset($lost_input)){
+        if (isset($lost_input)) {
             $posts = $this->loadLost($lost_input,NULL,NULL,NULL,NULL,NULL,0,10);
-        }elseif(isset($found_input)){
+        } elseif(isset($found_input)) {
             $posts = $this->loadFound($found_input,NULL,NULL,NULL,NULL,NULL,0,10);
         }
 
@@ -471,41 +471,43 @@ class PostController extends MainController {
      * @param int $item_per_page
      * @return array.
      */
-    public function loadLost($lost_input,$city_input,$place_input,$date_from,$date_to,$category_lost,$page_position,$item_per_page){
-        $results = $this->postRepository->findWithFilterLost($lost_input,NULL,$city_input,$place_input,$date_from,$date_to,NULL,$category_lost,$page_position,$item_per_page);
+    public function loadLost($lost_input,$city_input,$place_input,$date_from,$date_to,$category_lost,$page_position,$item_per_page) {
+
+    	$results = $this->postRepository->findWithFilterLost($lost_input,NULL,$city_input,$place_input,$date_from,$date_to,NULL,$category_lost,$page_position,$item_per_page);
         $newResults = array();
-        foreach($results as $result) {
-            $id = $result['persistence_object_identifier'];
-            $image = $this->imageRepository->findByPost($id)->getFirst();
-            if(!empty($image)) {
-                $imageName = $image->getImgTitle();
-            }else{
-                $imageName = 'NULL';
-            }
-            $title = $result['title'];
-
-            // strip tags to avoid breaking any html
-            $desc = strip_tags($result['description']);
-
-            if (strlen($result['description']) > 150) {
-
-                // truncate string
-                $stringCut = substr($result['description'], 0, 150);
-
-                // make sure it ends in a word so assassinate doesn't become ass...
-                $result['description'] = substr($stringCut, 0, strrpos($stringCut, ' ')).'...';
-            }
-
-
-            $desc = $result['description'];
-            $active = $result['active'];
-            $timelostorfound =$result['timelostorfound'];
-            $datelostorfound = $result['datelostorfound'];
-            $city = $result['city'];
-            $place = $result['place'];
-            $newResults[] = array("id"=>$id,"title"=>$title,"description"=>$desc,"active"=>$active,"image"=>$imageName,"place"=>$place,"city"=>$city,"timelostorfound"=>$timelostorfound,"datelostorfound"=>$datelostorfound);
+        
+        if (count($results) > 0) {
+	        foreach ($results as $result) {
+	        	
+	            $id = $result['persistence_object_identifier'];
+	            $image = $this->imageRepository->findByPost($id)->getFirst();
+	            
+	            if (!empty($image)) {
+	                $imageName = $image->getImgTitle();
+	            } else{
+	                $imageName = 'NULL';
+	            }
+	            
+	            $title = $result['title'];
+	            // strip tags to avoid breaking any html
+	            $desc = strip_tags($result['description']);
+	            if (strlen($result['description']) > 150) {
+	                // truncate string
+	                $stringCut = substr($result['description'], 0, 150);
+	                // make sure it ends in a word so assassinate doesn't become ass...
+	                $result['description'] = substr($stringCut, 0, strrpos($stringCut, ' ')).'...';
+	            }
+	            
+	            $desc = $result['description'];
+	            $active = $result['active'];
+	            $timelostorfound =$result['timelostorfound'];
+	            $datelostorfound = $result['datelostorfound'];
+	            $city = $result['city'];
+	            $place = $result['place'];
+	            $newResults[] = array("id"=>$id,"title"=>$title,"description"=>$desc,"active"=>$active,"image"=>$imageName,"place"=>$place,"city"=>$city,"timelostorfound"=>$timelostorfound,"datelostorfound"=>$datelostorfound);
+	        }
         }
-
+        
         return $newResults;
     }
 
@@ -519,38 +521,41 @@ class PostController extends MainController {
      * @return array.
      */
     public function loadFound($found_input,$city_input,$place_input,$date_from,$date_to,$category_founds,$page_position,$item_per_page){
-        $results = $this->postRepository->findWithFilterFound(NULL,$found_input,$city_input,$place_input,$date_from,$date_to,$category_founds,NULL,$page_position,$item_per_page);
+        
+    	$results = $this->postRepository->findWithFilterFound(NULL,$found_input,$city_input,$place_input,$date_from,$date_to,$category_founds,NULL,$page_position,$item_per_page);
         $newResults = array();
-        foreach($results as $result) {
-            $id = $result['persistence_object_identifier'];
-            $image = $this->imageRepository->findByPost($id)->getFirst();
-            if(!empty($image)) {
-                $imageName = $image->getImgTitle();
-            }else{
-                $imageName = 'NULL';
-            }
-            $title = $result['title'];
-            $active = $result['active'];
-            $desc = strip_tags($result['description']);
-
-            if (strlen($result['description']) > 150) {
-
-                // truncate string
-                $stringCut = substr($result['description'], 0, 150);
-
-                // make sure it ends in a word so assassinate doesn't become ass...
-                $result['description'] = substr($stringCut, 0, strrpos($stringCut, ' ')).'...';
-            }
-
-
-            $desc = $result['description'];
-            $timelostorfound =$result['timelostorfound'];
-            $datelostorfound = $result['datelostorfound'];
-            $city = $result['city'];
-            $place = $result['place'];
-            $newResults[] = array("id"=>$id,"title"=>$title,"active"=>$active,"description"=>$desc,"image"=>$imageName,"place"=>$place,"city"=>$city,"timelostfound"=>$timelostorfound,"datelostorfound"=>$datelostorfound);
+        
+        if (count($results) > 0) {
+	        foreach($results as $result) {
+	            
+	        	$id = $result['persistence_object_identifier'];
+	            $image = $this->imageRepository->findByPost($id)->getFirst();
+	            
+	            if (!empty($image)) {
+	                $imageName = $image->getImgTitle();
+	            } else {
+	                $imageName = 'NULL';
+	            }
+	            
+	            $title = $result['title'];
+	            $active = $result['active'];
+	            $desc = strip_tags($result['description']);
+	
+	            if (strlen($result['description']) > 150) {
+	                // truncate string
+	                $stringCut = substr($result['description'], 0, 150);
+	                // make sure it ends in a word so assassinate doesn't become ass...
+	                $result['description'] = substr($stringCut, 0, strrpos($stringCut, ' ')).'...';
+	            }
+	            
+	            $desc = $result['description'];
+	            $timelostorfound =$result['timelostorfound'];
+	            $datelostorfound = $result['datelostorfound'];
+	            $city = $result['city'];
+	            $place = $result['place'];
+	            $newResults[] = array("id"=>$id,"title"=>$title,"active"=>$active,"description"=>$desc,"image"=>$imageName,"place"=>$place,"city"=>$city,"timelostfound"=>$timelostorfound,"datelostorfound"=>$datelostorfound);
+	        }
         }
-
         return $newResults;
     }
 
@@ -942,8 +947,8 @@ class PostController extends MainController {
             }
             if($current_page < $total_pages){
                 $next_link = ($i > $total_pages)? $total_pages : $i;
-                $pagination .= '<li id="pagination_list" class="waves-effect wawess rightText"><a data-page="'.$next_link.'" title="Next"><i class="fa fa-angle-right"></i></a></li>'; //next link
-                $pagination .= '<li  id="pagination_list" class="waves-effect wawess rightText"><a  data-page="'.$total_pages.'" title="Last"><i class="fa fa-angle-double-right"></i></a></li>'; //last link
+                $pagination .= '<li id="pagination_list" class="waves-effect wawess rightText"><a data-page="'.$next_link.'" title="Next"><i class="fa fa-angle-double-right"></i></a></li>'; //next link
+                $pagination .= '<li  id="pagination_list" class="waves-effect wawess rightText"><a  data-page="'.$total_pages.'" title="Last"><i class="fa fa-angle-right"></i></a></li>'; //last link
             }
 
             $pagination .= '</ul>';

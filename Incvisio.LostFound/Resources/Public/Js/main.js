@@ -229,7 +229,7 @@ var Advert = {
             $("#allLost").hide();
 
             var search_input = $(this).val();
-            if(search_input.length<=0){
+            if (search_input.length <= 0) {
                 $('#LostBox').hide();
                 $("#allLost").show();
                 $('#lost-input').removeClass('pasen');
@@ -238,14 +238,14 @@ var Advert = {
             } else {
                 if ( search_input.length ==0 ) {
 
-                }else {
+                } else {
                     $.getJSON("/incvisio.lostfound/post/getAdvSearch", {
                         lost_input: search_input,
                         ajax: 'true'
                     }, function (data) {
-                        if(data.length==0){
+                        if (data.length==0){
                             var options = 'Нічого не знайдено<br>';
-                        }else {
+                        } else {
                             var options = '';
                             if(data.length >= 5){
                                 var iterator = 5;
@@ -259,7 +259,6 @@ var Advert = {
                         options += '<a href="/post/new/?type=lost"><i class="fa fa-plus addnewp"></i><span style="color: #FEA500;">Додати новий</span></a>';
                         $("input#lost-input").removeClass("loading");
                         $('#LostBox').html(options).show();
-
                     })
                 }
             }

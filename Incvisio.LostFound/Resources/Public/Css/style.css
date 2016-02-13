@@ -123,6 +123,8 @@ header .socialList ul li .fa{font-size:18px;}
 .wrapper .leftCol .addBtnCol .waves-effect{width:100%;}
 
 
+#toast-container {max-width:70%; right: 15%; top: 7%;}
+.nopadding {padding: 0px !important}
 
 #items_box {background-color: #fff; margin-top: 10px; min-height: 165px; padding: 15px;}
 #item_lost .item_image {float: left; width: 25%;}
@@ -185,7 +187,7 @@ header .socialList ul li .fa{font-size:18px;}
 
 .found {
     background-image: url("../Images/founded@1x.png");
-    background-position: 150px 100px;
+    background-position: 150px center;
     background-repeat: no-repeat;
 }
 
@@ -251,7 +253,7 @@ header .socialList ul li .fa{font-size:18px;}
 #found-input:-ms-input-placeholder {opacity: 1; color:#fff!important; /* IE 10+ */}
 #found-input:-moz-placeholder {opacity: 1; color:#fff!important; /* Firefox 18- */}
 
-.lost-input-label {float: right; position: relative; right: -8px;}
+.lost-input-label {float: right; position: relative; right: -8px; line-height: 1.5; overflow-wrap: break-word; word-wrap: break-word; -ms-word-break: break-all; word-break: break-all; word-break: break-word; -ms-hyphens: auto;-moz-hyphens: auto;-webkit-hyphens: auto; hyphens: auto;}
 .lost-input-label a {font-size: 18px; color: #2E90AD; padding-right:5px;}
 
 .amber.lighten-1 {background-color:#fcab1c !important;}
@@ -271,11 +273,90 @@ header .socialList ul li .fa{font-size:18px;}
 .pagination li.active {background-color:#0093ad ;} 
  
 
-.found-input-label{float:right; position:relative; right:-8px;}
+.found-input-label {float:right; position:relative; right:-8px; line-height: 1.5; overflow-wrap: break-word; word-wrap: break-word; -ms-word-break: break-all; word-break: break-all; word-break: break-word; -ms-hyphens: auto;-moz-hyphens: auto;-webkit-hyphens: auto; hyphens: auto;}
 .found-input-label a {color:#fff; font-size:18px; padding-right:5px;}
 
 #forgot-password .linkText{font-size:18px;}
 .sendBtnCol{text-align:right;}
+
+.p-detail{position:relative; overflow:hidden; margin-bottom:10px; color:#fff;}
+.p-detail .proImg{float:left; max-width:75px; max-width:75px;}
+.p-detail .pname {left:10px; position: relative; font-size: 23px; font-weight:bold; padding:8px 0 5px;}
+.p-detail .pnumb {left:10px; position: relative; font-size: 13px; font-weight:normal;}
+.p-detail .showtel {font-size: 11px; height:24px; line-height: 11px; margin-top:3px; padding:7px; margin-left:10px;}
+.p-detail .likes {float: right; display:inline-block; width:auto;}
+.p-detail .likes .fa{font-size:24px; color:#fff; margin-left:10px;}
+.p-detail .likes a.fa{font-size:25px; color:#fff;}
+.p-detail .userLikeNumb {font-size: 19px; margin:0 0 0 5px;}
+
+.p-massage{background-color:#fff; border-radius:10px; margin:15px 0 20px; padding:10px; width:100%;}
+.p-massage .p-date {color: #a8c5d7; font-size: 13px;}
+.p-massage .p-text {color: #0093ad; display: block; font-size: 18px; font-weight: bold; overflow: hidden;}
+
+.p-profile{position:relative; color:#fff;}
+.p-profile .labelText{color:#93bdc9; text-align:left; font-size: 18px; font-weight:bold; margin:0 0 15px 10px; display:inline-block;}
+.p-profile .adverbox {
+    border-bottom:1px solid #cce4e8; font-size: 20px;
+    font-weight:normal; height:35px; margin:5px 0 20px 10px;
+	}
+.p-profile .advertTextBox{   
+    border-bottom: 1px solid #cce4e8; overflow: hidden;
+    font-size: 20px; font-weight:normal; margin:5px 0 15px 10px;
+	}	
+.p-profile .socialList{float:right; overflow:hidden; margin-left: 10px;}
+.p-profile .socialList ul{margin:0px;}
+.p-profile .socialList ul li{display:inline-block;}
+.p-profile .socialList ul li a {padding:0px 10px 10px; color:#FFF; display:block;}
+.p-profile .socialList ul li:last-child a{padding-right:0px;}
+.p-profile .socialList ul li a .fa {font-size:25px;}
+.p-profile .socialList ul li a .fa:hover{color:#ff9800;}
+
+textarea#textarea1 {
+    border: medium none; color: #fff; font-size: 20px !important;
+    font-weight: 400 !important; padding: 0;
+	}
+	
+.fotorama{margin-bottom:20px; margin-top:0px; width:100%;}
+.fotorama img{float:left;}
+.fotorama a img{box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12); display:block;}
+.fotorama a:hover img{box-shadow: 0 5px 11px 0 rgba(0, 0, 0, 0.18), 0 4px 15px 0 rgba(0, 0, 0, 0.15); display:block;}
+
+.commentGrid{position:relative; padding:0px; margin:0px;}
+.commentGrid .commt {
+    border-bottom: 1px solid #2d88a3; color:#c5cad0; width:100%;
+    font-size:17px; font-weight:normal; line-height:50px; position:relative;
+}
+.commentBox {background-color:#fff; margin-top:15px; min-height: 100px; padding-top:15px;}
+.commentBox .itemImg{float:left; width:20%;}
+.commentBox .itemImg img{max-width:100%;}
+
+.commentBox .itemInfo{float:right; line-height:25px; width:80%;}
+.commentBox .itemInfo .title{color:#494a4e; font-size:15px; margin-left:10px; display:block;}
+.commentBox .itemInfo .time{color:#9b9b9b; font-size:13px; margin-left:10px; display:block;}
+.commentBox .itemInfo .desc{color:#2f90b3; display:block; font-size:17px; margin-left:10px; overflow:hidden; display:block;}
+
+.comentsLikes{bottom:0; float:right; position:relative; width:auto;}
+.comentsLikes .userLikeNumb {color: #3598b7; float: left; font-size: 13px; margin:0px 5px;}
+.comentsLikes .fa {margin-left:10px; float:left; margin:0 0 0 5px; font-size:15px;}
+
+.newAddTitle{color:#2e90ad; padding-bottom:50px; padding-top:0;}
+.newAddTitle h4{font-size:36px; color:#2e90ad; margin-bottom:0px !important;} 
+
+.profileGrid{padding:0px; margin:0px; position:reltive;}
+.profileGrid .addCaps{position:relative; top:10px !important;}
+
+.profileGrid .userPro{padding:0px; margin:0px; position:relative; overflow:hidden;}
+.userPro .itemImg{float:left; width:20%; text-align:center;}
+.userPro .itemImg img{max-width:100%;}
+.profileGrid .userPro a{display:block; text-align:center; font-size:13px; color:#fff;}
+
+.userPro .itemInfo{float:right; line-height:25px; width:80%; padding-left:20px;}
+.userPro .itemInfo #found-input {border-bottom:1px solid #cce4e8; font-size: 20px; font-weight:normal; height: 35px; color:#fff;}
+.userPro .itemInfo #found-input::-moz-placeholder  {opacity: 1; color:#fff!important;}
+
+.one_half a{display:block; padding:5px 0;}
+.newwind {background-color:#fff; color: #2e90ad; float:left;font-size: 23px; margin-left: 11px; min-height: 50px;padding: 20px; width: 96.9222%;}
+.addnewp {top: 3px; position: relative; padding-right: 15px; color: #FEA500 !important;}
 
 footer{padding:0px; margin:20px 0 0; overflow:hidden;}
 footer .footerLink{float:right; margin:0px;}
@@ -300,6 +381,9 @@ footer{margin:40px 0 0;}
 footer .footerLink{float:right; margin:0px;}
 footer .footerLogo{position:relative; float:left; width:55%;}	
 footer .donateCol{text-align:center;}
+
+#toast-container {max-width:88%; right:15%; top:7%;}
+.toast {float: right;}
 }
 
 /*--- Mobile View Css here ---*/
@@ -311,7 +395,7 @@ footer .donateCol{text-align:center;}
 
 @media (max-width:600px) {
 body{background:none;}
-
+#toast-container {max-width:90%; right:5%; top:55%;}
 header{background:url(../Images/bg.jpg) center top repeat-y; padding-bottom:0px;}
 header .row{margin-bottom:0px;}
 header .logo{padding-top:0px !important; padding-bottom:0px !important;}	

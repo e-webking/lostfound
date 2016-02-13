@@ -34,8 +34,8 @@ Incvisio:
   LostFound:
     strategies:
       Facebook:
-        app_id: '1457346061238065'
-        app_secret: '490c5b6345b6bf279d20aa757fe4328e'
+        app_id: '823254257800608'
+        app_secret: '9ab9009d70cd972988e71a59a104a1cf'
         scope: 'public_profile,email' # optional
         redirect_uri: 'http://lostfound.armtechnologies.com/incvisio.lostfound/login/social'
       Vk:

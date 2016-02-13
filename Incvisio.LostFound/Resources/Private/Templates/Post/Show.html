@@ -1,72 +1,58 @@
-<f:layout name="Main" />
+<f:layout name="Default" />
 
 <f:section name="Title">LostFound Post</f:section>
 
 <f:section name="Content">
+<div class="container">
 	<f:if condition="{post.active}==1">
-		<f:then>
-			<div class="row">
-		</f:then>
-		<f:else>
-			<div class="row found_page">
-		</f:else>
+	<f:then>
+		<div class="row mob-marginLR1">
+	</f:then>
+	<f:else>
+		<div class="row found_page mob-marginLR1">
+	</f:else>
 	</f:if>
-		<div class="col s6">
-			<div class="col s11">
-                <div class="fotorama" data-nav="thumbs">
-
-                    <f:if condition="{noImage}=='True'">
-                        <f:then>
-                            <img src="{f:uri.resource(path: 'Images/noImage.png')}" />
-                            </f:then>
-                        <f:else>
-                            <f:for each="{images}" as="image">
-                                <img src="{f:uri.resource(path: 'Images/uploads/{image.imgTitle}')}" />
-                            </f:for>
-                        </f:else>
-                        </f:if>
-
-                </div>
-			<f:security.ifHasRole role="User">
-				<f:then>
-					<f:if condition="{currentUserInd.0.accountidentifier}=={advertUser.0.accountidentifier}">
-						<f:then>
-							<div class="col s12 nopading">
-								<div class="col s6 nopading">
+		<div class="col s12 m5 leftCol">
+			<div class="fotorama" data-nav="thumbs">
+				<f:if condition="{noImage}=='True'">
+	                 <f:then>
+	                     <img src="{f:uri.resource(path: 'Images/noImage.png')}" class="responsive-img" />
+	                 </f:then>
+	                 <f:else>
+	                     <f:for each="{images}" as="image">
+	                         <img src="{f:uri.resource(path: 'Images/uploads/{image.imgTitle}')}" class="responsive-img" />
+	                     </f:for>
+	                 </f:else>
+	              </f:if>
+	           </div>
+	           <div class="commentGrid">
+	           	<f:security.ifHasRole role="User">
+	           		<f:if condition="{currentUserInd.0.accountidentifier}=={advertUser.0.accountidentifier}">
+	           			<div class="commentBox">
+	            			<div class="col s12 nopadding">
+								<div class="col m6 nopadding">
 									<f:link.action action="edit" arguments="{post:post.PersistenceObjectIdentifier}" controller="Post" class="waves-effect waves-light btn-large amber lighten-1 " style="width: 99%;">
 										Редагувати
 									</f:link.action>
 								</div>
-								<div class="col s6 nopading" style="padding-left: 1%;">
+								<div class="col m6 nopadding">
 									<f:link.action action="delete" arguments="{post:post.PersistenceObjectIdentifier}" controller="Post" style="width: 99%;" class="waves-effect waves-light btn-large amber lighten-1 " onclick="return confirm('Ви впевнені, що хочете видалити.');">
 										Видалити
 									</f:link.action>
 								</div>
-
 							</div>
-							<div class="col s12 imfb">
+							<div class="col s12">
 								<f:link.action action="markFound" arguments="{post:post.PersistenceObjectIdentifier}" controller="Post" class="waves-effect waves-light btn-large amber lighten-1 imfound" onclick="return confirm('Ви впевнені, що повернули (знайшли). Змінити даний статус вже буде неможливо.');">
 									Я знайшов
 								</f:link.action>
-
 							</div>
-						</f:then>
-						<f:else>
-						</f:else>
-					</f:if>
-				</f:then>
-			</f:security.ifHasRole>
-			<f:security.ifHasRole role="User">
-				<f:then>
-					<div class="commt">
-						<span>Коментувати</span>
-					</div>
-
-					<f:for each="{post.comments}" as="comment">
-						<div class="col s12" id="comment_box" >
-							<div class="item_image">
-
-								<f:if condition="{comment.user.socialPhoto}!=''">
+						</div>
+	           		</f:if>
+	           		<div class="commt">Коментувати</div>
+	           		<f:for each="{post.comments}" as="comment">
+	           			<div class="commentBox">
+	                    	<div class="itemImg">
+	                    		<f:if condition="{comment.user.socialPhoto}!=''">
 									<f:then>
 										<img src="{comment.user.socialPhoto}" style="width: 100%;">
 									</f:then>
@@ -74,139 +60,107 @@
 										<img src="{f:uri.resource(path: 'Images/anonim.png')}" style="width: 100%;">
 									</f:else>
 								</f:if>
+	                    	</div>
+	                        <div class="itemInfo">
+	                            <span class="title">{comment.user.name}</span>
+	                            <span class="time">{comment.publishDate->f:format.date(format:'H:i, Y-m-d')}</span>
+	                            <span class="desc">{comment.message}</span>
 							</div>
-							<div class="item_info" >
-								<span class="title">{comment.user.name}</span><br/>
-								<span class="time">{comment.publishDate->f:format.date(format:'H:i, Y-m-d')}</span><br/>
-								<span  class="desc">{comment.message}</span>
-
-
-							</div>
-							<div class="coments_likes">
-
-								<f:link.action action="setCommentLike" arguments="{comment:comment}" controller="Post">
-									<img id="commentLike" src="{f:uri.resource(path: 'Images/Coment_like.png')}" alt="like" />
-								</f:link.action>
-								<span class="commentLikeNumb">{comment.likes}</span>
-
-								<f:link.action action="setCommentDisLike" arguments="{comment:comment}" controller="Post">
-									<img id="commentDisLike" src="{f:uri.resource(path: 'Images/Coment_dislike.png')}" alt="dislike" />
-								</f:link.action>
-								<span class="commentDisLikeNumb">{comment.dislikes}</span>
-							</div>
+	                        <div class="comentsLikes">
+	                            <f:link.action action="setCommentLike" arguments="{comment:comment}" controller="Post"><i class="fa fa-thumbs-o-up"></i></f:link.action>
+	                            <span class="userLikeNumb">{comment.likes}</span>
+	
+	                           <f:link.action action="setCommentDisLike" arguments="{comment:comment}" controller="Post"><i class="fa fa-thumbs-o-down"></i></f:link.action>
+	                            <span class="userLikeNumb">{comment.dislikes}</span>
+	                        </div>
+	                    </div>
+	           		</f:for>
+	           	</f:security.ifHasRole>
+	           	<div class="commentBox">
+	           		<f:form method="post" action="createComment" controller="Post" name="newComment" enctype="multipart/form-data">
+						<f:form.hidden property="post" value="{post}"/>
+					
+						<div class="input-field col s12">
+							<textarea required="required" class="materialize-textarea" name="commentsMessage" id="textarea2"></textarea>
+							<label for="textarea2">Текст коментаря</label>
 						</div>
-					</f:for>
-					<div class="col s12" id="comment_box"  >
-						<f:form method="post" action="createComment" controller="Post" name="newComment" enctype="multipart/form-data">
-							<f:form.hidden property="post" value="{post}"/>
-							<div class="input-field col s12">
-								<textarea id="textarea2" name="commentsMessage" class="materialize-textarea" required></textarea>
-								<label for="textarea1">Текст коментаря</label>
-							</div>
-							<f:form.button type="submit"  class="waves-effect waves-light btn-large amber lighten-1">
-								Додати коментар
-							</f:form.button>
-						</f:form>
-					</div>
-				</f:then>
-				<f:else>
-					</f:else>
-			</f:security.ifHasRole>
+						<f:form.button type="submit"  class="waves-effect waves-light btn-large amber lighten-1">
+							Додати коментар
+						</f:form.button>
+					</f:form>
+				</div>
 			</div>
 		</div>
-		<div class="col s6">
-			<div class="col s11 offset-s1">
-				<f:if condition="{post.user.socialPhoto}!=''">
+		<div class="col s12 m5 offset-m2 mobBG rightCol">
+           	<div class="">
+               	<div class="p-detail">
+               		<f:if condition="{post.user.socialPhoto}!=''">
 					<f:then>
-						<img src="{post.user.socialPhoto}" alt="Аватар" style="float: left;width: 75px;height: 75px"/>
+						<img src="{post.user.socialPhoto}" alt="Аватар" class="proImg" />
 					</f:then>
 					<f:else>
-						<img src="{f:uri.resource(path: 'Images/noavatar.png')}" alt="Аватар" style="float: left;;width: 75px;height: 75px"/>
+						<img src="{f:uri.resource(path: 'Images/noavatar.png')}" alt="Аватар" class="proImg" />
 					</f:else>
-				</f:if>
-
-				<div class="pname">{post.user.name}</div>
-
-
-				<div class="pnumb">контакти <span id="phoneNumber" style="display: none;">{post.userContacts}</span><span id="showNumber">+380xxxxxxxxx</span></div>
-				<div class="likes">
-
-					<f:link.action action="setUserLike" arguments="{post:post.PersistenceObjectIdentifier}" controller="Post">
-						<img id="userLike" src="{f:uri.resource(path: 'Images/like.png')}" alt="like" />
-					</f:link.action>
-					<span class="userLikeNumb">{userLike}</span>
-
-					<f:link.action action="setUserDisLike" arguments="{post:post.PersistenceObjectIdentifier}" controller="Post">
-						<img id="userDisLike" src="{f:uri.resource(path: 'Images/dislike.png')}" alt="dislike" />
-					</f:link.action>
-					<span class="userDisLikeNumb">{userDisLike}</span>
+					</f:if>
+					<div class="pname">{post.user.name}</div>
+                    <div class="pnumb">контакти <span id="phoneNumber" style="display: none;">{post.userContacts}</span><span id="showNumber">+380xxxxxxxxx</span></div>
+                    <a class="waves-effect waves-light btn-large amber lighten-1 showtel">показати номер</a>                        
+                    <span class="likes">
+                       <f:link.action action="setUserLike" arguments="{post:post.PersistenceObjectIdentifier}" controller="Post"><i class="fa fa-thumbs-o-up"></i></f:link.action>
+                       <span class="userLikeNumb">{userLike}</span>
+   
+                       <f:link.action action="setUserDisLike" arguments="{post:post.PersistenceObjectIdentifier}" controller="Post"><i class="fa fa-thumbs-o-down"></i></f:link.action>
+                       <span class="userLikeNumb">{userDisLike}</span>
+                     </span>
+               	</div>
+               	<div class="p-massage">
+					<div class="p-date">{post.dateLostOrFound->f:format.date(format:'Y-m-d')}</div>
+					<div class="p-text">{post.title}</div>
 				</div>
-				<a class="waves-effect waves-light btn-large amber lighten-1 showtel">показати номер</a><br>
-				<div class="massagep">
-					<div class="datep">{post.dateLostOrFound->f:format.date(format:'Y-m-d')}</div>
-					<div class="textp">{post.title}</div>
-				</div>
-				<br>
-				<label for="found_input" class="left-align newcol">
-					<span class="textline">Місто</span>
-				</label>
-				<div class="advert_text">
-						{post.city}
-				</div>
-				<label for="found_input_cat" class="left-align newcol">
-					<span class="textline">Категорія</span>
-				</label>
-				<div class="advert_text">
-					{post.category.name}
-				</div>
-
-				<label for="found_input" class="left-align newcol">
-					<span class="textline">Опис</span>
-				</label>
-				<br>
-				<div class="advert_text_descr">
-					<textarea id="textarea1" disabled rows="4" cols="50" class="materialize-textarea">{post.description}</textarea>
-				</div>
-
-				<label for="found_input" class="left-align newcol">
-					<span class="textline">Місце</span>
-				</label>
-				<div class="advert_text_descr">
-					<textarea id="textarea1" disabled rows="4" cols="50" class="materialize-textarea">{post.place}</textarea>
-				</div>
-
-				<label for="found_input" class="left-align newcol">
-					<span class="socuse">Поділитись</span>
-				</label>
-
-				<div class="social-list socart">
-					<ul>
-
-						<li><a href="https://www.facebook.com/sharer/sharer.php?u=http://{shareLink}"  target="_blank" class="transition elem"><i class="fa fa-facebook prsoc"></i></a></li>
-						<li><a href="http://vk.com/share.php?url=http://{shareLink}&title={post.title}&description={post.description}"  target="_blank" class="transition elem"><i class="fa fa-vk prsoc"></i></a></li>
-						<li><a href="https://twitter.com/intent/tweet?text={post.title}&url=http://{shareLink}&title={post.title}&description={post.description}"  target="_blank" class="transition elem"><i class="fa fa-twitter prsoc"></i></a></li>
-						<li><a href="https://plus.google.com/share?url=http://{shareLink}&title={post.title}&description={post.description}"  target="_blank" class="transition elem"><i class="fa fa-google-plus prsoc"></i></a></li>
-					</ul>
-				</div>
-			</div>
-		</div>
+				<div class="p-profile">		
+                   <label class="labelText" for="Місто">Місто</label>
+                   <div class="adverbox">{post.city}</div>
+               
+                   <label class="labelText" for="Категорія">Категорія</label>
+                   <div class="adverbox">{post.category.name}</div>
+                   
+                   <label class="labelText" for="Опис">Опис</label>    
+                   <div class="adverbox">
+                       <textarea class="materialize-textarea" cols="50" rows="4" disabled="" id="textarea1" style="height: 29.8px;">{post.description}</textarea>
+                   </div>
+                   
+                   <label class="labelText" for="found_input">Місце</label>
+                   <div class="advertTextBox">
+                       <textarea class="materialize-textarea" cols="50" rows="4" disabled="" id="textarea1" style="height: 29.8px;">{post.place}</textarea>
+                   </div>    				
+                   <label class="labelText" for="Поділитись" style="float:left;">Поділитись</label>
+                   <div class="socialList">
+                       <ul>
+                           <li><a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://{shareLink}"><i class="fa fa-facebook"></i></a></li>
+                           <li><a target="_blank" href="http://vk.com/share.php?url=http://{shareLink}&title={post.title}&description={post.description}"><i class="fa fa-vk prsoc"></i></a></li>
+                           <li><a target="_blank" href="https://twitter.com/intent/tweet?text={post.title}&url=http://{shareLink}&title={post.title}&description={post.description}"><i class="fa fa-twitter"></i></a></li>
+                           <li><a target="_blank" href="https://plus.google.com/share?url=http://{shareLink}&title={post.title}&description={post.description}"><i class="fa fa-google-plus"></i></a></li>
+                       </ul>
+                   </div>
+                </div>
+            </div>
+       </div>
 	</div>
-	<script>
-		$('.showtel').click(function(){
-			var $this = $(this);
-			if($this.hasClass('showtel2')){
-				$this.removeClass('showtel2');
-				$this.text('Показати номер');
-				$('#showNumber').show();
-				$('#phoneNumber').hide();
-			}else {
-				$this.addClass('showtel2');
-				$this.text('Сховати номер');
-				$('#showNumber').hide();
-				$('#phoneNumber').show();
-			}
-		});
-
-
-	</script>
+</div>
+<script type="text/javascript">
+	$('.showtel').click(function(){
+		var $this = $(this);
+		if ($this.hasClass('showtel2')){
+			$this.removeClass('showtel2');
+			$this.text('Показати номер');
+			$('#showNumber').show();
+			$('#phoneNumber').hide();
+		} else {
+			$this.addClass('showtel2');
+			$this.text('Сховати номер');
+			$('#showNumber').hide();
+			$('#phoneNumber').show();
+		}
+	});
+</script>
 </f:section>
