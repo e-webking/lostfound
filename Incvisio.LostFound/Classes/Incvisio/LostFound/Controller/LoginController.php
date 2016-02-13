@@ -361,6 +361,7 @@ class LoginController extends \TYPO3\Flow\Mvc\Controller\ActionController {
 				$this->redirect('index', 'Standard');
 			}
 		} catch (\TYPO3\Flow\Security\Exception\AuthenticationRequiredException $exception) {
+
 			$this->flashMessageContainer->addMessage(new \TYPO3\Flow\Error\Error($this->translator->translateById('login.login.wrongPassword',array(), NULL, NULL, 'Main', 'Incvisio.LostFound')));
 			$this->redirect('index', 'Standard');
 		}

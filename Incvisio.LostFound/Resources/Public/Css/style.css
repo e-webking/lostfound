@@ -98,11 +98,20 @@ header .socialList ul li .fa{font-size:18px;}
 .wrapper .leftCol #form_lost_filter .input-field label{color: #CEE3E8; font-size: 18px; top:-15px;}
 .wrapper .leftCol #form_lost_filter .input-field label.active{transform:inherit;}
 .wrapper .leftCol #form_lost_filter .input-field .validate{font-size: 22px; border-bottom:1px solid #cee3e8;}
-
 .wrapper .leftCol #form_lost_filter .input-field .validate::-webkit-input-placeholder {opacity: 1; color:#d1d1d1 !important; /* Chrome/Opera/Safari */}
 .wrapper .leftCol #form_lost_filter .input-field .validate::-moz-placeholder {opacity: 1; color:#d1d1d1 !important; /* Firefox 19+ */}
 .wrapper .leftCol #form_lost_filter .input-field .validate:-ms-input-placeholder {opacity: 1; color:#d1d1d1 !important; /* IE 10+ */}
 .wrapper .leftCol #form_lost_filter .input-field .validate:-moz-placeholder {opacity: 1; color:#d1d1d1 !important; /* Firefox 18- */}
+
+.wrapper .leftCol #form_found_filter{margin-top:30px;}
+.wrapper .leftCol #form_found_filter .input-field label{color: #CEE3E8; font-size: 18px; top:-15px;}
+.wrapper .leftCol #form_found_filter .input-field label.active{transform:inherit;}
+.wrapper .leftCol #form_found_filter .input-field .validate{font-size: 22px; border-bottom:1px solid #cee3e8;}
+.wrapper .leftCol #form_found_filter .input-field .validate::-webkit-input-placeholder {opacity: 1; color:#d1d1d1 !important; /* Chrome/Opera/Safari */}
+.wrapper .leftCol #form_found_filter .input-field .validate::-moz-placeholder {opacity: 1; color:#d1d1d1 !important; /* Firefox 19+ */}
+.wrapper .leftCol #form_found_filter .input-field .validate:-ms-input-placeholder {opacity: 1; color:#d1d1d1 !important; /* IE 10+ */}
+.wrapper .leftCol #form_found_filter .input-field .validate:-moz-placeholder {opacity: 1; color:#d1d1d1 !important; /* Firefox 18- */}
+
 
 .wrapper .leftCol .select-wrapper input.select-dropdown{
 	border-bottom: 1px solid #cee3e8 !important;
@@ -134,11 +143,20 @@ header .socialList ul li .fa{font-size:18px;}
 .wrapper .rightCol #form_lost_filter .input-field label{color: #CEE3E8; font-size: 18px; top:-15px;}
 .wrapper .rightCol #form_lost_filter .input-field label.active{transform:inherit;}
 .wrapper .rightCol #form_lost_filter .input-field .validate{font-size: 22px; border-bottom:1px solid #fff;}
-
 .wrapper .rightCol #form_lost_filter .input-field .validate::-webkit-input-placeholder {opacity: 1; color:#fff!important; /* Chrome/Opera/Safari */}
 .wrapper .rightCol #form_lost_filter .input-field .validate::-moz-placeholder {opacity: 1; color:#fff!important; /* Firefox 19+ */}
 .wrapper .rightCol #form_lost_filter .input-field .validate:-ms-input-placeholder {opacity: 1; color:#fff!important; /* IE 10+ */}
 .wrapper .rightCol #form_lost_filter .input-field .validate:-moz-placeholder {opacity: 1; color:#fff!important; /* Firefox 18- */}
+
+.wrapper .rightCol #form_found_filter{margin-top:30px;}
+.wrapper .rightCol #form_found_filter .input-field label{color: #CEE3E8; font-size: 18px; top:-15px;}
+.wrapper .rightCol #form_found_filter .input-field label.active{transform:inherit;}
+.wrapper .rightCol #form_found_filter .input-field .validate{font-size: 22px; border-bottom:1px solid #fff;}
+.wrapper .rightCol #form_found_filter .input-field .validate::-webkit-input-placeholder {opacity: 1; color:#fff!important; /* Chrome/Opera/Safari */}
+.wrapper .rightCol #form_found_filter .input-field .validate::-moz-placeholder {opacity: 1; color:#fff!important; /* Firefox 19+ */}
+.wrapper .rightCol #form_found_filter .input-field .validate:-ms-input-placeholder {opacity: 1; color:#fff!important; /* IE 10+ */}
+.wrapper .rightCol #form_found_filter .input-field .validate:-moz-placeholder {opacity: 1; color:#fff!important; /* Firefox 18- */}
+
 
 .wrapper .rightCol .select-wrapper input.select-dropdown{
 	border-bottom: 1px solid #fff !important;
