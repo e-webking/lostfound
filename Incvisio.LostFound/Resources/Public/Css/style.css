@@ -340,11 +340,11 @@ textarea#textarea1 {
     border-bottom: 1px solid #2d88a3; color:#c5cad0; width:100%;
     font-size:17px; font-weight:normal; line-height:50px; position:relative;
 }
-.commentBox {background-color:#fff;}
+.commentBox {background-color:#fff; margin-top:15px; min-height: 100px; padding-top:15px;}
 .commentBox .itemImg{float:left; width:20%;}
 .commentBox .itemImg img{max-width:100%;}
 
-.commentBox .itemInfo {float:right; line-height:25px; width:80%;}
+.commentBox .itemInfo{float:right; line-height:25px; width:80%;}
 .commentBox .itemInfo .title{color:#494a4e; font-size:15px; margin-left:10px; display:block;}
 .commentBox .itemInfo .time{color:#9b9b9b; font-size:13px; margin-left:10px; display:block;}
 .commentBox .itemInfo .desc{color:#2f90b3; display:block; font-size:17px; margin-left:10px; overflow:hidden; display:block;}

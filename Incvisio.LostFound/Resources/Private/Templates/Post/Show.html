@@ -27,15 +27,15 @@
 	           </div>
 	           <div class="commentGrid">
 	           	<f:security.ifHasRole role="User">
-	           		<f:if condition="{currentUserInd.0.accountidentifier}=={advertUser.0.accountidentifier}">
-	           			<div class="commentBox">
+	           		<div class="commentBox">
+		           		<f:if condition="{currentUserInd.0.accountidentifier}=={advertUser.0.accountidentifier}">
 	            			<div class="col s12 nopadding">
-								<div class="col m6 nopadding">
+								<div class="col s6 nopadding">
 									<f:link.action action="edit" arguments="{post:post.PersistenceObjectIdentifier}" controller="Post" class="waves-effect waves-light btn-large amber lighten-1 " style="width: 99%;">
 										Редагувати
 									</f:link.action>
 								</div>
-								<div class="col m6 nopadding">
+								<div class="col s6 nopadding">
 									<f:link.action action="delete" arguments="{post:post.PersistenceObjectIdentifier}" controller="Post" style="width: 99%;" class="waves-effect waves-light btn-large amber lighten-1 " onclick="return confirm('Ви впевнені, що хочете видалити.');">
 										Видалити
 									</f:link.action>
@@ -46,9 +46,7 @@
 									Я знайшов
 								</f:link.action>
 							</div>
-						</div>
-	           		</f:if>
-	           		<div class="commentBox">
+		           		</f:if>
 	           			<div class="commt">Коментувати</div>
 	           		</div>
 	           		<f:for each="{post.comments}" as="comment">
