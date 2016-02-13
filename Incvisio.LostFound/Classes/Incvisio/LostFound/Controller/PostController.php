@@ -72,9 +72,9 @@ class PostController extends MainController {
 	public function indexAction($type=NUll) {
         $args = $this->request->getArguments();
 
-        if($type == "lost") {
+        if ($type == "lost") {
 
-            if(isset($args['lost_input'])) {
+            if (isset($args['lost_input'])) {
                 $this->view->assign('search_field',$args['lost_input']);
                $this->getPostsAction($args['lost_input'], NULL, NULL, NULL, NULL, NULL);
                 $count = $this->postRepository->countLost($args['lost_input']);
@@ -85,11 +85,12 @@ class PostController extends MainController {
                         $this->redirectToUri("/post?type=found");
                     }
                 }
-            }else {
+            } else {
                 $posts = $this->postRepository->findByLost(1);
                 $this->view->assign('posts',$posts);
             }
-        }else {
+            
+        } else {
 
             if(isset($args['found_input'])){
                 $this->view->assign('search_field',$args['found_input']);

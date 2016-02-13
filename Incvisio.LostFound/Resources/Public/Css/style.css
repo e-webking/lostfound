@@ -89,10 +89,10 @@ header .socialList ul li .fa{font-size:18px;}
 .wrapper{padding:20px 0; overflow:;}
 
 .wrapper .leftCol{margin:0px; color:#2c8fac;}
-.wrapper .leftCol #search .input-field label{font-weight:bolder; font-size: 19px; color: #FFAB1A;}
-.wrapper .leftCol #search .input-field .validate{font-size:32px; font-weight:normal;}
-.wrapper .leftCol #search .input-field label{top:-15px;}
-.wrapper .leftCol #search .input-field label.active{transform:inherit;}
+.wrapper .leftCol #searchLost .input-field label{font-weight:bolder; font-size: 19px; color: #FFAB1A;}
+.wrapper .leftCol #searchLost .input-field .validate{font-size:32px; font-weight:normal;}
+.wrapper .leftCol #searchLost .input-field label{top:-15px;}
+.wrapper .leftCol #searchLost .input-field label.active{transform:inherit;}
 
 .wrapper .leftCol #form_lost_filter{margin-top:30px;}
 .wrapper .leftCol #form_lost_filter .input-field label{color: #CEE3E8; font-size: 18px; top:-15px;}
@@ -112,8 +112,6 @@ header .socialList ul li .fa{font-size:18px;}
 
 .wrapper .leftCol .addBtnCol{margin-top:22px;}
 .wrapper .leftCol .addBtnCol .waves-effect{width:100%;}
-
-
 
 
 
