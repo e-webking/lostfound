@@ -595,23 +595,26 @@ class PostController extends MainController {
         $newPost->setUserContacts($args["newPost"]["userContacts"]);
         $newPost->setCategory($this->categoryRepository->findByIdentifier($args["newPost"]["category"]));
         $newPost->setPlace($args["newPost"]["place"]);
-        if($args["newPost"]["dateLostOrFound"]!=NULL){
-            $date = \DateTime::createFromFormat('d-m-Y', $args["newPost"]["dateLostOrFound"]);
-            $newPost->setDateLostOrFound($date);
-        }else{
+        
+//         if ($args["newPost"]["dateLostOrFound"]!=NULL && isset($args["newPost"]["dateLostOrFound"])){
+//             $date = \DateTime::createFromFormat('d-m-Y', $args["newPost"]["dateLostOrFound"]);
+//             $newPost->setDateLostOrFound($date);
+//         }else{
             $newPost->setDateLostOrFound(new \TYPO3\Flow\Utility\Now());
-        }
+//        }
 
 
         $newPost->setUser($this->getCurrentUser());
         $newPost->setActive(1);
         $newPost->setPublishDate( new \TYPO3\Flow\Utility\Now());
         $this->postRepository->add($newPost);
+
         if (isset($_FILES) && !empty($_FILES)) {
             $count = 0;
             $uploaded_dir = __DIR__ . "/../../../../../../Packages/Application/Incvisio.LostFound/Resources/Public/Images/uploads/";
             foreach ($_FILES as $file) {
                 foreach ($file['name'] as $filename) {
+                	
                     if ($file['name'][$count] != "") {
                         $file_tmp = $file['tmp_name'][$count];
                         if (is_dir($uploaded_dir . $filename) == false) {
@@ -621,7 +624,6 @@ class PostController extends MainController {
                             $setFileName = $filename . time();//rename the file if another one exist
                             $new_dir = $uploaded_dir . $setFileName;
                             rename($file_tmp, $new_dir);
-
                         }
                         $newImage = new \Incvisio\LostFound\Domain\Model\Image();
                         $newImage->setImgTitle($setFileName);
@@ -643,6 +645,7 @@ class PostController extends MainController {
                 $this->translator->translateById('advert.add',array(), NULL, NULL, 'Main', 'Incvisio.LostFound')
             )
         );
+        
         $this->redirectToUri("/post?type=".$url_type);
 
     }

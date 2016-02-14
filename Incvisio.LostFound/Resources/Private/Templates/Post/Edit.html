@@ -7,6 +7,9 @@
 	<div class="row mob-marginLR1">
 	<f:security.ifHasRole role="User">
 		<f:then>
+			<f:form method="post" id="form_lost_filter" action="update" controller="Post" object="{post}" name="post" enctype="multipart/form-data">
+				<f:form.hidden property="lost" value="{lost}"/>
+				<f:form.hidden property="found" value="{found}" />
 			<div class="col s12 m5 leftCol"> 
             	<div class="newAddTitle">
 					<h4>Редагувати {post.title}</h4>
@@ -39,9 +42,6 @@
 				</div>
             </div>
 			<div class="col s12 m5 offset-m2 mobBG rightCol">
-				<f:form method="post" id="form_lost_filter" action="update" controller="Post" object="{post}" name="post" enctype="multipart/form-data">
-					<f:form.hidden property="lost" value="{lost}"/>
-					<f:form.hidden property="found" value="{found}" />
 	            	<div class="profileGrid">
 	            		<div class="userPro">
 	            			<div class="itemImg userAvatar">
@@ -90,8 +90,9 @@
 		                    </div>
 	                  </div>
 	            	</div>
-            	</f:form>
+            	
             </div>
+            </f:form>
 		</f:then>
 		<f:else>
 			<p style="color: red; margin-bottom: 20px;">

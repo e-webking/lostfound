@@ -113,6 +113,16 @@ header .socialList ul li .fa{font-size:18px;}
 .wrapper .leftCol #form_found_filter .input-field .validate:-moz-placeholder {opacity: 1; color:#d1d1d1 !important; /* Firefox 18- */}
 
 
+.wrapper #form_lost_filter .leftCol {margin-top:30px;}
+.wrapper #form_lost_filter .leftCol .input-field label{color: #CEE3E8; font-size: 18px; top:-15px;}
+.wrapper #form_lost_filter .leftCol .input-field label.active{transform:inherit;}
+.wrapper #form_lost_filter .leftCol .input-field .validate{font-size: 22px; border-bottom:1px solid #cee3e8;}
+.wrapper #form_lost_filter .leftCol .input-field .validate::-webkit-input-placeholder {opacity: 1; color:#d1d1d1 !important; /* Chrome/Opera/Safari */}
+.wrapper #form_lost_filter .leftCol .input-field .validate::-moz-placeholder {opacity: 1; color:#d1d1d1 !important; /* Firefox 19+ */}
+.wrapper #form_lost_filter .leftCol .input-field .validate:-ms-input-placeholder {opacity: 1; color:#d1d1d1 !important; /* IE 10+ */}
+.wrapper #form_lost_filter .leftCol .input-field .validate:-moz-placeholder {opacity: 1; color:#d1d1d1 !important; /* Firefox 18- */}
+
+
 .wrapper .leftCol .select-wrapper input.select-dropdown{
 	border-bottom: 1px solid #cee3e8 !important;
     color:#0192af; font-size: 22px;
@@ -124,6 +134,7 @@ header .socialList ul li .fa{font-size:18px;}
 
 
 #toast-container {max-width:70%; right: 15%; top: 7%;}
+textarea#textarea1 {overflow: auto;} 
 .nopadding {padding: 0px !important}
 
 #items_box {background-color: #fff; margin-top: 10px; min-height: 165px; padding: 15px;}
@@ -158,6 +169,15 @@ header .socialList ul li .fa{font-size:18px;}
 .wrapper .rightCol #form_found_filter .input-field .validate::-moz-placeholder {opacity: 1; color:#fff!important; /* Firefox 19+ */}
 .wrapper .rightCol #form_found_filter .input-field .validate:-ms-input-placeholder {opacity: 1; color:#fff!important; /* IE 10+ */}
 .wrapper .rightCol #form_found_filter .input-field .validate:-moz-placeholder {opacity: 1; color:#fff!important; /* Firefox 18- */}
+
+.wrapper #form_lost_filter .rightCol {margin-top:30px;}
+.wrapper #form_lost_filter .rightCol .input-field label {color: #CEE3E8; font-size: 18px; top:-15px; !important}
+.wrapper #form_lost_filter .rightCol .input-field label.active {transform:inherit;}
+.wrapper #form_lost_filter .rightCol .input-field .validate{font-size: 22px; border-bottom:1px solid #fff;}
+.wrapper #form_lost_filter .rightCol .input-field .validate::-webkit-input-placeholder {opacity: 1; color:#fff!important; /* Chrome/Opera/Safari */}
+.wrapper #form_lost_filter .rightCol .input-field .validate::-moz-placeholder {opacity: 1; color:#fff!important; /* Firefox 19+ */}
+.wrapper #form_lost_filter .rightCol .input-field .validate:-ms-input-placeholder {opacity: 1; color:#fff!important; /* IE 10+ */}
+.wrapper #form_lost_filter .rightCol .input-field .validate:-moz-placeholder {opacity: 1; color:#fff!important; /* Firefox 18- */}
 
 
 .wrapper .rightCol .select-wrapper input.select-dropdown{

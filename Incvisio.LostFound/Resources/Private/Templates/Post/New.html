@@ -7,6 +7,9 @@
 	<div class="row mob-marginLR1">
 	<f:security.ifHasRole role="User">
 		<f:then>
+			<f:form method="post" id="form_lost_filter" action="create" controller="Post" name="newPost" enctype="multipart/form-data">
+				<f:form.hidden property="lost" value="{lost}"/>
+				<f:form.hidden property="found" value="{found}" />
 			<div class="col s12 m5 leftCol"> 
             	<div class="newAddTitle">
 					<h4>Нове оголошення</h4>
@@ -15,7 +18,7 @@
                 </div>
                 <div class="file-field input-field">
 	               	<div class="btn">
-	               		<input type="file" name="file[]" multiple id="i_file">
+	               		<input type="file" name="file[]" multiple  id="i_file" />
 	               	</div>
                	</div>
                	<div class="file-path-wrapper" style="display: none;">
@@ -24,9 +27,6 @@
 				</div>
             </div>
 			<div class="col s12 m5 offset-m2 mobBG rightCol">
-				<f:form method="post" id="form_lost_filter" action="create" controller="Post" name="newPost" enctype="multipart/form-data">
-					<f:form.hidden property="lost" value="{lost}"/>
-					<f:form.hidden property="found" value="{found}" />
 	            	<div class="profileGrid">
 	            		<div class="userPro">
 	            			<div class="itemImg userAvatar">
@@ -75,8 +75,9 @@
 		                    </div>
 	                  </div>
 	            	</div>
-            	</f:form>
+            	
             </div>
+            </f:form>
 		</f:then>
 		<f:else>
 		<p style="color: red; margin-bottom: 20px;">
@@ -226,6 +227,7 @@
 	}
 	$('#i_file').change( function(event) {
 		$('.file-path-wrapper').show();
+		console.log();
 		for (var i= 0; i<event.target.files.length; i++){
 			var tmppath = URL.createObjectURL(event.target.files[i]);
 			$( "#disp_tmp_path").fadeIn("fast").append( "<img src="+tmppath+" width='200' id='ImagePrevie' style='display: inline-block;margin-right: 10px;' />" );
