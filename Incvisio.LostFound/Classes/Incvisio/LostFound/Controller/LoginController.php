@@ -144,6 +144,7 @@ class LoginController extends \TYPO3\Flow\Mvc\Controller\ActionController {
 					$response = json_decode($args['connectorjson'],true);
 					$token = $response['accessToken'];
 					$facebookAccounts = $this->facebookService->getAccounts($token);
+					
 					$facebookImage = "https:////graph.facebook.com/".$facebookAccounts['id']."/picture?type=large";
 					$this->createSocialAccount(
 						'facebook-'.$facebookAccounts['id'],
@@ -153,7 +154,8 @@ class LoginController extends \TYPO3\Flow\Mvc\Controller\ActionController {
 						$facebookAccounts['last_name'],
 						$facebookImage,
 						$facebookAccounts['email'],
-						$network="facebook"
+						$network="facebook",
+						$args['return_url']
 					);
 				}else{
 					$this->addFlashMessage("access_denied");
@@ -247,7 +249,7 @@ class LoginController extends \TYPO3\Flow\Mvc\Controller\ActionController {
 	 * @param string $socialEmail
 	 * @param string $socialNetwork
 	 */
-	public function createSocialAccount($name, $pass, $pass2,$firstName,$lastName,$photo=NULL,$socialEmail=NULL,$socialNetwork=NULL){
+	public function createSocialAccount($name, $pass, $pass2,$firstName,$lastName,$photo=NULL,$socialEmail=NULL,$socialNetwork=NULL, $return_url=NULL){
 		$account = $this->accountRepository->findByAccountIdentifierAndAuthenticationProviderName($name,$this->providerName);
 		if ($account instanceof \TYPO3\Flow\Security\Account) {
 			if($account->getParty()->getSocialNetwork()==$socialNetwork){
@@ -261,14 +263,24 @@ class LoginController extends \TYPO3\Flow\Mvc\Controller\ActionController {
 						$this->translator->translateById('login.login.success',array(), NULL, NULL, 'Main', 'Incvisio.LostFound')
 					)
 				);
-				$this->redirect('index', 'Standard');
+				
+				if ($return_url != '') {
+					$this->redirectToUri($return_url);
+				} else {
+					$this->redirect('index', 'Standard');
+				}
+
 			}else {
 				$this->flashMessageContainer->addMessage(
-					new Message(
+					new \TYPO3\Flow\Error\Error(
 						$this->translator->translateById('login.login.usernameExist',array(), NULL, NULL, 'Main', 'Incvisio.LostFound')
 					)
 				);
-				$this->redirect('index', 'Standard');
+				if ($return_url != '') {
+					$this->redirectToUri($return_url);
+				} else {
+					$this->redirect('index', 'Standard');
+				}
 			}
 		}else{
 			$defaultRole = array('Incvisio.LostFound:User');
@@ -299,7 +311,7 @@ class LoginController extends \TYPO3\Flow\Mvc\Controller\ActionController {
 				}
 				$this->persistenceManager->persistAll();
 
-				$this->socialAuthenticateAction($name,$socialNetwork);
+				$this->socialAuthenticateAction($name,$socialNetwork,$return_url);
 
 			}
 			$this->flashMessageContainer->addMessage(
@@ -312,7 +324,7 @@ class LoginController extends \TYPO3\Flow\Mvc\Controller\ActionController {
 		}
 	}
 
-	public function socialAuthenticateAction($name,$socialNetwork){
+	public function socialAuthenticateAction($name,$socialNetwork,$return_url=NULL){
 		$account = $this->accountRepository->findByAccountIdentifierAndAuthenticationProviderName($name,$this->providerName);
 		if ($account instanceof \TYPO3\Flow\Security\Account) {
 			if($account->getParty()->getSocialNetwork()==$socialNetwork){
@@ -326,15 +338,15 @@ class LoginController extends \TYPO3\Flow\Mvc\Controller\ActionController {
 						$this->translator->translateById('login.login.success',array(), NULL, NULL, 'Main', 'Incvisio.LostFound')
 					)
 				);
-				if ($this->request->getArgument('return_url') != '' && $this->request->hasArgument('return_url')) {
-					$this->redirectToUri($this->request->getArgument('return_url'));
+				if ($return_url != '') {
+					$this->redirectToUri($return_url);
 				} else {
 					$this->redirect('index', 'Standard');
 				}
 				
 			}else {
 				$this->flashMessageContainer->addMessage(
-					new Message(
+					new \TYPO3\Flow\Error\Error(
 						$this->translator->translateById('login.login.usernameExist',array(), NULL, NULL, 'Main', 'Incvisio.LostFound')
 					)
 				);
@@ -386,7 +398,7 @@ class LoginController extends \TYPO3\Flow\Mvc\Controller\ActionController {
 		$account = $this->accountRepository->findByAccountIdentifierAndAuthenticationProviderName($lemail,$this->providerName);
 		if ($account instanceof \TYPO3\Flow\Security\Account) {
 			$this->flashMessageContainer->addMessage(
-				new Message(
+				new \TYPO3\Flow\Error\Error(
 					$this->translator->translateById('login.login.usernameExist',array(), NULL, NULL, 'Main', 'Incvisio.LostFound')
 				)
 			);

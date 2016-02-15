@@ -17,6 +17,7 @@
 	
 	 var facebook_appid = '{facebook_appid}';
      var facebook_redirecturi = '{facebook_redirecturi}';
+     var return_url = '{currentpage}';
      window.fbAsyncInit = function() {
          FB.init({
              appId      : facebook_appid,
@@ -39,7 +40,7 @@
      function facebookLogin(){
          FB.login(function(response) {
              if (response.status === 'connected') {
-                 location.replace(facebook_redirecturi+'/?social=facebook&connectorjson='+JSON.stringify(response.authResponse));
+                 location.replace(facebook_redirecturi+'/?social=facebook&return_url='+return_url+'&connectorjson='+JSON.stringify(response.authResponse));
              } else if (response.status === 'not_authorized') {
 
              } else {
