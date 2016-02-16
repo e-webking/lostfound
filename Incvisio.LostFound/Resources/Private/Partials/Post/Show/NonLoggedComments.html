@@ -1,0 +1,22 @@
+<f:if condition="{post.comments}">
+<div class="commt">Коментувати</div>
+	<f:for each="{post.comments}" as="comment">
+	  	<div class="commentBox">
+	   		<div class="itemImg">
+	        <f:if condition="{comment.user.socialPhoto}!=''">
+			<f:then>
+				<img src="{comment.user.socialPhoto}" style="width: 100%;">
+			</f:then>
+			<f:else>
+				<img src="{f:uri.resource(path: 'Images/anonim.png')}" style="width: 100%;">
+			</f:else>
+			</f:if>
+	       </div>
+	       <div class="itemInfo">
+	          <span class="title">{comment.user.name}</span>
+	          <span class="time">{comment.publishDate->f:format.date(format:'H:i, Y-m-d')}</span>
+	          <span class="desc">{comment.message}</span>
+			</div>
+	   </div>
+	</f:for>
+</f:if>

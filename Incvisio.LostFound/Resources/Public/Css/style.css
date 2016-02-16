@@ -141,10 +141,10 @@ textarea#textarea1 {overflow: auto;}
 #item_lost .item_image {float: left; width: 25%;}
 #item_lost .item_info {float: right; line-height: 18px; width: 73%;}
 #item_lost .item_info span{display:block;}
-#item_lost span.title {color: #0092b7; display: block; font-size: 20px; overflow: hidden; margin-bottom:20px;}
+#item_lost span.title {color: #0092b7; display: block; font-size: 20px; margin-bottom:20px;}
 #item_lost span.time {color: #b6b6b6; font-size: 13px; margin-bottom:10px;}
 #item_lost span.date {color: #b6b6b6; font-size: 13px; margin-bottom:5px;}
-#item_lost span.place {color: #b6b6b6; display: block; font-size: 13px; margin-bottom:20px; overflow-wrap: break-word; word-wrap: break-word; -ms-word-break: break-all; word-break: break-all; word-break: break-word; -ms-hyphens: auto;-moz-hyphens: auto;-webkit-hyphens: auto; hyphens: auto;}
+#item_lost span.place {color: #b6b6b6; display: block; font-size: 13px; margin-bottom:16px; overflow-wrap: break-word; word-wrap: break-word; -ms-word-break: break-all; word-break: break-all; word-break: break-word; -ms-hyphens: auto;-moz-hyphens: auto;-webkit-hyphens: auto; hyphens: auto;}
 #item_lost span.desc {color: #56564a; display: block; font-size: 15px; font-style: italic; font-weight: 700; overflow: hidden;}
 
 .wrapper .rightCol{margin:0px; color:#fff;}
@@ -212,15 +212,23 @@ textarea#textarea1 {overflow: auto;}
 }
 
 .btn{
-	margin: 0 !important;
+	margin: 0 !important; 
 	padding: 0 !important;
-	background-image: url("../Images/upload_image.png");
-    background-repeat: no-repeat;
-    width: 421px !important;
-	height: 284px !important;
+	
+    max-width:420px !important; 
+    width:100% !important; 
+    height:280px !important;
 }
 
-.btn input[type=file]{ width: 421px !important; height: 284px !important;}
+.btn input[type=file]{max-width:420px !important; width:100% !important; height:280px !important;}
+
+.upfound {
+	background: url("../Images/upload_image.png") center center no-repeat;
+}
+
+.uplost {
+	background: url("../Images/upload_image_lost.png") center center no-repeat;
+}
 
 .img-wrap {
     position: relative;
