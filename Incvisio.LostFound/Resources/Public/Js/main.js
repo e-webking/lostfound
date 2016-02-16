@@ -72,7 +72,7 @@ var Advert = {
         $("#lost-input").keypress(function(event) {
             if (event.which == 13) {
                 event.preventDefault();
-                $("#search").submit();
+                $("#searchLost").submit();
             }
         });
         $("#found-input").keypress(function(event) {

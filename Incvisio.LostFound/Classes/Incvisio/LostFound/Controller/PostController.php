@@ -75,7 +75,7 @@ class PostController extends MainController {
         if ($type == "lost") {
 
             if (isset($args['lost_input'])) {
-                $this->view->assign('search_field',$args['lost_input']);
+               $this->view->assign('search_field',$args['lost_input']);
                $this->getPostsAction($args['lost_input'], NULL, NULL, NULL, NULL, NULL);
                 $count = $this->postRepository->countLost($args['lost_input']);
                 if($count['number'] == 0){
