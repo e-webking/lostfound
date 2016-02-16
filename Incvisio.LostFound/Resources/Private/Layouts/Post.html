@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="uk">
+	<head>
+		<f:render partial="Head" section="Top" />
+		<f:render section="Opengraph" />
+		<title><f:render section="Title" /></title>
+		<f:render partial="Head" section="Bottom" />
+		<f:base />
+	</head>
+	<body>
+		<header>
+			<div class="container">
+		      <div class="row">
+		      	<div class="col s12 m4 push-m4 logo">
+		        	<a href="/"><img src="{f:uri.resource(path: 'Images/logo_top.png')}" class="responsive-img" alt=""></a>
+		        </div>
+		        
+		        <div class="col s8 m4 pull-m4 socialList">
+		            <ul>
+		                <li><a href="https://facebook.com" target="_blank"><i class="fa fa-facebook"></i></a></li>
+		                <li><a href="https://vk.com" target="_blank"><i class="fa fa-vk"></i></a></li>
+		                <li><a href="https://twitter.com" target="_blank"><i class="fa fa-twitter"></i></a></li>
+		                <li><a href="https://google.com" target="_blank"><i class="fa fa-google-plus"></i></a></li>
+		            </ul>
+		        </div>
+		         <div class="col s4 m4">
+				 	<f:security.ifHasRole role="User">
+					<f:then>
+						<a class="signIn modal-trigger" href="#modal1" id="modal_trigger">{currentUser.name}</a>
+					</f:then>
+					<f:else>
+						<a class="signIn modal-trigger" href="#modal1" id="modal_trigger">увійти</a>
+					 </f:else>
+					</f:security.ifHasRole>
+				</div>
+		     </div>
+		  	</div>
+		</header>
+		<f:flashMessages as="flashMessages">
+			<div class="js-notify js-plugin-toaster">
+				<f:for each="{flashMessages}" as="flashMessage">
+					<f:switch expression="{flashMessage.severity }">
+						<f:case value="OK"> <span class="js-notify-success">{flashMessage.code}{flashMessage}</span></f:case>
+						<f:case value="Error"><span class="js-notify-error">{flashMessage.code}{flashMessage}</span></f:case>
+						<f:case value="Warning"> <span class="js-notify-warning">{flashMessage.code}{flashMessage}</span></f:case>
+						<f:case value="Notice"><span class="js-notify-info">{flashMessage.code}{flashMessage}</span></f:case>
+					</f:switch>
+
+				</f:for>
+			</div>
+		</f:flashMessages>	
+		<section class="wrapper">
+			<f:render section="Content" />
+		</section>
+		
+		<f:render partial="Footer" section="FooterHome" arguments="{_all}" />
+		<f:render partial="Scripts" section="Home" arguments="{_all}" />
+	</body>
+</html>

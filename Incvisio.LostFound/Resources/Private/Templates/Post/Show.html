@@ -1,6 +1,16 @@
-<f:layout name="Default" />
+<f:layout name="Post" />
 
 <f:section name="Title">LostFound Post</f:section>
+
+<f:section name="Opengraph">
+    <meta property="og:url" content="http://{shareLink}" />
+    <meta property="og:title" content="{post.title}" />
+    <meta property="og:site_name" content="LostFound" />
+    <meta property="og:description"  content="{post.description}" />
+    <f:if condition="{noImage}!='True'">
+   	<meta property="og:image" content="{f:uri.resource(path: 'Images/uploads/{images.0.imgTitle}')}" />
+    </f:if>
+</f:section>
 
 <f:section name="Content">
 <div class="container">
@@ -119,5 +129,12 @@
 			$('#phoneNumber').show();
 		}
 	});
+	$(document).ready(function(){
+		if(window.location.hash)
+			scrollTo(window.location.hash);
+	});
+	function scrollTo(hash) {
+	    location.hash = '#' + hash;
+	}
 </script>
 </f:section>

@@ -141,11 +141,11 @@ textarea#textarea1 {overflow: auto;}
 #item_lost .item_image {float: left; width: 25%;}
 #item_lost .item_info {float: right; line-height: 18px; width: 73%;}
 #item_lost .item_info span{display:block;}
-#item_lost span.title {color: #0092b7; display: block; font-size: 20px; margin-bottom:20px;}
+#item_lost span.title {color: #0092b7; display: block; font-size: 20px; margin-bottom:20px;word-wrap: break-word;word-break: break-all;-moz-hyphens: auto;}
 #item_lost span.time {color: #b6b6b6; font-size: 13px; margin-bottom:10px;}
 #item_lost span.date {color: #b6b6b6; font-size: 13px; margin-bottom:5px;}
 #item_lost span.place {color: #b6b6b6; display: block; font-size: 13px; margin-bottom:16px; overflow-wrap: break-word; word-wrap: break-word; -ms-word-break: break-all; word-break: break-all; word-break: break-word; -ms-hyphens: auto;-moz-hyphens: auto;-webkit-hyphens: auto; hyphens: auto;}
-#item_lost span.desc {color: #56564a; display: block; font-size: 15px; font-style: italic; font-weight: 700; overflow: hidden;}
+#item_lost span.desc {color: #56564a; display: block; font-size: 15px; font-style: italic; font-weight: 700; word-wrap: break-word;word-break: break-all;-moz-hyphens: auto;}
 
 .wrapper .rightCol{margin:0px; color:#fff;}
 .wrapper .rightCol h4{color: #fff; font-size: 22px; margin:0 0 20px;}
@@ -268,6 +268,7 @@ textarea#textarea1 {overflow: auto;}
 .loginBox .input-field .prefix{top:10px;}
 .loginBox .input-field .prefix.active{color:#ff9800; border-color:#F00;}
 .loginBox .input-field .material-icons{color:#999;}
+#modal1 .input-field input[type=text], #modal1 .input-field input[type=password] {background: #faffbd; padding-left: 5px}
 
 .loginSocial{text-align:center; padding:10px 0;}
 .loginSocial > .socialBox {display:inline-block; padding:6px; text-align: center; color:#FFF;}

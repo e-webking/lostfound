@@ -17,9 +17,18 @@
             	<div class="fotorama" data-nav="thumbs">          	    	
                 </div>
                 <div class="file-field input-field">
-	               	<div class="btn">
-	               		<input type="file" name="file[]" multiple id="i_file">
-	               	</div>
+	               	<f:if condition="{found}">
+                		<f:then>
+		               	<div class="btn upfound">
+		               		<input type="file" name="file[]" multiple  id="i_file" />
+		               	</div>
+		               	</f:then>
+		               	<f:else>
+		               	<div class="btn uplost">
+		               		<input type="file" name="file[]" multiple  id="i_file" />
+		               	</div>
+		               	</f:else>
+	               	</f:if>
                	</div>
                	<div class="file-path-wrapper" style="display: none;">
 					<p>Вибрані Вами фотографії будуть додані до оголошення</p>
