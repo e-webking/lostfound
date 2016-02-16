@@ -192,6 +192,8 @@ textarea#textarea1 {overflow: auto;}
 .wrapper .rightCol #searchFound .input-field label.active{transform:inherit;}
 .wrapper .rightCol #searchFound .row{margin-bottom:0px;}
 
+.autocomplete-suggestions { background: #fff}
+.autocomplete-suggestions .autocomplete-suggestion { line-height: 1.4em}
 
 .linkText{display:inline-block; font-size:16px;}
 
@@ -205,13 +207,24 @@ textarea#textarea1 {overflow: auto;}
     background-position: center center; height: 25px; width: 25px;
 }
 
+#lean_overlay {
+	position: fixed;
+	z-index: 100;
+	top: 0px;
+	left: 0px;
+	height: 100%;
+	width: 100%;
+	background: #000;
+	display: none;
+}
+
 .found {
     background-image: url("../Images/founded@1x.png");
     background-position: 150px center;
     background-repeat: no-repeat;
 }
 
-.btn{
+#form_lost_filter .btn{
 	margin: 0 !important; 
 	padding: 0 !important;
 	
@@ -220,7 +233,7 @@ textarea#textarea1 {overflow: auto;}
     height:280px !important;
 }
 
-.btn input[type=file]{max-width:420px !important; width:100% !important; height:280px !important;}
+#form_lost_filter .btn input[type=file]{max-width:420px !important; width:100% !important; height:280px !important;}
 
 .upfound {
 	background: url("../Images/upload_image.png") center center no-repeat;
@@ -268,7 +281,8 @@ textarea#textarea1 {overflow: auto;}
 .loginBox .input-field .prefix{top:10px;}
 .loginBox .input-field .prefix.active{color:#ff9800; border-color:#F00;}
 .loginBox .input-field .material-icons{color:#999;}
-#modal1 .input-field input[type=text], #modal1 .input-field input[type=password] {background: #faffbd; padding-left: 5px}
+
+/* #modal1 .input-field input[type=text], #modal1 .input-field input[type=password] {background: #faffbd; padding-left: 5px} */
 
 .loginSocial{text-align:center; padding:10px 0;}
 .loginSocial > .socialBox {display:inline-block; padding:6px; text-align: center; color:#FFF;}
