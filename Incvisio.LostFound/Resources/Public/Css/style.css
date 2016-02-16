@@ -315,6 +315,7 @@ textarea#textarea1 {overflow: auto;}
 
 .lost-input-label {float: right; position: relative; right: -8px; line-height: 1.5; overflow-wrap: break-word; word-wrap: break-word; -ms-word-break: break-all; word-break: break-all; word-break: break-word; -ms-hyphens: auto;-moz-hyphens: auto;-webkit-hyphens: auto; hyphens: auto;}
 .lost-input-label a {font-size: 18px; color: #2E90AD; padding-right:5px;}
+.lost-input-label a:hover{color:#ff9800;}
 
 .amber.lighten-1 {background-color:#fcab1c !important;}
 .waves-effect:hover{color:#FFF;}
@@ -330,11 +331,12 @@ textarea#textarea1 {overflow: auto;}
 }
 .newpad > .rightText{float:right;}
 .newpad > .leftText{float:left;}
-.pagination li.active {background-color:#0093ad ;} 
+.pagination li.active {color: #fff; background-color:#0093ad;} 
  
 
 .found-input-label {float:right; position:relative; right:-8px; line-height: 1.5; overflow-wrap: break-word; word-wrap: break-word; -ms-word-break: break-all; word-break: break-all; word-break: break-word; -ms-hyphens: auto;-moz-hyphens: auto;-webkit-hyphens: auto; hyphens: auto;}
 .found-input-label a {color:#fff; font-size:18px; padding-right:5px;}
+.found-input-label a:hover{color:#ff9800;}
 
 #forgot-password .linkText{font-size:18px;}
 .sendBtnCol{text-align:right;}
@@ -371,10 +373,10 @@ textarea#textarea1 {overflow: auto;}
 .p-profile .socialList ul li a .fa {font-size:25px;}
 .p-profile .socialList ul li a .fa:hover{color:#ff9800;}
 
-textarea#textarea1 {
-    border: medium none; color: #fff; font-size: 20px !important;
-    font-weight: 400 !important; padding: 0;
-	}
+.advertTextBox .materialize-textarea  {
+    border: medium none; color: #fff; font-size: 1.2rem;
+    padding: 0;
+ }
 	
 .fotorama{margin-bottom:20px; margin-top:0px; width:100%;}
 .fotorama img{float:left;}
