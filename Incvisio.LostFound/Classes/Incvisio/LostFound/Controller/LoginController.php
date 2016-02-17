@@ -188,6 +188,9 @@ class LoginController extends \TYPO3\Flow\Mvc\Controller\ActionController {
 					}
 					$data = json_decode($token);
 					$vkAccounts = $this->vkService->getAccounts($data->access_token, $data->user_id);
+					if ($args['state']!== null) {
+						$returnUrl = $this->base64UrlDecode($args['state']);
+					}
 					$this->createSocialAccount(
 						'vk-'.$vkAccounts['response'][0]['uid'],
 						$vkAccounts['response'][0]['uid'],
@@ -196,7 +199,8 @@ class LoginController extends \TYPO3\Flow\Mvc\Controller\ActionController {
 						$vkAccounts['response'][0]['last_name'],
 						$vkAccounts['response'][0]['photo_big'],
 						$data->email,
-						$network="vk"
+						$network="vk",
+						$returnUrl
 					);
 				}
 				else{
