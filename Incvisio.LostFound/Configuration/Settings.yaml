@@ -39,8 +39,8 @@ Incvisio:
         scope: 'public_profile,email' # optional
         redirect_uri: 'http://lostfound.armtechnologies.com/incvisio.lostfound/login/social'
       Vk:
-        app_id: '5058766'
-        app_secret: 'SkXF9JLxIRtJBtAuKCvf'
+        app_id: '5300504'
+        app_secret: 'I2SlLqdTtAm8pE0PrTaJ'
         redirect_uri: 'http://lostfound.armtechnologies.com/incvisio.lostfound/login/social?social=vk'
       Twitter:
         app_id: 'IaciFqiAQgCl8MRFO2G6mpHPe'
