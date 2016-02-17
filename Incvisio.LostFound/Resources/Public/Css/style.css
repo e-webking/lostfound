@@ -192,9 +192,6 @@ textarea#textarea1 {overflow: auto;}
 .wrapper .rightCol #searchFound .input-field label.active{transform:inherit;}
 .wrapper .rightCol #searchFound .row{margin-bottom:0px;}
 
-.autocomplete-suggestions { background: #fff}
-.autocomplete-suggestions .autocomplete-suggestion { line-height: 1.4em}
-
 .linkText{display:inline-block; font-size:16px;}
 
 .modal{background:#FFF;}
@@ -449,13 +446,15 @@ textarea#textarea1 {overflow: auto;}
 .newwind {background-color:#fff; color: #2e90ad; float:left;font-size: 23px; margin-left: 11px; min-height: 50px;padding: 20px; width: 96.9222%;}
 .addnewp {top: 3px; position: relative; padding-right: 15px; color: #FEA500 !important;}
 
-#suggesstion-box {
+#suggesstion-box, .autocomplete-suggestions {
     display: none;
     list-style: outside none none;
     padding: 20px;
     background: #EEE none repeat scroll 0% 0%;
     line-height: 1.5;
 }
+
+.autocomplete-suggestions .autocomplete-suggestion { color: #26a69a; cursor: pointer;}
 
 footer{padding:0px; margin:20px 0 0; overflow:hidden;}
 footer .footerLink{float:right; margin:0px;}

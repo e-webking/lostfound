@@ -72,7 +72,9 @@ class MainController extends \TYPO3\Flow\Mvc\Controller\ActionController {
 	 */
 	protected function initializeView(\TYPO3\Flow\Mvc\View\ViewInterface $view) {
 		$loggedUser = $this->securityContext->getAccount();
-		$view->assign('currentpage', $this->request->getHttpRequest()->getUri());
+		$currentUrl = $this->request->getHttpRequest()->getUri();
+		$view->assign('currentpage', $currentUrl);
+		$view->assign('state', $this->base64UrlEncode($currentUrl));
 
 		if ($loggedUser!=NULL) {
 			$view->assign('loggedInUser', $this->securityContext->getAccount()->getAccountIdentifier());
@@ -90,6 +92,15 @@ class MainController extends \TYPO3\Flow\Mvc\Controller\ActionController {
 		));
 	}
 
+	/**
+	 *
+	 * @param string $inputStr
+	 * @return string
+	 */
+	protected function base64UrlEncode($inputStr) {
+		return strtr(base64_encode($inputStr), '+/=', '-_,');
+	}
+	
 	/**
 	 * @return \Incvisio\LostFound\Domain\Model\User
 	 */

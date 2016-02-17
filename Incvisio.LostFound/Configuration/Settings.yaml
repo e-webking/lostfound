@@ -43,12 +43,12 @@ Incvisio:
         app_secret: 'SkXF9JLxIRtJBtAuKCvf'
         redirect_uri: 'http://lostfound.armtechnologies.com/incvisio.lostfound/login/social?social=vk'
       Twitter:
-        app_id: 'PlocFzWzcLRCg0K7NrgjMsxmY'
-        app_secret: 'TFPFWjtexMoOBc9bKDUHnimt82DkeCPYIVAvl1ApRnAgwaWrd5'
+        app_id: 'IaciFqiAQgCl8MRFO2G6mpHPe'
+        app_secret: 'yvK6KK2W2vYIv4ROrrI0AdBJdhckpxwEC7cDhN9IVxGmvCKrST'
         redirect_uri: 'http://lostfound.armtechnologies.com/incvisio.lostfound/login/social?social=twitter'
       Google:
-        app_id: '116056046136-0pd95oakoosb5ffqke7ebitd5vukc2va.apps.googleusercontent.com'
-        app_secret: 'ji7_xSPUVvjxQyqNihA5aeej'
+        app_id: '708571832383-db94ef27qdbmli4fi0d0jfuutoqtcpro.apps.googleusercontent.com'
+        app_secret: 'RtdKK7ocKb0tuKHeYZLq8U_y'
         redirect_uri: 'http://lostfound.armtechnologies.com/incvisio.lostfound/login/social?social=googleplus'
       Crop:
         comment: 200 

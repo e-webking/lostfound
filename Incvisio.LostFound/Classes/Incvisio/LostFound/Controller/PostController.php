@@ -151,9 +151,9 @@ class PostController extends MainController {
         }
         
         
-        $this->view->assign('commentcrop', 
-        		(isset($this->commentcrop)) ? $this->commentcrop : 180 );
-       
+        $charCrop = (isset($this->commentcrop)) ? $this->commentcrop : 180;
+        
+        $this->view->assign('commentcrop', $charCrop);
         $this->view->assign('comments',$this->commentsRepository->findByPost($post));
         $this->view->assign('shareLink',$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI']);
         $this->view->assign('advertUser',$currentPost->getUser()->getAccounts());

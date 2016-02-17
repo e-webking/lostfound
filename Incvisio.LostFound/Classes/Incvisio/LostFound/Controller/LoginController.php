@@ -11,6 +11,12 @@ use TYPO3\Flow\Error\Message;
 use TYPO3\SwiftMailer\Message as SwiftMessage;
 class LoginController extends \TYPO3\Flow\Mvc\Controller\ActionController {
 
+	/**
+	 * @Flow\Inject
+	 * @var \TYPO3\Flow\Session\SessionInterface
+	 */
+	protected $session;
+	
 	/*
     * @var string
     */
@@ -117,6 +123,16 @@ class LoginController extends \TYPO3\Flow\Mvc\Controller\ActionController {
 	public $translatorService;
 
 	/**
+	 * 
+	 * @param string $inputStr
+	 * @return string
+	 */
+	protected function base64UrlDecode($inputStr) {
+		return base64_decode(strtr($inputStr, '-_,', '+/='));
+	}
+	
+	
+	/**
 	 * index action, does only display the form
 	 */
 	public function indexAction() {
@@ -196,6 +212,9 @@ class LoginController extends \TYPO3\Flow\Mvc\Controller\ActionController {
 						$this->redirect('index', 'Standard');
 					}
 					$googleAccounts = $this->googlePlusService->getAccounts($token->access_token);
+					if ($args['state']!== null) {
+						$returnUrl = $this->base64UrlDecode($args['state']);
+					}
 					$this->createSocialAccount(
 						'googlePlus-'.$googleAccounts['id'],
 						$googleAccounts['id'],
@@ -204,7 +223,8 @@ class LoginController extends \TYPO3\Flow\Mvc\Controller\ActionController {
 						$googleAccounts['name']['givenName'],
 						$googleAccounts['image']['url'],
 						$googleAccounts['emails'][0]['value'],
-						$network="googlePlus"
+						$network="googlePlus",
+						$returnUrl
 					);
 
 				}else{
@@ -215,6 +235,7 @@ class LoginController extends \TYPO3\Flow\Mvc\Controller\ActionController {
 			case "twitter":
 				if (isset($args['oauth_verifier']) && $args['oauth_verifier'] !== NULL){
 					$response = $this->twitterService->getToken($args['oauth_verifier']);
+					$returnUrl = $this->base64UrlDecode($this->session->getData('return_url'));
 					if($response !== NULL){
 						$user_id = $response['user_id'];
 						$fullName = explode(" ", $response['since_id']->name);
@@ -226,7 +247,8 @@ class LoginController extends \TYPO3\Flow\Mvc\Controller\ActionController {
 							$fullName[1],
 							$response['since_id']->profile_image_url,
 							'',
-							$network="twitter"
+							$network="twitter",
+							$returnUrl
 						);
 					}
 				}else{

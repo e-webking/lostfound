@@ -44,9 +44,9 @@
 			        <h5>Вхід через соцмережі</h5>
 			        <div class="loginSocial"> 
 			            <a class="socialBox" id="facebook"> <span class="icon fb"><i class="fa fa-facebook"></i></span> </a> 
-			            <a href="{vk_url}" class="socialBox"> <span class="icon vk"><i class="fa fa-vk"></i></span> </a> 
-			            <f:link.action action="auth" controller="Standard" class="socialBox"><span class="icon tw"><i class="fa fa-twitter"></i></span></f:link.action>
-	                    <a href="{google_url}" class="socialBox"><span class="icon google"><i class="fa fa-google-plus"></i></span></a>
+			            <a href="{vk_url}&return_url={currentpage}" class="socialBox"> <span class="icon vk"><i class="fa fa-vk"></i></span> </a> 
+			            <f:link.action action="auth" controller="Standard" arguments="{return_url:state}" class="socialBox"><span class="icon tw"><i class="fa fa-twitter"></i></span></f:link.action>
+	                    <a href="{google_url}&state={state}" class="socialBox"><span class="icon google"><i class="fa fa-google-plus"></i></span></a>
 			        </div>                    
 			        <div class="row">
 			       		<f:form action="authenticate" controller="Login" method="post" name="loginform" additionalAttributes="{class:'col s12'}">

@@ -39,11 +39,14 @@ class TwitterLoginService extends AbstractConnectorService{
 
 
     /**
+     * @param string $returnUrl
      * @return string
      */
-    public function getAuthorizationUri(){
+    public function getAuthorizationUri($returnUrl = NULL){
         $connection = new \Abraham\TwitterOAuth\TwitterOAuth($this->app_key, $this->app_secret);
         $request_token = $connection->oauth('oauth/request_token', array('oauth_callback' => $this->redirect_uri));
+		
+        $this->session->putData('return_url', $returnUrl);
         $this->session->putData('oauth_token',$request_token['oauth_token']);
         $this->session->putData('oauth_token_secret',$request_token['oauth_token_secret']);
         $url = $connection->url('oauth/authorize', array('oauth_token' => $request_token['oauth_token']));
@@ -55,6 +58,13 @@ class TwitterLoginService extends AbstractConnectorService{
      */
     public function getAppKey(){
         return $this->app_key;
+    }
+    
+    /**
+     * @return string
+     */
+    public function setRedirectUri($url){
+    	$this->redirect_uri = $url;
     }
 
     /**
