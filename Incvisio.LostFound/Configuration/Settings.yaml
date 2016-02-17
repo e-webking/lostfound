@@ -50,3 +50,5 @@ Incvisio:
         app_id: '116056046136-0pd95oakoosb5ffqke7ebitd5vukc2va.apps.googleusercontent.com'
         app_secret: 'ji7_xSPUVvjxQyqNihA5aeej'
         redirect_uri: 'http://lostfound.armtechnologies.com/incvisio.lostfound/login/social?social=googleplus'
+      Crop:
+        comment: 200 

@@ -1,22 +1,22 @@
 <div class="col s12 m5 leftCol">
 	<div class="col s12 addBtnCol"> 
-             	<a class="waves-effect waves-light btn-large amber lighten-1 add" href="/post/new/?type={advertType}"> 
-                 	<i class="fa fa-plus"></i> <span class="button_span_add">Додати знайдене</span>
-                 </a> 
-             </div>
-             <f:form action="index" id="form_found_filter" class="col s12">
-               <div class="row">
-                 <div class="input-field col s12">
-                   <label for="city">Фільтр:</label>
-                   <input placeholder="Місто" value="" type="text" class="validate">
-                   <div id="suggesstion-box"></div>
-                 </div>
-                 <div id="category_lost_select" class="input-field col s12">
-                 	<f:form.select id="category_found" property="category"  options="{categories}" optionLabelField="name" prependOptionLabel="Виберіть категорію" style="font-size: 22px;border-bottom: #CEE3E8;"/>
-                   </div>
-               </div>
-               <a class="waves-effect waves-light btn-large amber lighten-1" id="filter_button" onclick="Advert.render()">фільтрувати</a>
-             </f:form>
+      	<a class="waves-effect waves-light btn-large amber lighten-1 add" href="/post/new/?type={advertType}"> 
+          <i class="fa fa-plus"></i> <span class="button_span_add">Додати знайдене</span>
+        </a> 
+     </div>
+     <f:form action="index" id="form_found_filter" class="col s12">
+     	<div class="row">
+            <div class="input-field col s12">
+              <label for="city">Фільтр:</label>
+              <input placeholder="Місто" id="city_filtr" value="" type="text" class="validate">
+              <div id="suggesstion-box"></div>
+            </div>
+            <div id="category_lost_select" class="input-field col s12">
+            	<f:form.select id="category_found" property="category"  options="{categories}" optionLabelField="name" prependOptionLabel="Виберіть категорію" style="font-size: 22px;border-bottom: #CEE3E8;"/>
+            </div>
+     	</div>
+       	<a class="waves-effect waves-light btn-large amber lighten-1" id="filter_button" onclick="Advert.render()">фільтрувати</a>
+     </f:form>
 </div>
 <div class="col s12 m5 offset-m2 mobBG rightCol">
 	<f:form id="searchFound" action="index" controller="Post" method="post" additionalParams="{type:advertType,found_input:search_field}">
@@ -40,40 +40,37 @@
 </div>
 
 <script type="text/javascript">
-	$( document ).ready(function() {
-		$('.datepicker').pickadate({
-			selectMonths: true, // Creates a dropdown to control month
-			selectYears: 15 // Creates a dropdown of 15 years to control year
+$( document ).ready(function() {
+	$('.datepicker').pickadate({
+		selectMonths: true, // Creates a dropdown to control month
+		selectYears: 15 // Creates a dropdown of 15 years to control year
 
-		});
-		$('select').material_select();
+	});
+	$('select').material_select();
 
-		$("#city_filtr").keypress(function(){
-			$.ajax({
-				type: "POST",
-				url: "/post/getCity",
-				data:'city='+$(this).val(),
-				beforeSend: function(){
+	$("#city_filtr").keypress(function(){
+		$.ajax({
+			type: "POST",
+			url: "/post/getCity",
+			data: 'city='+$(this).val(),
+			success: function(data){
+				var results = jQuery.parseJSON(data);
+				var options = '';
 
-				},
-				success: function(data){
-					var results = jQuery.parseJSON(data);
-					var options = '';
-
-					for (var i = 0; i < results.length; i++) {
-						options += '<li onClick="selectCountry(\''+results[i].name+', '+results[i].region+'\')" style="color: #26a69a; cursor: pointer;">' + results[i].name + ', '+results[i].region +  '</li>';
-					}
-					if(options.length>1) {
-						$("#suggesstion-box").show();
-						$("#suggesstion-box").html(options);
-					}
+				for (var i = 0; i < results.length; i++) {
+					options += '<li onClick="selectCountry(\''+results[i].name+', '+results[i].region+'\')" style="color: #26a69a; cursor: pointer;">' + results[i].name + ', '+results[i].region +  '</li>';
 				}
-			});
+				if(options.length>1) {
+					$("#suggesstion-box").show();
+					$("#suggesstion-box").html(options);
+				}
+			}
 		});
 	});
-	//To select country name
-	function selectCountry(val) {
-		$("#city_filtr").val(val);
-		$("#suggesstion-box").hide();
-	}
+});
+//To select country name
+function selectCountry(val) {
+	$("#city_filtr").val(val);
+	$("#suggesstion-box").hide();
+}
 </script>

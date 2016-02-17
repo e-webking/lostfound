@@ -16,6 +16,12 @@ use TYPO3\Flow\Utility\Now;
 use TYPO3\Flow\Error\Message;
 
 class PostController extends MainController {
+	
+	/**
+	 * @var number
+	 * @Flow\Inject(setting="strategies.Crop.comment")
+	 */
+	protected $commentcrop;
 
     /**
      * @Flow\Inject
@@ -143,6 +149,11 @@ class PostController extends MainController {
             $images = NULL;
             $noImage = "True";
         }
+        
+        
+        $this->view->assign('commentcrop', 
+        		(isset($this->commentcrop)) ? $this->commentcrop : 180 );
+       
         $this->view->assign('comments',$this->commentsRepository->findByPost($post));
         $this->view->assign('shareLink',$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI']);
         $this->view->assign('advertUser',$currentPost->getUser()->getAccounts());

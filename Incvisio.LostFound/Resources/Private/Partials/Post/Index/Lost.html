@@ -3,7 +3,7 @@
                <f:form.hidden name="type" value="{advertType}"/>
                <div class="input-field col s11">
                  <label for="lost-input">Я загубив</label>
-                 <f:form.textfield id="lost-input" name="lost-input" class="validate" placeholder="Пошук..."  additionalAttributes="{style:'font-size:3rem;', autocomplete:'off'}" value="{search_field}" />
+                 <f:form.textfield id="lost-input" name="lost_input" class="validate" placeholder="Пошук..."  additionalAttributes="{style:'font-size:3rem;', autocomplete:'off'}" value="{search_field}" />
                </div>              
           </f:form>
           <f:if condition="{search_field}">
@@ -16,7 +16,7 @@
 			</div>
 		</f:if>
 	</f:if>
-          <div id="item_lost"></div>
+    <div id="item_lost"></div>
 </div>
 <!-- Right column -->
 <div class="col s12 m5 offset-m2 mobBG rightCol">
@@ -30,10 +30,11 @@
                   <div class="input-field col s12">
                     <label for="city">Фільтр:</label>
                     <input placeholder="Місто" id="city_filtr" value="" type="text" class="validate">
+                    <div id="suggesstion-box"></div>
                   </div>
                   <div id="category_lost_select" class="input-field col s12">
                   	<f:form.select id="category_lost" property="category"  options="{categories}" optionLabelField="name" prependOptionLabel="Виберіть категорію" style="font-size: 22px;border-bottom: #CEE3E8;" />
-                    </div>
+                  </div>
                 </div>
                 <a class="waves-effect waves-light btn-large amber lighten-1" id="filter_button" onclick="Advert.render()">фільтрувати</a>
            </f:form>
@@ -46,18 +47,39 @@
 
 		});
 		$('select').material_select();
+
 		$('#city_filtr').autocomplete({
 			serviceUrl: '/post/getCity',
 			paramName:'city',
 			transformResult: function(response) {
 				return {
 					suggestions: $.map(jQuery.parseJSON(response), function(dataItem) {
-						console.log(dataItem);
 						return { value: dataItem.name, data: dataItem.region };
 					})
 				};
 			}
 		});
+		
+		/*
+		$("#city_filtr").keypress(function(){
+			$.ajax({
+				type: "POST",
+				url: "/post/getCity",
+				data: 'city='+$(this).val(),
+				success: function(data){
+					var results = jQuery.parseJSON(data);
+					var options = '';
+
+					for (var i = 0; i < results.length; i++) {
+						options += '<li onClick="selectCountry(\''+results[i].name+', '+results[i].region+'\')" style="color: #26a69a; cursor: pointer;">' + results[i].name + ', '+results[i].region +  '</li>';
+					}
+					if(options.length>1) {
+						$("#suggesstion-box").show();
+						$("#suggesstion-box").html(options);
+					}
+				}
+			});
+		}); */
 	});
 	//To select country name
 	function selectCountry(val) {

@@ -15,7 +15,7 @@
 	       <div class="itemInfo">
 	          <span class="title">{comment.user.name}</span>
 	          <span class="time">{comment.publishDate->f:format.date(format:'H:i, Y-m-d')}</span>
-	          <span class="desc">{comment.message}</span>
+	          <span class="desc"><f:format.crop maxCharacters="{commentcrop}" append=" ...">{comment.message}</f:format.crop></span>
 			</div>
 	   </div>
 	</f:for>

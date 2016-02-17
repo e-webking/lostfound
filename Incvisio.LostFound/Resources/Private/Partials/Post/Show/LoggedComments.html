@@ -24,7 +24,7 @@
 	<f:for each="{post.comments}" as="comment">
 	<div class="commentBox">
 		<a name="#{comment->f:format.identifier()}"></a>
-	   	<div class="itemImg">
+	   		<div class="itemImg">
 	        <f:if condition="{comment.user.socialPhoto}!=''">
 			<f:then>
 				<img src="{comment.user.socialPhoto}" style="width: 100%;">
@@ -35,16 +35,16 @@
 			</f:if>
 	       </div>
 	       <div class="itemInfo">
+	       	  <div class="comentsLikes">
+			     	<f:link.action action="setCommentLike" arguments="{comment:comment}" section="{comment-> f:format.identifier()}" controller="Post"><i class="fa fa-thumbs-o-up"></i></f:link.action>
+			         <span class="userLikeNumb">{comment.likes}</span>
+					<f:link.action action="setCommentDisLike" arguments="{comment:comment}" section="{comment-> f:format.identifier()}" controller="Post"><i class="fa fa-thumbs-o-down"></i></f:link.action>
+			         <span class="userLikeNumb">{comment.dislikes}</span>
+			    </div>
 	          <span class="title">{comment.user.name}</span>
 	          <span class="time">{comment.publishDate->f:format.date(format:'H:i, Y-m-d')}</span>
-	          <span class="desc">{comment.message}</span>
-		</div>
-	     <div class="comentsLikes">
-	     	<f:link.action action="setCommentLike" arguments="{comment:comment}" section="{comment-> f:format.identifier()}" controller="Post"><i class="fa fa-thumbs-o-up"></i></f:link.action>
-	         <span class="userLikeNumb">{comment.likes}</span>
-			<f:link.action action="setCommentDisLike" arguments="{comment:comment}" section="{comment-> f:format.identifier()}" controller="Post"><i class="fa fa-thumbs-o-down"></i></f:link.action>
-	         <span class="userLikeNumb">{comment.dislikes}</span>
-	    	</div>
+	          <span class="desc"><f:format.crop maxCharacters="{commentcrop}" append=" ...">{comment.message}</f:format.crop></span>
+		   </div>
 	</div>
 	</f:for>
 </f:if>

@@ -103,7 +103,7 @@ header .socialList ul li .fa{font-size:18px;}
 .wrapper .leftCol #form_lost_filter .input-field .validate:-ms-input-placeholder {opacity: 1; color:#d1d1d1 !important; /* IE 10+ */}
 .wrapper .leftCol #form_lost_filter .input-field .validate:-moz-placeholder {opacity: 1; color:#d1d1d1 !important; /* Firefox 18- */}
 
-.wrapper .leftCol #form_found_filter{margin-top:30px;}
+.wrapper .leftCol #form_found_filter {margin-top:30px;}
 .wrapper .leftCol #form_found_filter .input-field label{color: #CEE3E8; font-size: 18px; top:-15px;}
 .wrapper .leftCol #form_found_filter .input-field label.active{transform:inherit;}
 .wrapper .leftCol #form_found_filter .input-field .validate{font-size: 22px; border-bottom:1px solid #cee3e8;}
@@ -411,17 +411,17 @@ textarea#textarea1 {overflow: auto;}
     border-bottom: 1px solid #2d88a3; color:#c5cad0; width:100%;
     font-size:17px; font-weight:normal; line-height:50px; position:relative;
 }
-.commentBox {background-color:#fff; margin-top:15px; min-height: 100px; padding-top:15px;}
+.commentBox {background-color:#fff; margin-top:15px; min-height: 100px; padding-top:15px; clear: both;}
 .commentBox .itemImg{float:left; width:20%;}
 .commentBox .itemImg img{max-width:100%;}
 
-.commentBox .itemInfo{float:right; line-height:25px; width:80%;}
-.commentBox .itemInfo .title{color:#494a4e; font-size:15px; margin-left:10px; display:block;}
+.commentBox .itemInfo {float:right; line-height:25px; width:80%; margin-bottom: 20px;}
+.commentBox .itemInfo .title{color:#494a4e; font-size:15px; width: 75%; margin-left:10px; display:block; line-height:normal; word-wrap: break-word;word-break: break-all;-moz-hyphens: auto;}
 .commentBox .itemInfo .time{color:#9b9b9b; font-size:13px; margin-left:10px; display:block;}
-.commentBox .itemInfo .desc{color:#2f90b3; display:block; font-size:17px; margin-left:10px; overflow:hidden; display:block;}
+.commentBox .itemInfo .desc{color:#2f90b3; display:block; font-size:17px; margin-left:10px; line-height:normal; display:block;word-wrap: break-word;word-break: break-all;-moz-hyphens: auto;}
 
-.comentsLikes{bottom:0; float:right; position:relative; width:auto;}
-.comentsLikes .userLikeNumb {color: #3598b7; float: left; font-size: 13px; margin:0px 5px;}
+.comentsLikes{top: 3px; bottom:0; float:right; position:relative; width:auto;}
+.comentsLikes .userLikeNumb {color: #3598b7; float: left; font-size: 13px; margin:0px 5px; line-height:normal;}
 .comentsLikes .fa {margin-left:10px; float:left; margin:0 0 0 5px; font-size:15px;}
 
 .newAddTitle{color:#2e90ad; padding-bottom:50px; padding-top:0;}
