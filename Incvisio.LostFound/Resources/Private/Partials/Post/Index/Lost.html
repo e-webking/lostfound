@@ -51,6 +51,7 @@
 		$('#city_filtr').autocomplete({
 			serviceUrl: '/post/getCity',
 			paramName:'city',
+			minChars: 0,
 			transformResult: function(response) {
 				return {
 					suggestions: $.map(jQuery.parseJSON(response), function(dataItem) {
@@ -59,27 +60,6 @@
 				};
 			}
 		});
-		
-		/*
-		$("#city_filtr").keypress(function(){
-			$.ajax({
-				type: "POST",
-				url: "/post/getCity",
-				data: 'city='+$(this).val(),
-				success: function(data){
-					var results = jQuery.parseJSON(data);
-					var options = '';
-
-					for (var i = 0; i < results.length; i++) {
-						options += '<li onClick="selectCountry(\''+results[i].name+', '+results[i].region+'\')" style="color: #26a69a; cursor: pointer;">' + results[i].name + ', '+results[i].region +  '</li>';
-					}
-					if(options.length>1) {
-						$("#suggesstion-box").show();
-						$("#suggesstion-box").html(options);
-					}
-				}
-			});
-		}); */
 	});
 	//To select country name
 	function selectCountry(val) {
