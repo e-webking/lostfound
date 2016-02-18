@@ -483,8 +483,7 @@ class PostController extends MainController {
      * @return array.
      */
     public function loadLost($lost_input,$city_input,$place_input,$date_from,$date_to,$category_lost,$page_position,$item_per_page) {
-
-    	$results = $this->postRepository->findWithFilterLost($lost_input,NULL,$city_input,$place_input,$date_from,$date_to,NULL,$category_lost,$page_position,$item_per_page);
+		$results = $this->postRepository->findWithFilterLost($lost_input,NULL,$city_input,$place_input,$date_from,$date_to,NULL,$category_lost,$page_position,$item_per_page);
         $newResults = array();
         
         if (count($results) > 0) {

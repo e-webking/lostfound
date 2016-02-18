@@ -5,6 +5,7 @@
         </a> 
      </div>
      <f:form action="index" id="form_found_filter" class="col s12">
+     	 <f:form.hidden name="type" value="{advertType}"/>
      	<div class="row">
             <div class="input-field col s12">
               <label for="city">Фільтр:</label>
@@ -51,7 +52,7 @@ $( document ).ready(function() {
 	$('#city_filtr').autocomplete({
 		serviceUrl: '/post/getCity',
 		paramName:'city',
-		minChars: 0,
+		minChars: 1,
 		transformResult: function(response) {
 			return {
 				suggestions: $.map(jQuery.parseJSON(response), function(dataItem) {
