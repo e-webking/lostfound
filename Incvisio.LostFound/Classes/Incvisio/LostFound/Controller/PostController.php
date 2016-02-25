@@ -960,8 +960,12 @@ class PostController extends MainController {
             }
             if($current_page < $total_pages){
                 $next_link = ($i > $total_pages)? $total_pages : $i;
-                $pagination .= '<li id="pagination_list" class="waves-effect wawess rightText"><a data-page="'.$next_link.'" title="Next"><i class="fa fa-angle-double-right"></i></a></li>'; //next link
-                $pagination .= '<li  id="pagination_list" class="waves-effect wawess rightText"><a  data-page="'.$total_pages.'" title="Last"><i class="fa fa-angle-right"></i></a></li>'; //last link
+                $pagination .= '<li id="pagination_list" class="waves-effect wawess rightText"><a data-page="'.$total_pages.'" title="Last"><i class="fa fa-angle-double-right"></i></a></li>'; //next link
+                $pagination .= '<li  id="pagination_list" class="waves-effect wawess rightText"><a  data-page="'.$next_link.'" title="Next"><i class="fa fa-angle-right"></i></a></li>'; //last link
+            } else {
+            	$pagination .= '<li id="pagination_list" class="disabled wawess rightText"><i class="fa fa-angle-double-right"></i></li>'; //next link
+            	$pagination .= '<li  id="pagination_list" class="disabled wawess rightText"><i class="fa fa-angle-right"></i></li>'; //last link
+            	      
             }
 
             $pagination .= '</ul>';
