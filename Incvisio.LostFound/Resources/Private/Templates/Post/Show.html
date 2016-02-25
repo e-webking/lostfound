@@ -33,19 +33,19 @@
 	</f:else>
 	</f:if>
 		<div class="col s12 m5 leftCol">
-			<div class="fotorama" data-nav="thumbs">
-				<f:if condition="{noImage}=='True'">
-	                 <f:then>
-	                     <img src="{f:uri.resource(path: 'Images/noImage.png')}" class="responsive-img" />
-	                 </f:then>
-	                 <f:else>
-	                     <f:for each="{images}" as="image">
-	                         <img src="{f:uri.resource(path: 'Images/uploads/{image.imgTitle}')}" class="responsive-img" />
-	                     </f:for>
-	                 </f:else>
-	              </f:if>
-	           </div>
-	           <div class="commentGrid">
+			<div class="fotorama" data-nav="thumbs" data-allowfullscreen="true">
+			<f:if condition="{noImage}=='True'">
+                 <f:then>
+                     <img src="{f:uri.resource(path: 'Images/noImage.png')}" class="responsive-img" />
+                 </f:then>
+                 <f:else>
+                     <f:for each="{images}" as="image">
+                         <img src="{f:uri.resource(path: 'Images/uploads/{image.imgTitle}')}" class="responsive-img" />
+                     </f:for>
+                 </f:else>
+              </f:if>
+           </div>
+	       <div class="commentGrid">
 	           	<f:security.ifHasRole role="User">
 	           		<f:then>
 	           			<f:render partial="Post/Show/LoggedComments" arguments="{_all}" />
