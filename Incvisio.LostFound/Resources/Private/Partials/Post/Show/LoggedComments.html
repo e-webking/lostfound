@@ -42,7 +42,7 @@
 			         <span class="userLikeNumb">{comment.dislikes}</span>
 			    </div>
 	          <span class="title">{comment.user.name}</span>
-	          <span class="time">{comment.publishDate->f:format.date(format:'H:i, Y-m-d')}</span>
+	          <span class="time">{comment.publishDate->f:format.date(format:'Y-m-d H:i:s')}</span>
 	          <span class="desc"><f:format.crop maxCharacters="{commentcrop}" append=" ...">{comment.message}</f:format.crop></span>
 		   </div>
 	</div>

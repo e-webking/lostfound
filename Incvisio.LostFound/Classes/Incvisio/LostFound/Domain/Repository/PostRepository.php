@@ -70,11 +70,11 @@ class PostRepository extends Repository {
                 }
             }
             if($city_input!=NULL){
-                $statement .= "AND adv.city = '".$city_input."' ";
+                $statement .= "AND adv.city LIKE '".$city_input."%' ";
             }
 
             if($place_input!=NULL){
-                $statement .= "AND adv.place = '".$place_input."' ";
+                $statement .= "AND adv.place LIKE '".$place_input."%' ";
 
             };
 
@@ -128,11 +128,11 @@ class PostRepository extends Repository {
             }
         }
         if($city_input!=NULL){
-            $statement .= "AND adv.city = '".$city_input."' ";
+            $statement .= "AND adv.city LIKE '".$city_input."%' ";
         }
 
         if($place_input!=NULL){
-            $statement .= "AND adv.place = '".$place_input."' ";
+            $statement .= "AND adv.place LIKE '".$place_input."%' ";
 
         };
 
@@ -167,7 +167,7 @@ class PostRepository extends Repository {
             . "FROM  `incvisio_lostfound_domain_model_post` as adv "
             . "WHERE adv.lost = 1 ";
         if($city_input!=NULL){
-            $statement .= "AND adv.city = '".$city_input."' ";
+            $statement .= "AND adv.city LIKE '".$city_input."%' ";
         }
         if ($category_lost != NULL){
             $statement .= "AND adv.category ='".$category_lost. "'";
@@ -205,7 +205,7 @@ class PostRepository extends Repository {
             . "FROM  `incvisio_lostfound_domain_model_post` as adv "
             . "WHERE adv.found = 1 ";
         if($city_input!=NULL){
-            $statement .= "AND adv.city = '".$city_input."' ";
+            $statement .= "AND adv.city LIKE '".$city_input."%' ";
         }
         if ($category_found != NULL){
             $statement .= "AND adv.category ='".$category_found. "'";
