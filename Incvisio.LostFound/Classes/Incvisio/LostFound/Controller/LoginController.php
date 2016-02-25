@@ -642,7 +642,7 @@ class LoginController extends \TYPO3\Flow\Mvc\Controller\ActionController {
             $uncryptJson = mcrypt_decrypt(MCRYPT_RIJNDAEL_256,$cryptKey, $uncryptJson, MCRYPT_MODE_CBC, md5( $cryptKey ));
             $uncryptJson = rtrim($uncryptJson, "\0");
             $json = json_decode($uncryptJson);
-        }else{
+        } else {
             $json = NULL;
         }
 
@@ -671,7 +671,6 @@ class LoginController extends \TYPO3\Flow\Mvc\Controller\ActionController {
             $this->flashMessageContainer->addMessage(new \TYPO3\Flow\Error\Error($this->translator->translateById('login.messages.registration.not_valid',array(), NULL, NULL, 'Main', 'Incvisio.LostFound')));
             $this->redirect('index', 'Standard', NULL, array());
         }
-
     }
 	/**
 	 * @param \TYPO3\Flow\Security\Exception\AuthenticationRequiredException $exception The exception thrown while the authentication process

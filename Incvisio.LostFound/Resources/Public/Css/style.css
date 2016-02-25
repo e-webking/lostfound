@@ -451,7 +451,9 @@ textarea#textarea1 {overflow: auto;}
 .autocomplete-suggestions { display: none; background: #EEE none repeat scroll 0% 0%; line-height: 1.5; padding: 10px 0;}
 .autocomplete-suggestions .autocomplete-suggestion { padding: 5px 20px; color: #26a69a; cursor: pointer;}
 .autocomplete-suggestions .autocomplete-selected { background:#c0c0c0 !important;}
-.dropdown-content li.active.selected {background-color: #fff !important;}
+.dropdown-content li.active {background-color: transparent !important;}
+.dropdown-content li.selected {background-color: #fff !important;}
+
 
 .file-path-wrapper{clear:both; padding-top:20px;}
 
