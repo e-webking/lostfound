@@ -193,6 +193,8 @@ textarea#textarea1 {overflow: auto;}
 .wrapper .rightCol #searchFound .row{margin-bottom:0px;}
 
 .linkText{display:inline-block; font-size:16px;}
+.disabled .fa-angle-double-right, .disabled .fa-angle-right { color: #999}
+
 
 .modal{background:#FFF;}
 .modal-close {
@@ -425,7 +427,7 @@ textarea#textarea1 {overflow: auto;}
 .newAddTitle h4{font-size:36px; color:#2e90ad; margin-bottom:0px !important;} 
 
 .profileGrid{padding:0px; margin:0px; position:reltive;}
-.profileGrid .addCaps{position:relative; top:10px !important;}
+.profileGrid .addCaps{display: block; left: 0; position: relative; top: 20px !important;}
 
 .profileGrid .userPro{padding:0px; margin:0px; position:relative; overflow:hidden;}
 .userPro .itemImg{float:left; width:20%; text-align:center;}
@@ -450,6 +452,8 @@ textarea#textarea1 {overflow: auto;}
 .autocomplete-suggestions .autocomplete-suggestion { padding: 5px 20px; color: #26a69a; cursor: pointer;}
 .autocomplete-suggestions .autocomplete-selected { background:#c0c0c0 !important;}
 .dropdown-content li.active.selected {background-color: #fff !important;}
+
+.file-path-wrapper{clear:both; padding-top:20px;}
 
 footer{padding:0px; margin:20px 0 0; overflow:hidden;}
 footer .footerLink{float:right; margin:0px;}
@@ -508,18 +512,33 @@ header .logo{padding-top:0px !important; padding-bottom:0px !important;}
 header .socialList ul li a{padding:0px 10px 10px 10px;}
 
 .wrapper .mob-marginLR1{margin-left:-5%; margin-right:-5%;}
-.wrapper .leftCol{margin:0px; overflow:hidden; color:#2c8fac; padding-top:30px !important; padding-bottom:30px !important;}
-.wrapper .rightCol{margin:0px; overflow:hidden; color:#fff; padding-top:30px !important; padding-bottom:30px !important;}
+.wrapper .leftCol{margin:0px; overflow:hidden; color:#2c8fac; padding-top:30px !important; padding-bottom:30px !important; overflow:inherit;}
+.wrapper .rightCol{margin:0px; overflow:hidden; color:#fff; padding-top:30px !important; padding-bottom:30px !important; overflow:inherit;}
 
 .mobBG{background: url(../Images/mob-bg.jpg) center top repeat-y;}
 .lostFoundCol{margin:20px 0 0;}
 
 #lost-input {background-position:99% center; padding-right: 30px;}
-#found-input {background-position:99% center;}
+#found-input {background-position:99% center; padding-right: 8.333%;}
 
 .tpBox .cards{padding-top:0px; padding-bottom:20px;}
 
 .found {background-position: 150px 50px;}
+
+
+/*--- Add New Css for mobile (23-2-2016) ---*/
+.search-wrapper {width: 100% !important;}
+#lost-input {padding-right: 8.333%; width: 91.667%;}
+
+.input-field {width: 100% !important;}
+
+#item_lost{margin-left:0 !important; padding: 0 0.75rem;}
+
+.lost-input-label {right:0px; padding: 0 0.75rem;}
+.newwind{margin-left:0px; width: 95%; margin: 0 0.75rem;}
+
+#found-input{padding-right: 8.333%; width: 91.667%;}
+.found-input-label{right:0px; padding: 0 0.75rem;}
 
 
 }
