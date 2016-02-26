@@ -424,11 +424,12 @@ class PostController extends MainController {
      */
     public function getPostsAction($lost_input=NULL,$found_input=NULL,$city_input=NULL,$place_input=NULL,$date_from=NULL,$date_to=NULL,$category_found=NULL,$category_lost=NULL,$page=NULL){
         $item_per_page  = 5;
-        if(isset($page)){
+        if (($page > 0) && isset($page)){
             $page_number = $page;
         }else{
             $page_number = 1;
         }
+        
         $page_position = (($page_number-1) * $item_per_page);
         if(isset($lost_input)){
             $posts = $this->loadLost($lost_input,$city_input,$place_input,$date_from,$date_to,$category_lost,$page_position, $item_per_page);
@@ -919,47 +920,50 @@ class PostController extends MainController {
 
     public function paginate_function($item_per_page, $current_page, $total_records, $total_pages)
     {
+    	
         $pagination = '';
-        if($total_pages > 0 && $total_pages != 1 && $current_page <= $total_pages){ //verify total pages and current page number
-            $pagination .= '<ul class="pagination newpad">';
+        
+        if ($total_pages > 0 && $total_pages != 1 && $current_page <= $total_pages) { 
+        	//verify total pages and current page number
+            
+        	$blockSize = 6;
+        	$currentBlockStart = ceil($current_page/$blockSize);
+        	$currentBlockEnd = $currentBlockStart + $blockSize;
+        	
+        	if ($currentBlockEnd > $total_pages) {
+        			$currentBlockEnd = $total_pages;
+        	}
+        	
+        	$pagination .= '<ul class="pagination newpad">';
 
-            $right_links    = $current_page + 3;
-            $previous       = $current_page - 3; //previous link
+           // $right_links    = $current_page + 3;
+            $previous       = $current_page - 1; //previous link
             $next           = $current_page + 1; //next link
             $first_link     = true; //boolean var to decide our first link
+            $next_link = ($next < $total_pages) ? $next : $total_pages;
 
 
-            if($current_page > 1){
-                $previous_link = ($previous==0)?1:$previous;
+            if ($current_page > 1) {
+            	
+                $previous_link = ($previous==0) ? 1 : $previous;
                 $pagination .= '<li id="pagination_list" class="waves-effect wawess"><a data-page="1" title="First"><i class="fa fa-angle-double-left"></i></a></li>'; //first link
                 $pagination .= '<li id="pagination_list" class="waves-effect wawess"><a  data-page="'.$previous_link.'" title="Previous"><i class="fa fa-angle-left"></i></a></li>'; //previous link
-                for($i = ($current_page-2); $i < $current_page; $i++){ //Create left-hand side links
-                    if($i > 0){
-                        $pagination .= '<li id="pagination_list" class="waves-effect wawess"><a  data-page="'.$i.'" title="Page'.$i.'">'.$i.'</a></li>';
-                    }
-                }
                 $first_link = false; //set first link to false
-            }else{
-                $pagination .= ' <li id="pagination_list" class="disabled wawess"><a ><i class="fa fa-angle-double-left"></i></a></li>'; //first link
-                $pagination .= '<li id="pagination_list" class="disabled wawess"><a ><i class="fa fa-angle-left"></i></a></li>'; //previous link
+            } else {
+                $pagination .= ' <li id="pagination_list" class="disabled wawess"><i class="fa fa-angle-double-left"></i></li>'; //first link
+                $pagination .= '<li id="pagination_list" class="disabled wawess"><i class="fa fa-angle-left"></i></li>'; //previous link
 
             }
 
-            if($first_link){ //if current active page is first link
-                $pagination .= '<li id="pagination_list" class="active wawessac">'.$current_page.'</li>';
-            }elseif($current_page == $total_pages){ //if it's the last active link
-                $pagination .= '<li id="pagination_list" class="active wawessac">'.$current_page.'</li>';
-            }else{ //regular current link
-                $pagination .= '<li id="pagination_list" class="active wawessac">'.$current_page.'</li>';
-            }
-
-            for($i = $current_page+1; $i < $right_links ; $i++){ //create right-hand side links
-                if($i<=$total_pages){
-                    $pagination .= '<li id="pagination_list" class="waves-effect wawess"><a  data-page="'.$i.'" title="Page '.$i.'">'.$i.'</a></li>';
+            for ($i = $currentBlockStart; $i <= $currentBlockEnd ; $i++){ //create right-hand side links
+            	if ($i == $current_page) {
+            		$pagination .= '<li id="pagination_list" class="active wawessac">'.$current_page.'</li>';
+            	} else {
+                    $pagination .= '<li id="pagination_list" class="waves-effect wawess"><a data-page="'.$i.'" title="Page '.$i.'">'.$i.'</a></li>';
                 }
             }
-            if($current_page < $total_pages){
-                $next_link = ($i > $total_pages)? $total_pages : $i;
+            
+            if ($current_page < $total_pages){
                 $pagination .= '<li id="pagination_list" class="waves-effect wawess rightText"><a data-page="'.$total_pages.'" title="Last"><i class="fa fa-angle-double-right"></i></a></li>'; //next link
                 $pagination .= '<li  id="pagination_list" class="waves-effect wawess rightText"><a  data-page="'.$next_link.'" title="Next"><i class="fa fa-angle-right"></i></a></li>'; //last link
             } else {

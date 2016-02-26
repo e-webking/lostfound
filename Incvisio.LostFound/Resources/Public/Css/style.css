@@ -193,7 +193,10 @@ textarea#textarea1 {overflow: auto;}
 .wrapper .rightCol #searchFound .row{margin-bottom:0px;}
 
 .linkText{display:inline-block; font-size:16px;}
-.disabled .fa-angle-double-right, .disabled .fa-angle-right { color: #999}
+.disabled .fa-angle-left,
+.disabled .fa-angle-double-left, 
+.disabled .fa-angle-double-right, 
+.disabled .fa-angle-right { color: #999}
 
 
 .modal{background:#FFF;}
