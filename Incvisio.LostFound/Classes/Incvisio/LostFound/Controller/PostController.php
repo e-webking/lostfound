@@ -615,6 +615,7 @@ class PostController extends MainController {
      * @return void
      */
     public function createAction() {
+    	
         $args = $this->request->getArguments();
         $newPost = new Post();
         $newPost->setDescription($args["newPost"]["description"]);
@@ -626,11 +627,12 @@ class PostController extends MainController {
         $newPost->setCategory($this->categoryRepository->findByIdentifier($args["newPost"]["category"]));
         $newPost->setPlace($args["newPost"]["place"]);
         $newPost->setDateLostOrFound(new \TYPO3\Flow\Utility\Now());
-
-
         $newPost->setUser($this->getCurrentUser());
         $newPost->setActive(1);
         $newPost->setPublishDate( new \TYPO3\Flow\Utility\Now());
+        $newPost->setLikes(0);
+        $newPost->setDislikes(0);
+        
         $this->postRepository->add($newPost);
 
         if (isset($_FILES) && !empty($_FILES)) {
