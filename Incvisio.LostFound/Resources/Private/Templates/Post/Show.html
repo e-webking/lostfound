@@ -84,10 +84,10 @@
                     <a class="waves-effect waves-light btn-large amber lighten-1 showtel">показати номер</a>                        
                     <span class="likes">
                        <f:link.action action="setUserLike" arguments="{post:post.PersistenceObjectIdentifier}" controller="Post"><i class="fa fa-thumbs-o-up"></i></f:link.action>
-                       <span class="userLikeNumb">{userLike}</span>
+                       <span class="userLikeNumb">{post.likes}</span>
    
                        <f:link.action action="setUserDisLike" arguments="{post:post.PersistenceObjectIdentifier}" controller="Post"><i class="fa fa-thumbs-o-down"></i></f:link.action>
-                       <span class="userLikeNumb">{userDisLike}</span>
+                       <span class="userLikeNumb">{post.dislikes}</span>
                      </span>
                	</div>
                	<div class="p-massage">

@@ -456,6 +456,7 @@ textarea#textarea1 {overflow: auto;}
 .autocomplete-suggestions .autocomplete-selected { background:#c0c0c0 !important;}
 .dropdown-content li.active {background-color: transparent !important;}
 .dropdown-content li.selected {background-color: #fff !important;}
+
 .l-btn {
     padding: 0 10px 10px 0 !important;
 }

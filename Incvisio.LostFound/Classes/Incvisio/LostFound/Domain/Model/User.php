@@ -74,6 +74,13 @@ class User  extends \TYPO3\Party\Domain\Model\Person{
      * @ORM\OneToMany(mappedBy="user")
      */
     protected $comments;
+    
+    /**
+     *
+     * @var \Doctrine\Common\Collections\ArrayCollection<\Incvisio\LostFound\Domain\Model\PostLike>
+     * @ORM\OneToMany(mappedBy="user")
+     */
+    protected $postLike;
 
     /**
      * @return string

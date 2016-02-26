@@ -14,6 +14,7 @@ use Incvisio\LostFound\Domain\Model\Comments;
 use Incvisio\LostFound\Controller\MainController;
 use TYPO3\Flow\Utility\Now;
 use TYPO3\Flow\Error\Message;
+use Incvisio\LostFound\Domain\Model\PostLike;
 
 class PostController extends MainController {
 	
@@ -64,6 +65,12 @@ class PostController extends MainController {
      * @var \Incvisio\LostFound\Domain\Repository\ImageRepository
      */
     protected $imageRepository;
+    
+    /**
+     * @Flow\Inject
+     * @var \Incvisio\LostFound\Domain\Repository\PostLikeRepository
+     */
+    protected $postLikeRepository;
 
     /**
      * @Flow\Inject
@@ -337,24 +344,30 @@ class PostController extends MainController {
                 $this->flashMessageContainer->addMessage(new \TYPO3\Flow\Error\Error($this->translator->translateById('main.messages.yourAdd', array(), NULL, NULL, 'Main', 'Incvisio.LostFound')));
                 $this->redirect('show', 'Post', NULL, array('post' => $post));
             }
-            $findPrevLikes = $this->userLikeRepository->findByUserAndUserAdvert($this->getCurrentUser(),$user)->getFirst();
-            if($findPrevLikes == NULL){
-                $userLikes = $user->getLikes();
-                $user->setLikes($userLikes+1);
-                $this->userRepository->update($user);
-                $newUseLike = new UserLike();
-                $newUseLike->setUser($this->getCurrentUser());
-                $newUseLike->setLikedUser($this->persistenceManager->getIdentifierByObject($user));
-                $this->userLikeRepository->add($newUseLike);
+            $findPrevLikes = $this->postLikeRepository->findByUserAndPost($this->getCurrentUser(), $post)->getFirst();
+            
+            if ($findPrevLikes == NULL) {
+            	
+                $postLikes = $currentPost->getLikes();
+            	$currentPost->setLikes($postLikes+1);
+            	$this->postRepository->update($currentPost);
+            	
+             	$newPostLike = new PostLike();
+            	$newPostLike->setUser($this->getCurrentUser());
+            	$newPostLike->setLikedPost($post);
+            	$this->postLikeRepository->add($newPostLike);
+                
                 $this->persistenceManager->persistAll();
                 $this->redirect('show','Post',NULL,array('post'=>$post));
-            }else{
+                
+            } else {
+            	
                 $this->flashMessageContainer->addMessage(new \TYPO3\Flow\Error\Error($this->translator->translateById('main.messages.liked',array(), NULL, NULL, 'Main', 'Incvisio.LostFound')));
                 $this->redirect('show','Post',NULL,array('post'=>$post));
             }
 
-
-        }else{
+        } else {
+        	
             $this->flashMessageContainer->addMessage(new \TYPO3\Flow\Error\Error($this->translator->translateById('main.messages.pleaseLogin',array(), NULL, NULL, 'Main', 'Incvisio.LostFound')));
             $this->redirect('show','Post',NULL,array('post'=>$post));
         }
@@ -364,31 +377,36 @@ class PostController extends MainController {
      * @param string $post
      * @return void
      */
-    public function setUserDisLikeAction($post){
-        if($this->securityContext->getAccount()!=NULL) {
+    public function setUserDisLikeAction($post) {
+    	
+        if ($this->securityContext->getAccount()!=NULL) {
+        	
             $currentPost = $this->postRepository->findByIdentifier($post);
             $user = $currentPost->getUser();
-            if($this->getCurrentUser()==$user){
+            
+            if ($this->getCurrentUser()==$user) {
                 $this->flashMessageContainer->addMessage(new \TYPO3\Flow\Error\Error($this->translator->translateById('main.messages.yourAdd', array(), NULL, NULL, 'Main', 'Incvisio.LostFound')));
                 $this->redirect('show', 'Post', NULL, array('post' => $post));
             }
-            $findPrevLikes = $this->userLikeRepository->findByUserAndUserAdvert($this->getCurrentUser(), $user)->getFirst();
+            
+            $findPrevLikes = $this->postLikeRepository->findByUserAndPost($this->getCurrentUser(), $post)->getFirst();
             if ($findPrevLikes == NULL) {
-                $userDisLikes = $user->getDislike();
-                $user->setDislike($userDisLikes + 1);
-                $this->userRepository->update($user);
-                $newUseLike = new UserLike();
-                $newUseLike->setUser($this->getCurrentUser());
-                $newUseLike->setLikedUser($this->persistenceManager->getIdentifierByObject($user));
-                $this->userLikeRepository->add($newUseLike);
-                $this->persistenceManager->persistAll();
+            	$postDisLikes = $currentPost->getDislikes();
+            	$currentPost->setDislikes($postDisLikes+1);
+            	$this->postRepository->update($currentPost);
+            	
+             	$newPostLike = new PostLike();
+            	$newPostLike->setUser($this->getCurrentUser());
+            	$newPostLike->setLikedPost($post);
+            	$this->postLikeRepository->add($newPostLike);
+            	$this->persistenceManager->persistAll();
                 $this->redirect('show', 'Post', NULL, array('post' => $post));
+                
             } else {
                 $this->flashMessageContainer->addMessage(new \TYPO3\Flow\Error\Error($this->translator->translateById('main.messages.liked', array(), NULL, NULL, 'Main', 'Incvisio.LostFound')));
                 $this->redirect('show', 'Post', NULL, array('post' => $post));
             }
-        }
-        else {
+        } else {
             $this->flashMessageContainer->addMessage(new \TYPO3\Flow\Error\Error($this->translator->translateById('main.messages.pleaseLogin',array(), NULL, NULL, 'Main', 'Incvisio.LostFound')));
             $this->redirect('show','Post',NULL,array('post'=>$post));
         }
@@ -607,13 +625,7 @@ class PostController extends MainController {
         $newPost->setUserContacts($args["newPost"]["userContacts"]);
         $newPost->setCategory($this->categoryRepository->findByIdentifier($args["newPost"]["category"]));
         $newPost->setPlace($args["newPost"]["place"]);
-        
-//         if ($args["newPost"]["dateLostOrFound"]!=NULL && isset($args["newPost"]["dateLostOrFound"])){
-//             $date = \DateTime::createFromFormat('d-m-Y', $args["newPost"]["dateLostOrFound"]);
-//             $newPost->setDateLostOrFound($date);
-//         }else{
-            $newPost->setDateLostOrFound(new \TYPO3\Flow\Utility\Now());
-//        }
+        $newPost->setDateLostOrFound(new \TYPO3\Flow\Utility\Now());
 
 
         $newPost->setUser($this->getCurrentUser());

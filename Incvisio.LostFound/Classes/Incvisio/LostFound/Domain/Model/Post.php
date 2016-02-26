@@ -99,6 +99,16 @@ class Post {
      * @var int
      */
     protected $active;
+    
+    /**
+     * @var int
+     */
+    protected $likes;
+    
+    /**
+     * @var int
+     */
+    protected $dislikes;
 
     /**
      *
@@ -115,6 +125,7 @@ class Post {
      */
     protected $images;
 
+    
     public function getPersistenceObjectIdentifier(){
         return $this->Persistence_Object_Identifier;
     }
@@ -337,5 +348,43 @@ class Post {
     public function getComments()
     {
         return $this->comments;
+    }
+    
+    /**
+     * Sets like
+     *
+     * @param int $likes
+     * @return void
+     */
+    public function setLikes($likes) {
+    	$this->likes = $likes;
+    }
+    
+    /**
+     * Likes
+     *
+     * @return int
+     */
+    public function getLikes() {
+    	return $this->likes;
+    }
+    
+    /**
+     * Dislikes
+     *
+     * @param int $dislikes
+     * @return void
+     */
+    public function setDislikes($dislikes) {
+    	$this->dislikes = $dislikes;
+    }
+    
+    /**
+     * Dislikes
+     *
+     * @return int
+     */
+    public function getDislikes() {
+    	return $this->dislikes;
     }
 }

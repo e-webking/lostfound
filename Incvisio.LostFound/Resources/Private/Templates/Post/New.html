@@ -138,51 +138,40 @@
 
 		$('.phone').mask('+38(000)0000000');
 
-					var options = {
-						target:   '#output',   // target element(s) to be updated with server response
-						beforeSubmit:  beforeSubmit,// pre-submit callback
-						success: getAvatar,
-						resetForm: true        // reset the form after successful submit
-					};
+		var options = {
+			target:   '#output',   // target element(s) to be updated with server response
+			beforeSubmit:  beforeSubmit,// pre-submit callback
+			success: getAvatar,
+			resetForm: true        // reset the form after successful submit
+		};
 
-					$('#MyUploadForm').submit(function() {
-						$(this).ajaxSubmit(options);  //Ajax Submit form
-						// return false to prevent standard browser submit and page navigation
-						//$('.modal_close').click();
-						//location.reload(true);
-						//location.reload(true);
+		$('#MyUploadForm').submit(function() {
+			$(this).ajaxSubmit(options);  //Ajax Submit form
+			// return false to prevent standard browser submit and page navigation
+			//$('.modal_close').click();
+			//location.reload(true);
+			//location.reload(true);
 
-						return false;
+			return false;
 
-					});
-
-		$(".cities").keyup(function(){
-			$.ajax({
-				type: "POST",
-				url: "/post/getCity",
-				data:'city='+$(this).val(),
-				beforeSend: function(){
-
-				},
-				success: function(data){
-					var results = jQuery.parseJSON(data);
-					var options = '';
-
-					for (var i = 0; i < results.length; i++) {
-						options += '<li onClick="selectCountry(\''+results[i].name+', '+results[i].region+'\')" style="color: #26a69a;cursor: pointer;">' + results[i].name + ', '+results[i].region +  '</li>';
-					}
-
-					if(options.length>1) {
-						$("#suggesstion-box").show();
-						$("#suggesstion-box").html(options);
-					}
-				}
-			});
+		});
+					
+		$('#new-city').autocomplete({
+			serviceUrl: '/post/getCity',
+			paramName:'city',
+			minChars: 1,
+			transformResult: function(response) {
+				return {
+					suggestions: $.map(jQuery.parseJSON(response), function(dataItem) {
+						return { value: dataItem.name, data: dataItem.region };
+					})
+				};
+			}
 		});
 
 	});
 	function selectCountry(val) {
-		$(".cities").val(val);
+		$("#new-city").val(val);
 		$("#suggesstion-box").hide();
 	}
 	//function to check file size before uploading.
