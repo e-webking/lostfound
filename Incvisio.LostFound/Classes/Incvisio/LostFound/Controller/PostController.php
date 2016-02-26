@@ -82,7 +82,7 @@ class PostController extends MainController {
 
             if (isset($args['lost_input'])) {
                $this->view->assign('search_field',$args['lost_input']);
-               $this->getPostsAction($args['lost_input'], NULL, NULL, NULL, NULL, NULL);
+               $this->getPostsAction($args['lost_input'], NULL, NULL, NULL, NULL, NULL, 'lost');
                 $count = $this->postRepository->countLost($args['lost_input']);
                 if($count['number'] == 0){
                     if(isset($args['lost_input'])){
@@ -100,7 +100,7 @@ class PostController extends MainController {
 
             if(isset($args['found_input'])){
                 $this->view->assign('search_field',$args['found_input']);
-                $this->getPostsAction(NULL,$args['found_input'],NULL,NULL,NULL,NULL,NULL);
+                $this->getPostsAction(NULL,$args['found_input'],NULL,NULL,NULL,NULL,NULL, 'found');
                 $count = $this->postRepository->countLost($args['found_input']);
                 if($count['number'] == 0){
                     if(isset($args['lost_input'])){
@@ -420,9 +420,10 @@ class PostController extends MainController {
      * @param string $category_found
      * @param string $category_lost
      * @param int $page
+     * @param string $type
      * @return array
      */
-    public function getPostsAction($lost_input=NULL,$found_input=NULL,$city_input=NULL,$place_input=NULL,$date_from=NULL,$date_to=NULL,$category_found=NULL,$category_lost=NULL,$page=NULL){
+    public function getPostsAction($lost_input=NULL,$found_input=NULL,$city_input=NULL,$place_input=NULL,$date_from=NULL,$date_to=NULL,$category_found=NULL,$category_lost=NULL,$page=NULL, $type=NULL){
         $item_per_page  = 5;
         if (($page > 0) && isset($page)){
             $page_number = $page;
@@ -431,16 +432,16 @@ class PostController extends MainController {
         }
         
         $page_position = (($page_number-1) * $item_per_page);
-        if(isset($lost_input)){
+        if ($type == 'lost') {
             $posts = $this->loadLost($lost_input,$city_input,$place_input,$date_from,$date_to,$category_lost,$page_position, $item_per_page);
             $count = $this->postRepository->countLost($lost_input,$city_input,$category_lost);
-        }elseif(isset($found_input)){
+        } elseif($type == 'found') {
             $posts = $this->loadFound($found_input,$city_input,$place_input,$date_from,$date_to,$category_found,$page_position, $item_per_page);
             $count = $this->postRepository->countFound($found_input,$city_input,$category_found);
         }
-
+		
         $total_pages = ceil($count['number']/$item_per_page);
-        $pagin = $this->paginate_function($item_per_page, $page_number, $count, $total_pages);
+        $pagin = $this->paginate_function($item_per_page, $page_number, $count, $total_pages, $city_input, $lost_input, $found_input, $category_lost, $category_found);
 
         $this->view->assign('pagin',$pagin);
         $this->view->assign('count',$count);
@@ -918,7 +919,7 @@ class PostController extends MainController {
 
 
 
-    public function paginate_function($item_per_page, $current_page, $total_records, $total_pages)
+    public function paginate_function($item_per_page, $current_page, $total_records, $total_pages, $city_input=NULL, $lost_input=NULL, $found_input=NULL, $category_lost=NULL, $category_found=NULL)
     {
     	
         $pagination = '';
@@ -927,11 +928,17 @@ class PostController extends MainController {
         	//verify total pages and current page number
             
         	$blockSize = 6;
-        	$currentBlockStart = ceil($current_page/$blockSize);
+        	if ($current_page <= $blockSize) {
+        		$currentBlockStart = 1;
+        	} else {
+        		$q = floor($current_page/$blockSize);
+        		$currentBlockStart = ($q * $blockSize) + 1;
+        	}
+        	
         	$currentBlockEnd = $currentBlockStart + $blockSize;
         	
         	if ($currentBlockEnd > $total_pages) {
-        			$currentBlockEnd = $total_pages;
+        			$currentBlockEnd = $total_pages + 1;
         	}
         	
         	$pagination .= '<ul class="pagination newpad">';
@@ -946,8 +953,8 @@ class PostController extends MainController {
             if ($current_page > 1) {
             	
                 $previous_link = ($previous==0) ? 1 : $previous;
-                $pagination .= '<li id="pagination_list" class="waves-effect wawess"><a data-page="1" title="First"><i class="fa fa-angle-double-left"></i></a></li>'; //first link
-                $pagination .= '<li id="pagination_list" class="waves-effect wawess"><a  data-page="'.$previous_link.'" title="Previous"><i class="fa fa-angle-left"></i></a></li>'; //previous link
+                $pagination .= '<li id="pagination_list" class="waves-effect wawess"><a data-page="1" data-city="'.$city_input.'" data-lost="'.$lost_input.'" data-found="'.$found_input.'" data-fcat="'.$category_found.'" data-lcat="'.$category_lost.'" title="First"><i class="fa fa-angle-double-left"></i></a></li>'; //first link
+                $pagination .= '<li id="pagination_list" class="waves-effect wawess"><a data-page="'.$previous_link.'" data-city="'.$city_input.'" data-lost="'.$lost_input.'" data-found="'.$found_input.'" data-fcat="'.$category_found.'" data-lcat="'.$category_lost.'" title="Previous"><i class="fa fa-angle-left"></i></a></li>'; //previous link
                 $first_link = false; //set first link to false
             } else {
                 $pagination .= ' <li id="pagination_list" class="disabled wawess"><i class="fa fa-angle-double-left"></i></li>'; //first link
@@ -955,21 +962,20 @@ class PostController extends MainController {
 
             }
 
-            for ($i = $currentBlockStart; $i <= $currentBlockEnd ; $i++){ //create right-hand side links
+            for ($i = $currentBlockStart; $i < $currentBlockEnd ; $i++){ //create right-hand side links
             	if ($i == $current_page) {
             		$pagination .= '<li id="pagination_list" class="active wawessac">'.$current_page.'</li>';
             	} else {
-                    $pagination .= '<li id="pagination_list" class="waves-effect wawess"><a data-page="'.$i.'" title="Page '.$i.'">'.$i.'</a></li>';
+                    $pagination .= '<li id="pagination_list" class="waves-effect wawess"><a data-page="'.$i.'" data-city="'.$city_input.'" data-lost="'.$lost_input.'" data-found="'.$found_input.'" data-fcat="'.$category_found.'" data-lcat="'.$category_lost.'" title="Page '.$i.'">'.$i.'</a></li>';
                 }
             }
             
             if ($current_page < $total_pages){
-                $pagination .= '<li id="pagination_list" class="waves-effect wawess rightText"><a data-page="'.$total_pages.'" title="Last"><i class="fa fa-angle-double-right"></i></a></li>'; //next link
-                $pagination .= '<li  id="pagination_list" class="waves-effect wawess rightText"><a  data-page="'.$next_link.'" title="Next"><i class="fa fa-angle-right"></i></a></li>'; //last link
+                $pagination .= '<li id="pagination_list" class="waves-effect wawess rightText"><a data-page="'.$total_pages.'" data-city="'.$city_input.'" data-lost="'.$lost_input.'" data-found="'.$found_input.'" data-fcat="'.$category_found.'" data-lcat="'.$category_lost.'" title="Last"><i class="fa fa-angle-double-right"></i></a></li>'; //next link
+                $pagination .= '<li  id="pagination_list" class="waves-effect wawess rightText"><a data-page="'.$next_link.'" data-city="'.$city_input.'" data-lost="'.$lost_input.'" data-found="'.$found_input.'" data-fcat="'.$category_found.'" data-lcat="'.$category_lost.'" title="Next"><i class="fa fa-angle-right"></i></a></li>'; //last link
             } else {
             	$pagination .= '<li id="pagination_list" class="disabled wawess rightText"><i class="fa fa-angle-double-right"></i></li>'; //next link
             	$pagination .= '<li  id="pagination_list" class="disabled wawess rightText"><i class="fa fa-angle-right"></i></li>'; //last link
-            	      
             }
 
             $pagination .= '</ul>';

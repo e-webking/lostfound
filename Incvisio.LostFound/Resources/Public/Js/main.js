@@ -8,19 +8,25 @@ var Advert = {
         var date_to = $('#date_to').val();
         var category_found = $('#category_found').val();
         var category_lost = $('#category_lost').val();
+        var advType = $('#advTyp').val();
         setTimeout(function() {
-            Advert.loadAdvert(lost_input, found_input, city_input, place_input, date_from, date_to, category_found, category_lost);
+            Advert.loadAdvert(lost_input, found_input, city_input, place_input, date_from, date_to, category_found, category_lost,null,advType);
         },500);
         $(document).ready(function(){
-        $("#item_lost").on( "click", "#pagination_list a", function (e){
-            e.preventDefault();
-
-            var page = $(this).attr("data-page"); //get page number from link
-
-            Advert.loadAdvert(lost_input, found_input, city_input, place_input, date_from, date_to, category_found, category_lost,page);
-            $("html, body").animate({ scrollTop: 0 }, "slow");
-
-        });
+	        $("#item_lost").on("click", "#pagination_list a", function (e) {
+	        	e.stopPropagation();
+	            e.preventDefault();
+	            var page = $(this).attr("data-page"); //get page number from link
+	            var lost_input = $(this).attr("data-lost");
+	            var found_input = $(this).attr("data-found");
+	            var city_input = $(this).attr("data-city");
+	            var category_found = $(this).attr("data-fcat");
+	            var category_lost = $(this).attr("data-lcat");
+	            var advType = $('#advTyp').val();
+	            Advert.loadAdvert(lost_input, found_input, city_input, place_input, date_from, date_to, category_found, category_lost, page, advType);
+	            $("html, body").animate({ scrollTop: 0 }, "slow");
+	
+	        });
         });
 
 
@@ -129,7 +135,7 @@ var Advert = {
 
     },
 
-    loadAdvert: function (lost_input, found_input,city_input,place_input,date_from,date_to,category_found,category_lost,page){
+    loadAdvert: function (lost_input, found_input, city_input, place_input, date_from, date_to, category_found, category_lost, page, adTyp){
         $.ajax({
             url : "/incvisio.lostfound/post/getPosts",
             data:{
@@ -141,7 +147,8 @@ var Advert = {
                 date_to: date_to,
                 category_found: category_found,
                 category_lost: category_lost,
-                page:page
+                page:page,
+                type:adTyp
             },
             type : "GET",
             dataType : "html",

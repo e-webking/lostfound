@@ -1,6 +1,6 @@
 <div class="col s12 m5 leftCol">
 	<f:form id="searchLost" name="searchLost" action="index" controller="Post" method="post" additionalParams="{type:advertType,lost_input:search_field}">                   
-               <f:form.hidden name="type" value="{advertType}"/>
+               <f:form.hidden id="advTyp" name="type" value="{advertType}"/>
                <div class="input-field col s11">
                  <label for="lost-input">Я загубив</label>
                  <f:form.textfield id="lost-input" name="lost_input" class="validate" placeholder="Пошук..."  additionalAttributes="{style:'font-size:3rem;', autocomplete:'off'}" value="{search_field}" />
