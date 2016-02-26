@@ -16,7 +16,7 @@ body{
 /* Bootstrap Override Css */
 p {margin: 0 0 20px; line-height:24px;}
 hr{border-color:#ddd; border-style: solid; margin:25px 0;}
-a {color:#0092b7; text-decoration:none;}
+a {color:#2E90AD; text-decoration:none;}
 a:hover{color:#ff9800;}
 
 a:focus{text-decoration:none; outline:none; border:0px;}
@@ -104,13 +104,13 @@ header .socialList ul li .fa{font-size:18px;}
 .wrapper .leftCol #form_lost_filter .input-field .validate:-moz-placeholder {opacity: 1; color:#d1d1d1 !important; /* Firefox 18- */}
 
 .wrapper .leftCol #form_found_filter {margin-top:30px;}
-.wrapper .leftCol #form_found_filter .input-field label{color: #CEE3E8; font-size: 18px; top:-15px;}
+.wrapper .leftCol #form_found_filter .input-field label {color: #CEE3E8; font-size: 18px; top:-15px;}
 .wrapper .leftCol #form_found_filter .input-field label.active{transform:inherit;}
 .wrapper .leftCol #form_found_filter .input-field .validate{font-size: 22px; border-bottom:1px solid #cee3e8;}
-.wrapper .leftCol #form_found_filter .input-field .validate::-webkit-input-placeholder {opacity: 1; color:#d1d1d1 !important; /* Chrome/Opera/Safari */}
-.wrapper .leftCol #form_found_filter .input-field .validate::-moz-placeholder {opacity: 1; color:#d1d1d1 !important; /* Firefox 19+ */}
-.wrapper .leftCol #form_found_filter .input-field .validate:-ms-input-placeholder {opacity: 1; color:#d1d1d1 !important; /* IE 10+ */}
-.wrapper .leftCol #form_found_filter .input-field .validate:-moz-placeholder {opacity: 1; color:#d1d1d1 !important; /* Firefox 18- */}
+.wrapper .leftCol #form_found_filter .input-field .validate::-webkit-input-placeholder {opacity: 1; color:#0192AF !important; /* Chrome/Opera/Safari */}
+.wrapper .leftCol #form_found_filter .input-field .validate::-moz-placeholder {opacity: 1; color:#0192AF !important; /* Firefox 19+ */}
+.wrapper .leftCol #form_found_filter .input-field .validate:-ms-input-placeholder {opacity: 1; color:#0192AF !important; /* IE 10+ */}
+.wrapper .leftCol #form_found_filter .input-field .validate:-moz-placeholder {opacity: 1; color:#0192AF !important; /* Firefox 18- */}
 
 
 .wrapper #form_lost_filter .leftCol {margin-top:30px;}
@@ -427,7 +427,7 @@ textarea#textarea1 {overflow: auto;}
 .newAddTitle h4{font-size:36px; color:#2e90ad; margin-bottom:0px !important;} 
 
 .profileGrid{padding:0px; margin:0px; position:reltive;}
-.profileGrid .addCaps{display: block; left: 0; position: relative; top: 20px !important;}
+.profileGrid .addCaps{display: block; left: 0; position: relative; height: 20px}
 
 .profileGrid .userPro{padding:0px; margin:0px; position:relative; overflow:hidden;}
 .userPro .itemImg{float:left; width:20%; text-align:center;}
@@ -453,7 +453,12 @@ textarea#textarea1 {overflow: auto;}
 .autocomplete-suggestions .autocomplete-selected { background:#c0c0c0 !important;}
 .dropdown-content li.active {background-color: transparent !important;}
 .dropdown-content li.selected {background-color: #fff !important;}
-
+.l-btn {
+    padding: 0 10px 10px 0 !important;
+}
+.r-btn {
+    padding: 0 0 10px 10px !important;
+}
 
 .file-path-wrapper{clear:both; padding-top:20px;}
 
@@ -546,10 +551,10 @@ header .socialList ul li a{padding:0px 10px 10px 10px;}
 .found-input-label a {padding-right:0px !important;}
 
 .l-btn {
-    padding: 0 0px 20px 0 !important;
+    padding: 0px 0px 10px 0px !important;
 }
 .r-btn {
-    padding: 0 0 0px 10px !important;
+    padding: 0px !important;
 }
 
 footer .footerLogo{margin-left:12px;}
