@@ -542,5 +542,17 @@ header .socialList ul li a{padding:0px 10px 10px 10px;}
 #found-input{padding-right: 8.333%; width: 91.667%;}
 .found-input-label{right:0px; padding: 0 0.75rem;}
 
+.lost-input-label a {padding-right:0px;}
+.found-input-label a {padding-right:0px !important;}
+
+.l-btn {
+    padding: 0 0px 20px 0 !important;
+}
+.r-btn {
+    padding: 0 0 0px 10px !important;
+}
+
+footer .footerLogo{margin-left:12px;}
+footer .footerLink{margin-right:11px;}
 
 }
