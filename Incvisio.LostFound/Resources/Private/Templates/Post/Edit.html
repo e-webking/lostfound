@@ -20,12 +20,12 @@
 	               	<f:if condition="{found}">
                 		<f:then>
 		               	<div class="btn upfound">
-		               		<input type="file" name="file[]" multiple  id="i_file" />
+		               		<input type="file" name="file[]" id="i_file" multiple="multiple" />
 		               	</div>
 		               	</f:then>
 		               	<f:else>
 		               	<div class="btn uplost">
-		               		<input type="file" name="file[]" multiple  id="i_file" />
+		               		<input type="file" name="file[]" id="i_file" multiple="multiple" />
 		               	</div>
 		               	</f:else>
 	               	</f:if>
@@ -82,8 +82,8 @@
 		      					<div id="suggesstion-box" class="newBox"></div>
 		                    </div>
 		                    <div id="category_lost_select" class="input-field col s12">
-		                    	<f:form.select name="post[category]" id="categories" property="category" class="" options="{categories}" optionLabelField="name" additionalAttributes="{style:'font-size: 22px;', required:'', aria-required: 'true'}" prependOptionLabel="Виберіть категорію" />
-		                    	<label class="active" for="categories" data-error="Будь ласка, заповніть це поле">Категорія *</label>
+		                    	<f:form.select name="post[category]" id="categories" property="category" class="" options="{categories}" optionLabelField="name" additionalAttributes="{style:'font-size: 22px;', required: 'required'}" prependOptionLabel="Виберіть категорію" />
+		                    	<label class="active" for="categories">Категорія *</label>
 		                    </div>
 		                    <div class="input-field col s12">
 		                    	 <f:form.textarea name="post[description]" rows="5" cols="50" property="description" id="new-description" class="validate newAds materialize-textarea" value="{post.description}" additionalAttributes="{autocomplete:'off', maxlength:600}"/>
@@ -149,49 +149,51 @@
 		$('select').material_select();
 		$('#support_button').hide();
 		//$('.time').mask('23:59');
+		
+		//Setting custom validity
+		$('#categories').on('invalid', function(e) {
+			e.target.setCustomValidity("");
+			if (!e.target.validity.valid) {
+				e.target.setCustomValidity("Будь ласка, заповніть це поле");
+			}
+		});
+		
+		$('#categories').on('change', function(e) {
+			 e.target.setCustomValidity("");
+			 if (!e.target.validity.valid) {
+				 e.target.setCustomValidity("Будь ласка, заповніть це поле");
+			 }
+		});
 
 		$('.phone').mask('+38(000)0000000');
 
-					var options = {
-						target:   '#output',   // target element(s) to be updated with server response
-						beforeSubmit:  beforeSubmit,// pre-submit callback
-						success: getAvatar,
-						resetForm: true        // reset the form after successful submit
-					};
+		var options = {
+			target:   '#output',   // target element(s) to be updated with server response
+			beforeSubmit:  beforeSubmit,// pre-submit callback
+			success: getAvatar,
+			resetForm: true        // reset the form after successful submit
+		};
 
-					$('#MyUploadForm').submit(function() {
-						$(this).ajaxSubmit(options);  //Ajax Submit form
-						// return false to prevent standard browser submit and page navigation
-						//$('.modal_close').click();
-						//location.reload(true);
-						//location.reload(true);
+		$('#MyUploadForm').submit(function() {
+			$(this).ajaxSubmit(options);  //Ajax Submit form
+			// return false to prevent standard browser submit and page navigation
+			//$('.modal_close').click();
+			//location.reload(true);
+			//location.reload(true);
+			return false;
+		});
 
-						return false;
-
-					});
-
-		$(".cities").keyup(function(){
-			$.ajax({
-				type: "POST",
-				url: "/post/getCity",
-				data:'city='+$(this).val(),
-				beforeSend: function(){
-
-				},
-				success: function(data){
-					var results = jQuery.parseJSON(data);
-					var options = '';
-
-					for (var i = 0; i < results.length; i++) {
-						options += '<li onClick="selectCountry(\''+results[i].name+', '+results[i].region+'\')" style="color: #26a69a;cursor: pointer;">' + results[i].name + ', '+results[i].region +  '</li>';
-					}
-
-					if(options.length>1) {
-						$("#suggesstion-box").show();
-						$("#suggesstion-box").html(options);
-					}
-				}
-			});
+		$('#new-city').autocomplete({
+			serviceUrl: '/post/getCity',
+			paramName:'city',
+			minChars: 1,
+			transformResult: function(response) {
+				return {
+					suggestions: $.map(jQuery.parseJSON(response), function(dataItem) {
+						return { value: dataItem.name, data: dataItem.region };
+					})
+				};
+			}
 		});
 
 	});
@@ -249,8 +251,9 @@
 		});
 	}
 	$('#i_file').change( function(event) {
+		$("#disp_tmp_path").fadeIn("fast").html("");
 		$('.file-path-wrapper').show();
-		for (var i= 0; i<event.target.files.length; i++){
+		for (var i= 0; i < event.target.files.length; i++) {
 			var tmppath = URL.createObjectURL(event.target.files[i]);
 			$("#disp_tmp_path").fadeIn("fast").append( "<img src="+tmppath+" width='200' id='ImagePrevie' style='display: inline-block;margin-right: 10px;' />" );
 		}

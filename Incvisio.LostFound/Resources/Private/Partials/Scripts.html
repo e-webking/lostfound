@@ -132,21 +132,6 @@
             	e.target.setCustomValidity(errmsg);
             };
          }
-         var fslelements = document.getElementsByTagName("SELECT");
-         for (var i = 0; i < fslelements.length; i++) {
-             fslelements[i].oninvalid = function(e) {
-                  if (!e.target.validity.valid) {
-                 	switch(e.target.id){
-                      	case 'categories':
-                     	e.target.setCustomValidity("Будь ласка, заповніть це поле");break;
-                      	default : e.target.setCustomValidity("");break;
-                  	}
-                 }
-              };
-             fslelements[i].oninput = function(e) {
-             	e.target.setCustomValidity(errmsg);
-             };
-          }
      });
      
      $('.modal-trigger').leanModal({top:100, closeButton: ".modal-close" });

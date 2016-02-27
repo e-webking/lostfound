@@ -20,12 +20,12 @@
                 	<f:if condition="{found}">
                 		<f:then>
 		               	<div class="btn upfound">
-		               		<input type="file" name="file[]" multiple  id="i_file" />
+		               		<input type="file" name="file[]" multiple="multiple"  id="i_file" />
 		               	</div>
 		               	</f:then>
 		               	<f:else>
 		               	<div class="btn uplost">
-		               		<input type="file" name="file[]" multiple  id="i_file" />
+		               		<input type="file" name="file[]" multiple="multiple"  id="i_file" />
 		               	</div>
 		               	</f:else>
 	               	</f:if>
@@ -136,6 +136,22 @@
 		$('#support_button').hide();
 		//$('.time').mask('23:59');
 
+		//Setting custom validity
+		
+		$('#categories').bind('invalid', function(e) {
+			 e.target.setCustomValidity("");
+			 if (!e.target.validity.valid) {
+				 e.target.setCustomValidity("Будь ласка, заповніть це поле");
+			 }
+		});
+		
+		$('#categories').on('change', function(e) {
+			 e.target.setCustomValidity("");
+			 if (!e.target.validity.valid) {
+				 e.target.setCustomValidity("Будь ласка, заповніть це поле");
+			 }
+		});
+		
 		$('.phone').mask('+38(000)0000000');
 
 		var options = {
@@ -147,13 +163,7 @@
 
 		$('#MyUploadForm').submit(function() {
 			$(this).ajaxSubmit(options);  //Ajax Submit form
-			// return false to prevent standard browser submit and page navigation
-			//$('.modal_close').click();
-			//location.reload(true);
-			//location.reload(true);
-
 			return false;
-
 		});
 					
 		$('#new-city').autocomplete({
@@ -224,8 +234,8 @@
 		});
 	}
 	$('#i_file').change( function(event) {
+		$("#disp_tmp_path").fadeIn("fast").html("");
 		$('.file-path-wrapper').show();
-		console.log();
 		for (var i= 0; i<event.target.files.length; i++){
 			var tmppath = URL.createObjectURL(event.target.files[i]);
 			$( "#disp_tmp_path").fadeIn("fast").append( "<img src="+tmppath+" width='200' id='ImagePrevie' style='display: inline-block;margin-right: 10px;' />" );

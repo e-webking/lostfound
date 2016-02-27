@@ -63,6 +63,14 @@ h4{color:#FDA400;font-size: 22px; margin:0 0 20px !important; line-height:normal
 h5{color:#979797; font-size:16px; margin:0 0 10px !important; line-height:normal;}
 h6{color:#A9D3DF; margin:0 0 10px !important; line-height:normal;}
 
+#categories {
+	display: block !important;
+	opacity:0;
+	position: absolute;
+	top: 0px;
+	z-index: -1;
+}
+
 .color1{background:#9CF;}
 .color2{background:#C9F;}
 .color3{background:#9FC;}
@@ -392,8 +400,8 @@ textarea#textarea1 {overflow: auto;}
     font-weight:normal; height:35px; margin:5px 0 20px 10px;
 	}
 .p-profile .advertTextBox{   
-    border-bottom: 1px solid #cce4e8; overflow: hidden;
-    font-size: 20px; font-weight:normal; margin:5px 0 15px 10px;
+    border-bottom: 1px solid #cce4e8; font-size: 20px; font-weight:normal; margin:5px 0 15px 10px;
+    overflow-wrap: break-word; word-wrap: break-word; -ms-word-break: break-all; word-break: break-all; word-break: break-word; -ms-hyphens: auto;-moz-hyphens: auto;-webkit-hyphens: auto; hyphens: auto;
 	}
 	.advertTextBox .desc {
 		line-height: 1.3;
@@ -522,6 +530,10 @@ footer .donateCol{text-align:center;}
 #found-input {background-position:95% center;}
 footer .footerLogo{position:relative; float:left;}
 footer .footerLogo .responsive-img {max-width:100%;}
+.pagination li {padding: 0px 7px}
+.newpad {padding: 12px 7px}
+.newpad > .rightText { margin-top: -2px;}
+.newpad > .leftText { margin-top: -2px;}
 }
 
 @media (max-width:600px) {
@@ -545,8 +557,6 @@ header .socialList ul li a{padding:0px 10px 10px 10px;}
 .tpBox .cards{padding-top:0px; padding-bottom:20px;}
 
 .found {background-position: 150px 50px;}
-.pagination li {padding: 0px 8px}
-.newpad {padding: 8px}
 
 
 /*--- Add New Css for mobile (23-2-2016) ---*/
