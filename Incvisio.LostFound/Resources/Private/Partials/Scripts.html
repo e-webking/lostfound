@@ -79,14 +79,17 @@
 			return false;
 		});
 	});
-	</script>
-	<script type="text/javascript">
+	
      $( document ).ready(function() {
          $('#facebook').click(function(e){
              e.preventDefault();
              facebookLogin();
          });
          
+         $('.dropdown-content li').on('mouseover', function(){
+         	$('.dropdown-content li').removeClass('selected');
+         	$(this).addClass('selected');
+         });
  
          // Notification system for frontend;
          toastr.options = {
@@ -108,9 +111,47 @@
          for (var key in messageRecords) {
              toastr[key](messageRecords[key]);
          }
+         
+         
+         var errmsg="";
+         var felements = document.getElementsByTagName("INPUT");
+
+         for (var i = 0; i < felements.length; i++) {
+            felements[i].oninvalid = function(e) {
+                 if (!e.target.validity.valid) {
+                	switch(e.target.id){
+                    	case 'new-title':
+                     	case 'new-city':
+                    	e.target.setCustomValidity("Будь ласка, заповніть це поле");break;
+                    	
+                     	default : e.target.setCustomValidity("");break;
+                 	}
+                }
+             };
+            felements[i].oninput = function(e) {
+            	e.target.setCustomValidity(errmsg);
+            };
+         }
+         var fslelements = document.getElementsByTagName("SELECT");
+         for (var i = 0; i < fslelements.length; i++) {
+             fslelements[i].oninvalid = function(e) {
+                  if (!e.target.validity.valid) {
+                 	switch(e.target.id){
+                      	case 'categories':
+                     	e.target.setCustomValidity("Будь ласка, заповніть це поле");break;
+                      	default : e.target.setCustomValidity("");break;
+                  	}
+                 }
+              };
+             fslelements[i].oninput = function(e) {
+             	e.target.setCustomValidity(errmsg);
+             };
+          }
      });
+     
      $('.modal-trigger').leanModal({top:100, closeButton: ".modal-close" });
      $("#modal-about").leanModal({top:100, closeButton: ".modal-close" });
+     
  </script>
 </f:section>
 

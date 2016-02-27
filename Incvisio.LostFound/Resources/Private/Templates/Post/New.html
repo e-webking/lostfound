@@ -58,24 +58,24 @@
 	
 		                <div class="row">
 		                    <div class="input-field col s12">
-		                    	<f:form.textfield name="title" property="title" id="new-title" class="validate nartn newAds" placeholder="" additionalAttributes="{autocomplete:'off',required: 'required'}"/>
+		                    	<f:form.textfield name="post[title]" property="title" id="new-title" class="validate nartn newAds" placeholder="" additionalAttributes="{autocomplete:'off',required: 'required'}"/>
 		      					<label class="active" for="title">Назва *</label>
 		                    </div>
 		                    <div class="input-field col s12">
-		                    	 <f:form.textfield name="city" property="city" id="new-city" class="validate nartn newAds cities" placeholder="" additionalAttributes="{required: 'required',autocomplete:'off'}"/>
+		                    	 <f:form.textfield name="post[city]" property="city" id="new-city" class="validate nartn newAds cities" placeholder="" additionalAttributes="{required: 'required',autocomplete:'off'}"/>
 		      					<label class="active" for="city">Місто *</label>
 		      					<div id="suggesstion-box" class="newBox"></div>
 		                    </div>
 		                    <div id="category_lost_select" class="input-field col s12">
-		                    	<f:form.select id="categories" property="category" class="" options="{categories}" optionLabelField="name" additionalAttributes="{required:'required', style:'font-size: 22px;'}" prependOptionLabel="Виберіть категорію" />
+		                    	<f:form.select name="post[category]" id="categories" property="category" class="" options="{categories}" optionLabelField="name" additionalAttributes="{style:'font-size: 22px;', required:'required'}" prependOptionLabel="Виберіть категорію" />
 		                    	<label class="active" for="categories">Категорія *</label>
 		                    </div>
 		                    <div class="input-field col s12">
-		                    	 <f:form.textarea name="description" rows="5" cols="50" property="description" id="new-description" class="validate newAds materialize-textarea" placeholder="" additionalAttributes="{autocomplete:'off', maxlength: 600}"/>
+		                    	 <f:form.textarea name="post[description]" rows="5" cols="50" property="description" id="new-description" class="validate newAds materialize-textarea" placeholder="" additionalAttributes="{autocomplete:'off', maxlength: 600}"/>
 		      					<label class="active" for="txtDescription">Опис</label>
 		                    </div>
 		                    <div class="input-field col s12">
-		                    	 <f:form.textfield name="place" property="place" id="new-place" class="validate newAds" placeholder="" additionalAttributes="{autocomplete:'off', maxlength: 250}"/>
+		                    	 <f:form.textarea name="post[place]" rows="5" cols="50" property="place" id="new-place" class="validate newAds materialize-textarea" placeholder="" additionalAttributes="{autocomplete:'off', maxlength: 60}"/>
 		      					<label class="active" for="txtPlace">Місце</label>
 		                    </div>
 		                    <div class="input-field col s12">

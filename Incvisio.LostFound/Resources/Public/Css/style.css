@@ -194,6 +194,7 @@ textarea#textarea1 {overflow: auto;}
 .input-field .materialize-textarea {
 	line-height: 1.0;
 	font-size: 20px;
+	overflow-y: auto;
 }
 
 .linkText{display:inline-block; font-size:16px;}
@@ -461,8 +462,10 @@ textarea#textarea1 {overflow: auto;}
 .autocomplete-suggestions { display: none; background: #EEE none repeat scroll 0% 0%; line-height: 1.5; padding: 10px 0;}
 .autocomplete-suggestions .autocomplete-suggestion { padding: 5px 20px; color: #26a69a; cursor: pointer;}
 .autocomplete-suggestions .autocomplete-selected { background:#c0c0c0 !important;}
-.dropdown-content li.active {background-color: transparent !important;}
-.dropdown-content li.selected {background-color: #fff !important;}
+
+.dropdown-content {background-color: #eee; color: #26a69a;}
+.dropdown-content li.selected {background-color: #c0c0c0!important;}
+.dropdown-content li.active {background-color: transperant!important;}
 
 .l-btn {
     padding: 0 10px 10px 0 !important;
@@ -542,6 +545,8 @@ header .socialList ul li a{padding:0px 10px 10px 10px;}
 .tpBox .cards{padding-top:0px; padding-bottom:20px;}
 
 .found {background-position: 150px 50px;}
+.pagination li {padding: 0px 8px}
+.newpad {padding: 8px}
 
 
 /*--- Add New Css for mobile (23-2-2016) ---*/

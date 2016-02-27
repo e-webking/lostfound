@@ -128,11 +128,7 @@ var Advert = {
                     })
                 }
             }
-
-
         });
-
-
     },
 
     loadAdvert: function (lost_input, found_input, city_input, place_input, date_from, date_to, category_found, category_lost, page, adTyp){
@@ -159,16 +155,29 @@ var Advert = {
     },
     searchRender:function(){
 
-    	 $("#found-input").bind({
- 	        click: function () {
- 	            $("#found-input").attr('placeholder', 'Введіть текст для пошуку');
- 	            $("#found-input").css("font-size", "25px");
- 	        },
- 	        mouseleave: function(){
- 	            $("#found-input").attr('placeholder', 'Я знайшов');
- 	            $("#found-input").css("font-size", "3rem");
- 	        }
- 	    });
+    	if($(window).width() < 767) {
+    		 $("#found-input").bind({
+ 	 	        click: function () {
+ 	 	            $("#found-input").attr('placeholder', 'Введіть текст для пошуку');
+ 	 	            $("#found-input").css("font-size", "18px");
+ 	 	        },
+ 	 	        mouseleave: function(){
+ 	 	            $("#found-input").attr('placeholder', 'Я знайшов');
+ 	 	            $("#found-input").css("font-size", "3rem");
+ 	 	        }
+ 	 	    });
+    	} else {
+	    	 $("#found-input").bind({
+	 	        click: function () {
+	 	            $("#found-input").attr('placeholder', 'Введіть текст для пошуку');
+	 	            $("#found-input").css("font-size", "25px");
+	 	        },
+	 	        mouseleave: function(){
+	 	            $("#found-input").attr('placeholder', 'Я знайшов');
+	 	            $("#found-input").css("font-size", "3rem");
+	 	        }
+	 	    });
+    	}
 
         $("#found-input").keyup(function(){
             $("#foundLabelFirst").hide();
@@ -216,17 +225,32 @@ var Advert = {
                 }
             }
         });
-
-        $("#lost-input").bind({
-	        click: function () {
-	            $("#lost-input").attr('placeholder', 'Введіть текст для пошуку');
-	            $("#lost-input").css("font-size", "25px");
-	        },
-	        mouseleave: function(){
-	            $("#lost-input").attr('placeholder', 'Я загубив');
-	            $("#lost-input").css("font-size", "3rem");
-	        }
-	    });
+   
+		if($(window).width() < 767) {
+			$("#lost-input").bind({
+		        click: function () {
+		            $("#lost-input").attr('placeholder', 'Введіть текст для пошуку');
+		            $("#lost-input").css("font-size", "18px");
+		        },
+		        mouseleave: function(){
+		            $("#lost-input").attr('placeholder', 'Я загубив');
+		            $("#lost-input").css("font-size", "3rem");
+		        }
+		    });
+		} else {
+			$("#lost-input").bind({
+		        click: function () {
+		            $("#lost-input").attr('placeholder', 'Введіть текст для пошуку');
+		            $("#lost-input").css("font-size", "25px");
+		        },
+		        mouseleave: function(){
+		            $("#lost-input").attr('placeholder', 'Я загубив');
+		            $("#lost-input").css("font-size", "3rem");
+		        }
+		    });
+		}
+    	
+        
         
         $("#lost-input").keyup(function(){
             $("#lostlabelFirst").hide();
