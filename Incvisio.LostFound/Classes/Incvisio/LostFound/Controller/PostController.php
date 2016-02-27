@@ -88,11 +88,18 @@ class PostController extends MainController {
 	protected $resourceManager;
 	
 	/**
+	 * 
+	 * @var \number
+	 */
+	protected $thumbSize = 150;
+	
+	/**
 	 *
 	 * @param string $type        	
 	 * @return void
 	 */
 	public function indexAction($type = NUll) {
+		
 		$args = $this->request->getArguments ();
 		
 		if ($type == "lost") {
@@ -298,11 +305,16 @@ class PostController extends MainController {
 			for ($i=0; $i < count($_FILES['file']['name']); $i++) {
 				
 				if ($_FILES['file']['name'][$i] != "") {
-					if (is_dir ( $uploaded_dir . $_FILES['file']['name'][$i] ) == false) {
-						move_uploaded_file ( $_FILES['file']['tmp_name'][$i], $uploaded_dir . $_FILES['file']['name'][$i] );
+					$filename = $_FILES['file']['name'][$i];
+					if (is_dir ( $uploaded_dir . $filename ) == false) {
+						
+						move_uploaded_file ( $_FILES['file']['tmp_name'][$i], $uploaded_dir . $filename );
 						$setFileName = $_FILES['file']['name'][$i];
+						//create a thumbnail
+						$this->scaleImage($uploaded_dir . $filename, $uploaded_dir . 'thumb_'.$filename, $this->thumbSize);
+						
 					} else {
-						$setFileName = $_FILES['file']['name'][$i].time(); // rename the file if another one exist
+						$setFileName = $filename.time(); // rename the file if another one exist
 						$new_dir = $uploaded_dir . $setFileName;
 						rename( $_FILES['file']['tmp_name'][$i], $new_dir );
 					}
@@ -526,19 +538,29 @@ class PostController extends MainController {
 	 * @return array.
 	 */
 	public function loadLost($lost_input, $city_input, $place_input, $date_from, $date_to, $category_lost, $page_position, $item_per_page) {
+		
 		$results = $this->postRepository->findWithFilterLost ( $lost_input, NULL, $city_input, $place_input, $date_from, $date_to, NULL, $category_lost, $page_position, $item_per_page );
 		$newResults = array ();
+		$uploaded_dir = __DIR__ . "/../../../../../../Packages/Application/Incvisio.LostFound/Resources/Public/Images/uploads/";
 		
 		if (count ( $results ) > 0) {
-			foreach ( $results as $result ) {
-				
+			
+			foreach ( $results as $result ) {	
 				$id = $result ['persistence_object_identifier'];
 				$image = $this->imageRepository->findByPost ( $id )->getFirst ();
+				$imageName = 'NULL';
+				$thumb = 'NULL';
 				
-				if (! empty ( $image )) {
-					$imageName = $image->getImgTitle ();
-				} else {
-					$imageName = 'NULL';
+				if (!empty($image)) {
+					$imageName = $image->getImgTitle();
+					if (file_exists($uploaded_dir . 'thumb_' .$imageName)) {
+						$thumb = 'thumb_' .$imageName;
+					} else {
+						if (file_exists($uploaded_dir . $imageName)) {
+							if ($this->scaleImage($uploaded_dir . $imageName, $uploaded_dir . 'thumb_'.$imageName, $this->thumbSize))
+								$thumb = 'thumb_' .$imageName;
+						}
+					}
 				}
 				
 				$title = $result ['title'];
@@ -563,6 +585,7 @@ class PostController extends MainController {
 						"description" => $desc,
 						"active" => $active,
 						"image" => $imageName,
+						"thumb" => $thumb,
 						"place" => $place,
 						"city" => $city,
 						"timelostorfound" => $timelostorfound,
@@ -585,19 +608,29 @@ class PostController extends MainController {
 	 * @return array.
 	 */
 	public function loadFound($found_input, $city_input, $place_input, $date_from, $date_to, $category_founds, $page_position, $item_per_page) {
+		
 		$results = $this->postRepository->findWithFilterFound ( NULL, $found_input, $city_input, $place_input, $date_from, $date_to, $category_founds, NULL, $page_position, $item_per_page );
 		$newResults = array ();
+		$uploaded_dir = __DIR__ . "/../../../../../../Packages/Application/Incvisio.LostFound/Resources/Public/Images/uploads/";
 		
 		if (count ( $results ) > 0) {
 			foreach ( $results as $result ) {
 				
 				$id = $result ['persistence_object_identifier'];
 				$image = $this->imageRepository->findByPost ( $id )->getFirst ();
+				$imageName = 'NULL';
+				$thumb = 'NULL';
 				
-				if (! empty ( $image )) {
-					$imageName = $image->getImgTitle ();
-				} else {
-					$imageName = 'NULL';
+				if (!empty($image)) {
+					$imageName = $image->getImgTitle();
+					if (file_exists($uploaded_dir . 'thumb_' .$imageName)) {
+						$thumb = 'thumb_' .$imageName;
+					} else {
+						if (file_exists($uploaded_dir . $imageName)) {
+							if ($this->scaleImage($uploaded_dir . $imageName, $uploaded_dir . 'thumb_'.$imageName, $this->thumbSize))
+								$thumb = 'thumb_' .$imageName;
+						}
+					}
 				}
 				
 				$title = $result ['title'];
@@ -622,6 +655,7 @@ class PostController extends MainController {
 						"active" => $active,
 						"description" => $desc,
 						"image" => $imageName,
+						"thumb" => $thumb,
 						"place" => $place,
 						"city" => $city,
 						"timelostfound" => $timelostorfound,
@@ -657,6 +691,7 @@ class PostController extends MainController {
 	 * @return void
 	 */
 	public function createAction() {
+		
 		$args = $this->request->getArguments ();
 		$newPost = new Post ();
 		$newPost->setDescription ( $args ["newPost"] ["description"] );
@@ -677,18 +712,23 @@ class PostController extends MainController {
 		$this->postRepository->add ( $newPost );
 		
 		if (isset ( $_FILES ) && ! empty ( $_FILES )) {
+			
 			$count = 0;
 			$uploaded_dir = __DIR__ . "/../../../../../../Packages/Application/Incvisio.LostFound/Resources/Public/Images/uploads/";
+			
 			foreach ( $_FILES as $file ) {
+				
 				foreach ( $file ['name'] as $filename ) {
 					
 					if ($file ['name'] [$count] != "") {
 						$file_tmp = $file ['tmp_name'] [$count];
 						if (is_dir ( $uploaded_dir . $filename ) == false) {
 							move_uploaded_file ( $file_tmp, $uploaded_dir . $filename );
+							//create a thumbnail
+							$this->scaleImage($uploaded_dir . $filename, $uploaded_dir . 'thumb_'.$filename, $this->thumbSize);
 							$setFileName = $filename;
 						} else {
-							$setFileName = time (). $filename ; // rename the file if another one exist
+							$setFileName = $filename . time(); // rename the file if another one exist
 							$new_dir = $uploaded_dir . $setFileName;
 							rename ( $file_tmp, $new_dir );
 						}
@@ -795,6 +835,54 @@ class PostController extends MainController {
 			}
 		}
 	}
+	
+	/**
+	 * 
+	 * @param string $source
+	 * @param string $destination
+	 * @param number $maxSize
+	 */
+	protected function scaleImage($source, $destination, $maxSize) {
+		
+		list($width, $height, $type, $attr) = getimagesize($source);
+		$imageScale = min ($maxSize / $width, $maxSize / $height );
+		$newWidth = ceil($imageScale * $width);
+		$newHeight = ceil($imageScale * $height);
+
+		switch ($type) {
+			case 1:
+				$resOrg = imagecreatefromgif($source);
+				break;
+			case 3:
+				$resOrg = imagecreatefrompng($source);
+				break;
+			default:
+				$resOrg = imagecreatefromjpeg($source);
+				break;
+		}
+		if (isset($resOrg)){
+			if (($resScaled = imagescale($resOrg, $newWidth, $newHeight)) !== FALSE) {
+				switch ($type) {
+					case 1:
+						imagegif($resScaled, $destination);
+						break;
+					case 3:
+						imagepng($resScaled, $destination);
+						break;
+					default:
+						imagejpeg($resScaled, $destination);
+				}
+				imagedestroy($resScaled);
+			}
+			
+			imagedestroy($resOrg);
+			
+			return true;
+		} else {
+			return false;
+		}
+	}
+	
 	public function normal_resize_image($source, $destination, $image_type, $max_size, $image_width, $image_height, $quality) {
 		if ($image_width <= 0 || $image_height <= 0) {
 			return false;
@@ -813,9 +901,9 @@ class PostController extends MainController {
 		$new_height = ceil ( $image_scale * $image_height );
 		
 		$new_canvas = imagecreatetruecolor ( $new_width, $new_height ); // Create a new true color image
-		                                                                   
+		$image = imagecreatefromjpeg($source);
 		// Copy and resize part of an image with resampling
-		if (imagecopyresampled ( $new_canvas, $source, 0, 0, 0, 0, $new_width, $new_height, $image_width, $image_height )) {
+		if (imagecopyresampled ( $new_canvas, $image, 0, 0, 0, 0, $new_width, $new_height, $image_width, $image_height )) {
 			$this->save_image ( $new_canvas, $destination, $image_type, $quality ); // save resized image
 		}
 		

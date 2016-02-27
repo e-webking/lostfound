@@ -15,7 +15,14 @@
 							<img src="{f:uri.resource(path: 'Images/noimage.gif')}" style="width: 100%;">
 						</f:then>
 						<f:else>
-							<img src="{f:uri.resource(path: 'Images/uploads/{post.image}')}" style="width: 100%;">
+							<f:if condition="{post.thumb}=='NULL'">
+								<f:then>
+									<img src="{f:uri.resource(path: 'Images/uploads/{post.image}')}" style="width: 100%;">
+								</f:then>
+								<f:else>
+									<img src="{f:uri.resource(path: 'Images/uploads/{post.thumb}')}" style="width: 100%;">
+								</f:else>
+							</f:if>
 						</f:else>
 					</f:if>
 				</div>
