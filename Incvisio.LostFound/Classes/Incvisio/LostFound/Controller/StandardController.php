@@ -57,6 +57,18 @@ class StandardController extends \TYPO3\Flow\Mvc\Controller\ActionController {
 	 * @var \TYPO3\Flow\Session\SessionInterface
 	 */
 	protected $session;
+	
+	/**
+	 * @var string
+	 * @Flow\Inject(setting="strategies.Liqpay.signature")
+	 */
+	protected $liqSignature;
+	
+	/**
+	 * @var string
+	 * @Flow\Inject(setting="strategies.Liqpay.data")
+	 */
+	protected $liqData;
 
 	/**
 	 * Initialize view action
@@ -140,7 +152,10 @@ class StandardController extends \TYPO3\Flow\Mvc\Controller\ActionController {
 	 * @return void
 	 */
 	public function donateAction(){
-
+		$this->view->assignMultiple(array(
+				'liq_signature' => $this->liqSignature,
+				'liq_data' => $this->liqData
+		));
 	}
 
 }

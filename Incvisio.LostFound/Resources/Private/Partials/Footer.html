@@ -188,10 +188,13 @@
         </div>
         <div class="row">
             <div class="col s12 m12 center-align">
-              	<p><img src="{f:uri.resource(path: 'Images/visa_master-card_liqpay.jpg')}" class="responsive-img" alt="Visa Master card logo" /></p>
-                <p><a href="https://www.liqpay.com/" class="waves-effect waves-light btn-large amber lighten-1 supportButton">support throught liqpay</a></p>
+            	<p><img src="{f:uri.resource(path: 'Images/visa_master-card_liqpay.jpg')}" class="responsive-img" alt="Visa Master card logo" /></p>
+	            <p><form method="post" accept-charset="utf-8" action="https://www.liqpay.com/api/3/checkout">
+            		<input type="hidden" name="data" value="{liq_data}" />
+					<input type="hidden" name="signature" value="{liq_signature}" />
+	                <button name="btn_text" class="waves-effect waves-light btn-large amber lighten-1 supportButton">support throught liqpay</button>
+	            </form></p>                
             </div>
-            
         </div>
    </div>
 </div>

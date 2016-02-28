@@ -51,4 +51,7 @@ Incvisio:
         app_secret: 'vNEwTMhTSeDJx0rqqlx2AhsP'
         redirect_uri: 'http://lostfound.armtechnologies.com/incvisio.lostfound/login/social?social=googleplus'
       Crop:
-        comment: 200 
+        comment: 200
+      Liqpay:
+        signature: Zh8G/lTg9FLGH5UKYocuuCC0LcA=
+        data: eyJ2ZXJzaW9uIjozLCJhY3Rpb24iOiJwYXlkb25hdGUiLCJwdWJsaWNfa2V5IjoiaTEyNDg1NTYzNDM0IiwiYW1vdW50IjoiNSIsImN1cnJlbmN5IjoiVUFIIiwiZGVzY3JpcHRpb24iOiLQnNC+0Lkg0YLQvtCy0LDRgCIsInR5cGUiOiJkb25hdGUiLCJsYW5ndWFnZSI6ImVuIn0=
