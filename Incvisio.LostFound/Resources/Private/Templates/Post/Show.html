@@ -45,7 +45,7 @@
                  </f:else>
               </f:if>
            </div>
-	       <div class="commentGrid">
+	       <div class="commentGrid hide-on-small-only">
 	           	<f:security.ifHasRole role="User">
 	           		<f:then>
 	           			<f:render partial="Post/Show/LoggedComments" arguments="{_all}" />
@@ -67,6 +67,32 @@
 					</f:form>
 				</div>
 			</div>
+			<!-- Mobile view -->
+			<f:security.ifHasRole role="User">
+				<f:if condition="{currentUserInd.0.accountidentifier}=={advertUser.0.accountidentifier}">
+				<div class="commentGrid hide-on-med-and-up">
+					<div class="commentBox">
+					    <div class="col s12 nopadding">
+							<div class="col s12 m6 l-btn">
+								<f:link.action action="edit" arguments="{post:post.PersistenceObjectIdentifier}" controller="Post" style="width: 100%;" class="waves-effect waves-light btn-large amber lighten-1">
+									Редагувати
+								</f:link.action>
+							</div>
+							<div class="col s12 m6 r-btn">
+								<f:link.action action="delete" arguments="{post:post.PersistenceObjectIdentifier}" controller="Post" style="width: 100%;" class="waves-effect waves-light btn-large amber lighten-1 " onclick="return confirm('Ви впевнені, що хочете видалити.');">
+									Видалити
+								</f:link.action>
+							</div>
+						</div>
+						<div class="col s12 imfb">
+							<f:link.action action="markFound" arguments="{post:post.PersistenceObjectIdentifier}" controller="Post" class="waves-effect waves-light btn-large amber lighten-1 imfound" onclick="return confirm('Ви впевнені, що повернули (знайшли). Змінити даний статус вже буде неможливо.');">
+								Я знайшов
+							</f:link.action>
+					  </div>
+					</div>
+				</div>
+				</f:if>
+			</f:security.ifHasRole>
 		</div>
 		<div class="col s12 m5 offset-m2 mobBG rightCol">
            	<div class="">
@@ -121,7 +147,32 @@
                    </div>
                 </div>
             </div>
-       </div>
+       	</div>
+		<!-- Mobile view only -->
+		<div class="col s12 hide-on-med-and-up">
+			<div class="commentGrid">
+	           	<f:security.ifHasRole role="User">
+	           		<f:then>
+	           			<f:render partial="Post/Show/LoggedCommentsMobile" arguments="{_all}" />
+	           		</f:then>
+	           		<f:else>
+	           			<f:render partial="Post/Show/NonLoggedComments" arguments="{_all}" />
+	           		</f:else>
+	           	</f:security.ifHasRole>
+	           	<div class="commentBox">
+					<f:form method="post" action="createComment" controller="Post" name="newComment" enctype="multipart/form-data">
+						<f:form.hidden property="post" value="{post}"/>
+						<div class="input-field col s12" style="padding: 0px;">
+							<textarea required="required" class="materialize-textarea" name="commentsMessage" id="textarea2"></textarea>
+							<label for="textarea2">Текст коментаря</label>
+						</div>
+						<f:form.button type="submit"  class="waves-effect waves-light btn-large amber lighten-1">
+							Додати коментар
+						</f:form.button>
+					</f:form>
+				</div>
+			</div>
+		</div>
 	</div>
 </div>
 <script type="text/javascript">
