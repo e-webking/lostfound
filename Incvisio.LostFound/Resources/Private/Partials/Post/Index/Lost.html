@@ -1,3 +1,24 @@
+<div class="col s12 m5 mobBG rightCol hide-on-med-and-up">
+	<div class="col s12 addBtnCol"> 
+       	<a class="waves-effect waves-light btn-large amber lighten-1 add" href="/post/new/?type={advertType}"> 
+           <i class="fa fa-plus"></i> <span class="button_span_add">Додати загублене</span>
+        </a> 
+     </div>
+     <f:form class="col s12" id="form_lost_filter" action="index" name="frmLostFilter">
+      <f:form.hidden name="type" value="{advertType}"/>
+     	<div class="row">
+            <div class="input-field col s12">
+              <label for="city">Фільтр:</label>
+              <input placeholder="Місто" id="city_filtr" value="" type="text" class="validate">
+              <div id="suggesstion-box"></div>
+            </div>
+            <div id="category_lost_select" class="input-field col s12">
+            	<f:form.select id="category_lost" property="category"  options="{categories}" optionLabelField="name" prependOptionLabel="Виберіть категорію" style="font-size: 22px;border-bottom: #CEE3E8;" />
+            </div>
+          </div>
+          <a class="waves-effect waves-light btn-large amber lighten-1" id="filter_button" onclick="Advert.render()">фільтрувати</a>
+     </f:form>
+</div>
 <div class="col s12 m5 leftCol">
 	<f:form id="searchLost" name="searchLost" action="index" controller="Post" method="post" additionalParams="{type:advertType,lost_input:search_field}">                   
                <f:form.hidden id="advTyp" name="type" value="{advertType}"/>
@@ -19,26 +40,26 @@
     <div id="item_lost"></div>
 </div>
 <!-- Right column -->
-<div class="col s12 m5 offset-m2 mobBG rightCol">
+<div class="col s12 m5 offset-m2 mobBG rightCol hide-on-small-only">
 	<div class="col s12 addBtnCol"> 
-             	<a class="waves-effect waves-light btn-large amber lighten-1 add" href="/post/new/?type={advertType}"> 
-                 	<i class="fa fa-plus"></i> <span class="button_span_add">Додати загублене</span>
-              </a> 
-           </div>
-           <f:form class="col s12" id="form_lost_filter" action="index" name="frmLostFilter">
-            <f:form.hidden name="type" value="{advertType}"/>
-           	<div class="row">
-                  <div class="input-field col s12">
-                    <label for="city">Фільтр:</label>
-                    <input placeholder="Місто" id="city_filtr" value="" type="text" class="validate">
-                    <div id="suggesstion-box"></div>
-                  </div>
-                  <div id="category_lost_select" class="input-field col s12">
-                  	<f:form.select id="category_lost" property="category"  options="{categories}" optionLabelField="name" prependOptionLabel="Виберіть категорію" style="font-size: 22px;border-bottom: #CEE3E8;" />
-                  </div>
-                </div>
-                <a class="waves-effect waves-light btn-large amber lighten-1" id="filter_button" onclick="Advert.render()">фільтрувати</a>
-           </f:form>
+       	<a class="waves-effect waves-light btn-large amber lighten-1 add" href="/post/new/?type={advertType}"> 
+           <i class="fa fa-plus"></i> <span class="button_span_add">Додати загублене</span>
+        </a> 
+     </div>
+     <f:form class="col s12" id="form_lost_filter" action="index" name="frmLostFilter">
+      <f:form.hidden name="type" value="{advertType}"/>
+     	<div class="row">
+            <div class="input-field col s12">
+              <label for="city">Фільтр:</label>
+              <input placeholder="Місто" id="city_filtr" value="" type="text" class="validate">
+              <div id="suggesstion-box"></div>
+            </div>
+            <div id="category_lost_select" class="input-field col s12">
+            	<f:form.select id="category_lost" property="category"  options="{categories}" optionLabelField="name" prependOptionLabel="Виберіть категорію" style="font-size: 22px;border-bottom: #CEE3E8;" />
+            </div>
+          </div>
+          <a class="waves-effect waves-light btn-large amber lighten-1" id="filter_button" onclick="Advert.render()">фільтрувати</a>
+     </f:form>
 </div>
 <script>
 	$( document ).ready(function() {

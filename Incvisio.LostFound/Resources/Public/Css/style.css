@@ -14,7 +14,7 @@ body{
   }
 
 /* Bootstrap Override Css */
-p {margin: 0 0 20px; line-height:24px;}
+p {margin: 0 0 20px 11px; line-height:24px;}
 hr{border-color:#ddd; border-style: solid; margin:25px 0;}
 a {color:#2E90AD; text-decoration:none;}
 a:hover{color:#ff9800;}
@@ -29,6 +29,9 @@ a:hover {
 -webkit-transition: ease-out 0s; -moz-transition: ease-out 0s;
 -o-transition: ease-out 0s; transition: ease-out 0s;
 }
+
+.rightCol a {color:#FFF; text-decoration:none;}
+.rightCol p {margin: 0 0 20px; line-height:24px;}
 
 input:-webkit-autofill,
 input:-webkit-autofill:hover,
@@ -80,8 +83,8 @@ h6{color:#A9D3DF; margin:0 0 10px !important; line-height:normal;}
 .icon-block .material-icons {font-size: inherit;}
 
 /*--- Top Header Css ---*/
-header{padding:20px 0; overflow:hidden;}
-header .logo{padding-top:26px !important; text-align:center;}
+header {padding:20px 0; overflow:hidden;}
+header .logo{padding-top:26px !important; padding-left:21px !important; text-align:center;}
 
 header .signIn{display:inline-block; float:right; text-decoration:none; padding:10px 0; color:#FFF;}
 header .signIn:hover{color:#ff9800;}
@@ -518,6 +521,7 @@ footer .footerLogo .responsive-img {max-width:70%;}
 }
 
 @media (max-width:992px) {
+header .logo {padding-left: 20px !important;}
 footer .donateCol{text-align:center;}
 #toast-container {max-width:88%; right:15%; top:7%;}
 .toast {float: right;}

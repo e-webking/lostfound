@@ -100,45 +100,43 @@ class PostController extends MainController {
 	 */
 	public function indexAction($type = NUll) {
 		
-		$args = $this->request->getArguments ();
+		$args = $this->request->getArguments();
 		
 		if ($type == "lost") {
 			
-			if (isset ( $args ['lost_input'] )) {
-				$this->view->assign ( 'search_field', $args ['lost_input'] );
-				$this->getPostsAction ( $args ['lost_input'], NULL, NULL, NULL, NULL, NULL, 'lost' );
-				$count = $this->postRepository->countLost ( $args ['lost_input'] );
-				if ($count ['number'] == 0) {
-					if (isset ( $args ['lost_input'] )) {
-						$this->redirectToUri ( "/post?type=lost" );
-					} elseif (isset ( $args ['found_input'] )) {
-						$this->redirectToUri ( "/post?type=found" );
-					}
+			if (isset( $args['lost_input'] )) {
+				$search_field = $args['lost_input'];
+				$this->view->assign( 'search_field',  $search_field);
+				$this->getPostsAction( $search_field, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'lost' );
+				
+				$count = $this->postRepository->countLost( $search_field );
+				$this->view->assign('count', $count);
+				if ($count['number'] == 0) {
+					$this->redirectToUri( "/post?type=lost" );
 				}
 			} else {
 				$posts = $this->postRepository->findByLost ( 1 );
-				$this->view->assign ( 'posts', $posts );
+				$this->view->assign('posts', $posts );
 			}
-		} else {
+		}
+		if ($type == "found") {
 			
-			if (isset ( $args ['found_input'] )) {
-				$this->view->assign ( 'search_field', $args ['found_input'] );
-				$this->getPostsAction ( NULL, $args ['found_input'], NULL, NULL, NULL, NULL, NULL, 'found' );
-				$count = $this->postRepository->countLost ( $args ['found_input'] );
-				if ($count ['number'] == 0) {
-					if (isset ( $args ['lost_input'] )) {
-						$this->redirectToUri ( "/post?type=lost" );
-					} elseif (isset ( $args ['found_input'] )) {
-						$this->redirectToUri ( "/post?type=found" );
-					}
+			if (isset( $args['found_input'] )) {
+				$search_field = $args['found_input'];
+				$this->view->assign('search_field',  $search_field);
+				$this->getPostsAction( NULL, $search_field, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'found' );
+				$count = $this->postRepository->countFound($search_field);
+				$this->view->assign('count', $count);
+				if ($count['number'] == 0) {
+					$this->redirectToUri ( "/post?type=found" );
 				}
 			} else {
-				$posts = $this->postRepository->findByFound ( 1 );
-				$this->view->assign ( 'posts', $posts );
+				$posts = $this->postRepository->findByFound( 1 );
+				$this->view->assign( 'posts', $posts );
 			}
 		}
 		
-		$facebook_appid = $this->facebookService->getAppId ();
+		$facebook_appid = $this->facebookService->getAppId();
 		$facebook_redirecturi = $this->facebookService->getRedirectUri ();
 		
 		$this->view->assignMultiple ( array (
@@ -146,9 +144,9 @@ class PostController extends MainController {
 				'facebook_redirecturi' => $facebook_redirecturi 
 		) );
 		
-		$this->view->assign ( 'categories', $this->categoryRepository->findAll () );
+		$this->view->assign( 'categories', $this->categoryRepository->findAll() );
 		
-		$this->view->assign ( 'advertType', $type );
+		$this->view->assign( 'advertType', $type );
 	}
 	
 	/**
@@ -282,6 +280,18 @@ class PostController extends MainController {
 	 */
 	public function updateAction() {
 		$args = $this->request->getArguments ();
+		
+		//Check the city
+		$cityNameArr =  explode(',', $args["newPost"]["city"]);
+		$addedCity = $cityNameArr[0];
+		$cityCnt = $this->postRepository->checkCity($addedCity);
+		
+		if ($cityCnt['number'] == 0) {
+			$this->flashMessageContainer->addMessage ( new \TYPO3\Flow\Error\Error ( $this->translator->translateById ( 'advert.err.city', array (), NULL, NULL, 'Main', 'Incvisio.LostFound' ) ) );
+			$this->redirect( 'show', 'Post', NULL, array (
+				'post' => $args ['post'] ["__identity"] 
+			));
+		}
 		
 		$post = $this->postRepository->findByIdentifier ( $args ['post'] ["__identity"] );
 		$post->setDescription ( $args ["post"] ["description"] );
@@ -484,14 +494,14 @@ class PostController extends MainController {
 		
 		$page_position = (($page_number - 1) * $item_per_page);
 		if ($type == 'lost') {
-			$posts = $this->loadLost ( $lost_input, $city_input, $place_input, $date_from, $date_to, $category_lost, $page_position, $item_per_page );
-			$count = $this->postRepository->countLost ( $lost_input, $city_input, $category_lost );
+			$posts = $this->loadLost($lost_input, $city_input, $place_input, $date_from, $date_to, $category_lost, $page_position, $item_per_page );
+			$count = $this->postRepository->countLost( $lost_input, $city_input, $category_lost );
 		} elseif ($type == 'found') {
 			$posts = $this->loadFound ( $found_input, $city_input, $place_input, $date_from, $date_to, $category_found, $page_position, $item_per_page );
-			$count = $this->postRepository->countFound ( $found_input, $city_input, $category_found );
+			$count = $this->postRepository->countFound( $found_input, $city_input, $category_found );
 		}
 		
-		$total_pages = ceil ( $count ['number'] / $item_per_page );
+		$total_pages = ceil( $count['number'] / $item_per_page );
 		$pagin = $this->paginate_function ( $item_per_page, $page_number, $count, $total_pages, $city_input, $lost_input, $found_input, $category_lost, $category_found );
 		
 		$this->view->assign ( 'pagin', $pagin );
@@ -693,6 +703,22 @@ class PostController extends MainController {
 	public function createAction() {
 		
 		$args = $this->request->getArguments ();
+		if ($args["newPost"]["lost"] == 1) {
+			$url_type = "lost";
+		} elseif ($args["newPost"]["found"] == 1) {
+			$url_type = "found";
+		}
+		
+		//Check the city
+		$cityNameArr =  explode(',', $args["newPost"]["city"]);
+		$addedCity = $cityNameArr[0];
+		$cityCnt = $this->postRepository->checkCity($addedCity);
+		
+		if ($cityCnt['number'] == 0) {
+			$this->flashMessageContainer->addMessage ( new \TYPO3\Flow\Error\Error( $this->translator->translateById ( 'advert.err.city', array (), NULL, NULL, 'Main', 'Incvisio.LostFound' ) ) );
+			$this->redirectToUri("/post/new/?type=" . $url_type );
+		}
+				
 		$newPost = new Post ();
 		$newPost->setDescription ( $args ["newPost"] ["description"] );
 		$newPost->setLost ( $args ["newPost"] ["lost"] );
@@ -741,11 +767,7 @@ class PostController extends MainController {
 				}
 			}
 		}
-		if ($args ["newPost"] ["lost"] == 1) {
-			$url_type = "lost";
-		} elseif ($args ["newPost"] ["found"] == 1) {
-			$url_type = "found";
-		}
+		
 		$this->persistenceManager->persistAll ();
 		$this->flashMessageContainer->addMessage ( new Message ( $this->translator->translateById ( 'advert.add', array (), NULL, NULL, 'Main', 'Incvisio.LostFound' ) ) );
 		

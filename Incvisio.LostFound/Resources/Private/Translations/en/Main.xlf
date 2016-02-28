@@ -54,6 +54,9 @@
 			<trans-unit id="advert.found" xml:space="preserve">
             	<source>Found</source>
             </trans-unit>
+            <trans-unit id="advert.err.city" xml:space="preserve">
+            	<source>Invalid city entered!</source>
+            </trans-unit>
 			<trans-unit id="main.messages.pleaseLogin" xml:space="preserve">
             	<source>Please log in</source>
             </trans-unit>

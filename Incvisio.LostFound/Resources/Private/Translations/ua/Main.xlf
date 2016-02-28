@@ -54,6 +54,10 @@
             	<source>Ads Removed.</source>
             	 <target>Оголошення видалено</target>
             </trans-unit>
+             <trans-unit id="advert.err.city" xml:space="preserve">
+            	<source>Invalid city entered!</source>
+            	<target>City не активний</target>
+            </trans-unit>
 			<trans-unit id="advert.avatar" xml:space="preserve">
             	<source>Your avatar changed</source>
             	 <target>Аватар змінено</target>

@@ -169,19 +169,19 @@ class PostRepository extends Repository {
         if($city_input!=NULL){
             $statement .= "AND adv.city LIKE '".$city_input."%' ";
         }
+        
         if ($category_lost != NULL){
             $statement .= "AND adv.category ='".$category_lost. "'";
-
         }
+        
         if ($lost_input != NULL) {
             $word_count = count(str_word_count($lost_input,2,"АаБбВвГгДдЕеЄєЁёЖжЗзИиІіЇїЙйКкЛлМмНнОоПпРрСсТтУуФфХхЦцЧчШшЩщЪъЫыЬьЭэЮюЯяЬь"));
 
-            if($word_count==1) {
+            if ($word_count==1) {
                 $statement .= "AND MATCH (adv.title) AGAINST ('+$lost_input'  IN BOOLEAN MODE)";
-
-            }elseif($word_count ==2){
+            } elseif($word_count ==2) {
                 $statement .= "AND MATCH (adv.title) AGAINST ('~$lost_input'  IN BOOLEAN MODE)";
-            }elseif($word_count >=3){
+            } elseif($word_count >=3) {
                 $words = str_word_count($lost_input,2,"АаБбВвГгДдЕеЄєЁёЖжЗзИиІіЇїЙйКкЛлМмНнОоПпРрСсТтУуФфХхЦцЧчШшЩщЪъЫыЬьЭэЮюЯяЬь");
                 $statement .= "AND MATCH (adv.title) AGAINST ('(";
                 $searchWords = "";
@@ -204,22 +204,21 @@ class PostRepository extends Repository {
         $statement = "SELECT  COUNT(*) as number "
             . "FROM  `incvisio_lostfound_domain_model_post` as adv "
             . "WHERE adv.found = 1 ";
-        if($city_input!=NULL){
+        if ($city_input!=NULL) {
             $statement .= "AND adv.city LIKE '".$city_input."%' ";
         }
-        if ($category_found != NULL){
+        if ($category_found != NULL) {
             $statement .= "AND adv.category ='".$category_found. "'";
-
         }
         if ($found_input != NULL) {
             $word_count = count(str_word_count($found_input,2,"АаБбВвГгДдЕеЄєЁёЖжЗзИиІіЇїЙйКкЛлМмНнОоПпРрСсТтУуФфХхЦцЧчШшЩщЪъЫыЬьЭэЮюЯяЬь"));
 
-            if($word_count==1) {
+            if ($word_count==1) {
                 $statement .= "AND MATCH (adv.title) AGAINST ('+$found_input'  IN BOOLEAN MODE)";
 
-            }elseif($word_count==2){
+            } elseif($word_count==2) {
                 $statement .= "AND MATCH (adv.title) AGAINST ('~$found_input'  IN BOOLEAN MODE)";
-            }elseif($word_count >=3){
+            } elseif($word_count >=3) {
                 $words = str_word_count($found_input,2,"АаБбВвГгДдЕеЄєЁёЖжЗзИиІіЇїЙйКкЛлМмНнОоПпРрСсТтУуФфХхЦцЧчШшЩщЪъЫыЬьЭэЮюЯяЬь");
                 $statement .= "AND MATCH (adv.title) AGAINST ('(";
                 $searchWords = "";
@@ -243,5 +242,15 @@ class PostRepository extends Repository {
             . "WHERE `city`.`name` like '" . $city . "%' ORDER BY `city`.`name` LIMIT 0,6";
         $result = $this->connection->query($statement)->fetchAll();
         return $result;
+    }
+    
+    public function checkCity($city){
+    	$backendOptions = $this->configurationManager->getConfiguration('Settings', 'TYPO3.Flow.persistence.backendOptions');
+    	$config = new \Doctrine\DBAL\Configuration();
+    	$this->connection = \Doctrine\DBAL\DriverManager::getConnection($backendOptions, $config);
+    	$statement = "SELECT count(*) as number FROM `city`  "
+    					. "WHERE `city`.`name` like '" . $city . "'";
+    	$result = $this->connection->query($statement)->fetchAll();
+    	return $result[0];
     }
 }

@@ -173,7 +173,7 @@
 			transformResult: function(response) {
 				return {
 					suggestions: $.map(jQuery.parseJSON(response), function(dataItem) {
-						return { value: dataItem.name, data: dataItem.region };
+						return { value: dataItem.name + ', '+ dataItem.region , data: dataItem.region };
 					})
 				};
 			}
