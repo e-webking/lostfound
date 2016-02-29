@@ -1,8 +1,16 @@
 var Advert = {
     render :function(){
+    	if (document.URL.search("type=lost") != -1) {
+    		if($(window).width() < 767) {
+    			var city_input = $('.hide-on-med-and-up #city_filtr').val();
+    		} else {
+    			var city_input = $('.hide-on-small-only #city_filtr').val();
+    		}
+    	} else {
+    		var city_input = $('#city_filtr').val();
+    	}
         var lost_input = $('#lost-input').val();
         var found_input = $('#found-input').val();
-        var city_input = $('#city_filtr').val();
         var place_input = $('#place').val();
         var date_from = $('#date_from').val();
         var date_to = $('#date_to').val();

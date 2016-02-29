@@ -9,7 +9,7 @@
      	<div class="row">
             <div class="input-field col s12">
               <label for="city">Фільтр:</label>
-              <input placeholder="Місто" id="city_filtr" value="" type="text" class="validate">
+              <input placeholder="Місто" id="city_filtr" value="" type="text" class="validate cityfilter">
               <div id="suggesstion-box"></div>
             </div>
             <div id="category_lost_select" class="input-field col s12">
@@ -51,7 +51,7 @@
      	<div class="row">
             <div class="input-field col s12">
               <label for="city">Фільтр:</label>
-              <input placeholder="Місто" id="city_filtr" value="" type="text" class="validate">
+              <input placeholder="Місто" id="city_filtr" value="" type="text" class="validate cityfilter">
               <div id="suggesstion-box"></div>
             </div>
             <div id="category_lost_select" class="input-field col s12">
@@ -70,7 +70,7 @@
 		});
 		$('select').material_select();
 
-		$('#city_filtr').autocomplete({
+		$('.cityfilter').autocomplete({
 			serviceUrl: '/post/getCity',
 			paramName:'city',
 			minChars: 1,
