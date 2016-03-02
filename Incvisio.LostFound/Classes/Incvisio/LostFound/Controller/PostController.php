@@ -282,7 +282,7 @@ class PostController extends MainController {
 		$args = $this->request->getArguments ();
 		
 		//Check the city
-		$cityNameArr =  explode(',', $args["newPost"]["city"]);
+		$cityNameArr =  explode(',', $args["post"]["city"]);
 		$addedCity = $cityNameArr[0];
 		$cityCnt = $this->postRepository->checkCity($addedCity);
 		

@@ -84,7 +84,7 @@ h6{color:#A9D3DF; margin:0 0 10px !important; line-height:normal;}
 
 /*--- Top Header Css ---*/
 header {padding:20px 0; overflow:hidden;}
-header .logo{padding-top:26px !important; padding-left:21px !important; text-align:center;}
+header .logo{padding-top:26px !important; padding-left:20px !important; text-align:center;}
 
 header .signIn{display:inline-block; float:right; text-decoration:none; padding:10px 0; color:#FFF;}
 header .signIn:hover{color:#ff9800;}
@@ -529,9 +529,11 @@ footer .donateCol{text-align:center;}
 
 /*--- Mobile View Css here ---*/
 @media (max-width:768px) {
+.wrapper{padding:0px;}
 .modal-sm {top:21px !important;}
 #lost-input {background-position:95% center;}
 #found-input {background-position:95% center;}
+footer {margin: 0px;}
 footer .footerLogo{position:relative; float:left;}
 footer .footerLogo .responsive-img {max-width:100%;}
 .pagination li {padding: 0px 7px}
@@ -548,10 +550,11 @@ header .row{margin-bottom:0px;}
 header .logo{padding-top:0px !important; padding-bottom:0px !important;}	
 header .socialList ul li a{padding:0px 10px 10px 10px;}
 
-.wrapper .mob-marginLR1{margin-left:-5%; margin-right:-5%;}
+.wrapper .mob-marginLR1{margin-left:-5%; margin-right:-5.5%;}
+
 .wrapper .leftCol{margin:0px; overflow:hidden; color:#2c8fac; padding-top:30px !important; padding-bottom:30px !important; overflow:inherit;}
 .wrapper .rightCol{margin:0px; overflow:hidden; color:#fff; padding-top:30px !important; padding-bottom:30px !important; overflow:inherit;}
-
+.mob-bottom {padding: 0px !important; margin: 0px !important}
 .mobBG{background: url(../Images/mob-bg.jpg) center top repeat-y;}
 .lostFoundCol{margin:20px 0 0;}
 

@@ -3,8 +3,10 @@ var Advert = {
     	if (document.URL.search("type=lost") != -1) {
     		if($(window).width() < 767) {
     			var city_input = $('.hide-on-med-and-up #city_filtr').val();
+    			var category_lost = $('.hide-on-med-and-up #category_lost').val();
     		} else {
     			var city_input = $('.hide-on-small-only #city_filtr').val();
+    			var category_lost = $('.hide-on-small-only #category_lost').val();
     		}
     	} else {
     		var city_input = $('#city_filtr').val();
@@ -15,7 +17,7 @@ var Advert = {
         var date_from = $('#date_from').val();
         var date_to = $('#date_to').val();
         var category_found = $('#category_found').val();
-        var category_lost = $('#category_lost').val();
+        
         var advType = $('#advTyp').val();
         setTimeout(function() {
             Advert.loadAdvert(lost_input, found_input, city_input, place_input, date_from, date_to, category_found, category_lost,null,advType);

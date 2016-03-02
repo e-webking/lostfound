@@ -19,7 +19,7 @@
           <a class="waves-effect waves-light btn-large amber lighten-1" id="filter_button" onclick="Advert.render()">фільтрувати</a>
      </f:form>
 </div>
-<div class="col s12 m5 leftCol">
+<div class="col s12 m5 leftCol mob-bottom">
 	<f:form id="searchLost" name="searchLost" action="index" controller="Post" method="post" additionalParams="{type:advertType,lost_input:search_field}">                   
                <f:form.hidden id="advTyp" name="type" value="{advertType}"/>
                <div class="input-field col s11">
@@ -82,6 +82,11 @@
 				};
 			}
 		});
+		
+		if($(window).width() < 767) {
+			$('.leftCol').attr('style', 'padding-bottom:0px !important');
+			$('.mob-marginLR1').attr('style', 'margin-bottom:0px !important');
+		}
 	});
 	//To select country name
 	function selectCountry(val) {
