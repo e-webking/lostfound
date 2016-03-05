@@ -34,8 +34,8 @@ Incvisio:
   LostFound:
     strategies:
       Facebook:
-        app_id: '823382667787767'
-        app_secret: 'f2529419fd19d84b35d93d695adc0dee'
+        app_id: '823254257800608'
+        app_secret: '9ab9009d70cd972988e71a59a104a1cf'
         scope: 'public_profile,email' # optional
         redirect_uri: 'http://lostfound.armtechnologies.com/incvisio.lostfound/login/social'
       Vk:
@@ -47,8 +47,8 @@ Incvisio:
         app_secret: 'WQ9rVRb9QJ2O56dElNriw6O2CshAxpBbDsSMSxikvz1rGQzGEr'
         redirect_uri: 'http://lostfound.armtechnologies.com/incvisio.lostfound/login/social?social=twitter'
       Google:
-        app_id: '198232667061-epq7b8ivsjh67nknue073kedpdrb2opd.apps.googleusercontent.com'
-        app_secret: 'vNEwTMhTSeDJx0rqqlx2AhsP'
+        app_id: '198232667061-mvh7afunidgg5cdii0e9a23lfjjmms43.apps.googleusercontent.com'
+        app_secret: 'bJXA3LfFTTGm02V57Dt5yXth'
         redirect_uri: 'http://lostfound.armtechnologies.com/incvisio.lostfound/login/social?social=googleplus'
       Crop:
         comment: 200

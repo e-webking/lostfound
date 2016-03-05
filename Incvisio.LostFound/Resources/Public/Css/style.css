@@ -73,7 +73,7 @@ h6{color:#A9D3DF; margin:0 0 10px !important; line-height:normal;}
 	top: 0px;
 	z-index: -1;
 }
-
+ul li {line-height: 1.4}
 .color1{background:#9CF;}
 .color2{background:#C9F;}
 .color3{background:#9FC;}
@@ -89,9 +89,9 @@ header .logo{padding-top:26px !important; padding-left:20px !important; text-ali
 header .signIn{display:inline-block; float:right; text-decoration:none; padding:10px 0; color:#FFF;}
 header .signIn:hover{color:#ff9800;}
 
-header .socialList ul li a{padding:0px; margin:0px; float:left;}
-header .socialList ul li a{padding:0px 20px 10px 10px; display:inline-block;}
-header .socialList ul li .fa{font-size:18px;}
+.socialList ul li a{padding:0px; margin:0px; float:left;}
+.socialList ul li a{padding:0px 20px 10px 10px; display:inline-block;}
+.socialList ul li .fa{font-size:18px;}
 
 /*--- All Css ---*/
 .marginB0{margin-bottom:0px !important;}

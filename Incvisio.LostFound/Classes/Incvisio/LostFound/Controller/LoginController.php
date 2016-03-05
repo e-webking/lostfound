@@ -494,8 +494,8 @@ class LoginController extends \TYPO3\Flow\Mvc\Controller\ActionController {
 		$emailBody = $this->standaloneView->render();
 
 		$mail =  new \TYPO3\SwiftMailer\Message();
-		$mail->setTo($email,$email)
-			->setFrom('info@lostfound.com.ua')
+		$mail->setTo(array($email => $name))
+			->setFrom(array('info@lostfound.com.ua' => 'LostFound UA'))
 			->setSubject('Welcome to LostFound')
 			->setBody($emailBody, 'text/html')
 			->send();
@@ -621,8 +621,8 @@ class LoginController extends \TYPO3\Flow\Mvc\Controller\ActionController {
         $emailBody = $this->standaloneView->render();
 
         $mail =  new \TYPO3\SwiftMailer\Message();
-        $mail->setTo($email,$email)
-            ->setFrom('info@lostfound.com.ua')
+        $mail->setTo($email)
+            ->setFrom(array('info@lostfound.com.ua' => 'LostFound UA'))
             ->setSubject('Reset link')
             ->setBody($emailBody, 'text/html')
             ->send();
@@ -680,6 +680,5 @@ class LoginController extends \TYPO3\Flow\Mvc\Controller\ActionController {
 		$this->flashMessageContainer->addMessage(new \TYPO3\Flow\Error\Error('Authentication failed!', ($exception === NULL ? 1347016771 : $exception->getCode())));
 
 	}
-
 
 }
